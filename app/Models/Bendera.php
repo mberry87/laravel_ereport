@@ -14,4 +14,9 @@ class Bendera extends Model
     protected $fillable = [
         'nama', 'keterangan'
     ];
+
+    public function tersus()
+    {
+        return $this->hasMany(Bendera::class, 'id_bendera');
+    }
 }

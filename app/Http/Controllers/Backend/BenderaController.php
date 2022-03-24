@@ -40,7 +40,7 @@ class BenderaController extends Controller
     public function store(Request $request)
     {
         Bendera::create($request->only('nama', 'keterangan'));
-        return redirect()->route('bendera.index');
+        return redirect()->route('bendera.index')->with('sukses', 'Data bendera berhasil disimpan');
     }
 
 
@@ -67,7 +67,7 @@ class BenderaController extends Controller
     public function update(Request $request, Bendera $bendera)
     {
         $bendera->update($request->only('nama', 'keterangan'));
-        return redirect()->route('bendera.index');
+        return redirect()->route('bendera.index')->with('sukses', 'Data bendera berhasil diubah');
     }
 
     /**
@@ -79,6 +79,6 @@ class BenderaController extends Controller
     public function destroy(Bendera $bendera)
     {
         $bendera->delete();
-        return redirect()->route('bendera.index');
+        return redirect()->route('bendera.index')->with('hapus', 'Data bendera berhasil dihapus');
     }
 }
