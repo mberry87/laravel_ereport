@@ -23,8 +23,9 @@
                                 <th>No</th>
                                 <th>Nama User</th>
                                 <th>Email</th>
-                                <th>Password</th>
+                                <th>Status</th>
                                 <th>Waktu Input</th>
+
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -32,26 +33,30 @@
                             @foreach ($user as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</td>
-                                    <td>{{ $data->password }}</td>
+                                    <td></td>
                                     <td>{{ $data->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="{{ route('user.edit', $data) }}"
-                                            class="btn btn-warning btn-sm mr-2 d-inline">
-                                            <i class="fas fa-edit mr-2"></i>
-                                            edit
-                                        </a>
-                                        <form action="{{ route('user.destroy', $data) }}" method="POST"
-                                            class="d-inline">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Hapus User ini?')" type="submit">
-                                                <i class="fas fa-trash mr-2"></i>hapus
-                                            </button>
+                                        @if (auth()->user()->id == $data->id)
+                                            User sedang login
+                                        @else
+                                            <a href="{{ route('user.edit', $data) }}"
+                                                class="btn btn-warning btn-sm mr-2 d-inline">
+                                                <i class="fas fa-edit mr-2"></i>
+                                                edit
+                                            </a>
+                                            <form action="{{ route('user.destroy', $data) }}" method="POST"
+                                                class="d-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Hapus User ini?')" type="submit">
+                                                    <i class="fas fa-trash mr-2"></i>hapus
+                                                </button>
 
-                                        </form>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

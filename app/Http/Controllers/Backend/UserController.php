@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Userdata;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class UserdataController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class UserdataController extends Controller
     public function index()
     {
         return view('backend.user.index', [
-            'user' => Userdata::all()
+            'user' => User::all()
         ]);
     }
 
@@ -38,17 +39,22 @@ class UserdataController extends Controller
      */
     public function store(Request $request)
     {
-        Userdata::create($request->only('nama', 'email', 'password'));
+        $password = Hash::make($request->email);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $password
+        ]);
         return redirect()->route('user.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Userdata  $userdata
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Userdata $userdata)
+    public function show(User $user)
     {
         //
     }
@@ -56,10 +62,10 @@ class UserdataController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Userdata  $userdata
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Userdata $user)
+    public function edit(User $user)
     {
         return view('backend.user.edit', [
             'user' => $user
@@ -70,22 +76,22 @@ class UserdataController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Userdata  $userdata
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Userdata $user)
+    public function update(Request $request, User $user)
     {
-        $user->update($request->only('nama', 'email'));
+        $user->update($request->only('name', 'email',));
         return redirect()->route('user.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Userdata  $userdata
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Userdata $user)
+    public function destroy(User $user)
     {
         $user->delete();
         return redirect()->route('user.index');

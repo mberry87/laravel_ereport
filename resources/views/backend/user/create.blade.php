@@ -22,16 +22,12 @@
 
                         <div class="form-group">
                             <label>Nama User</label>
-                            <input type="text" class="form-control" name="nama" required>
+                            <input type="text" class="form-control" name="name" required>
                         </div>
 
                         <div class="form-group">
                             <label>Email</label>
                             <input name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input name="password" type="password" class="form-control">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-sm" type="submit">

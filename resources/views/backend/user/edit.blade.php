@@ -22,16 +22,11 @@
                         @method('PUT')
                         <div class="form-group">
                             <label>Nama User</label>
-                            <input type="text" class="form-control" name="nama" value="{{ $user->nama }}" required>
+                            <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
                             <input type="text" class="form-control" name="email" value="{{ $user->email }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" value="{{ $user->password }}"
-                                required>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-sm" type="submit">
