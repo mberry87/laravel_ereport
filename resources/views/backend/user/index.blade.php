@@ -39,7 +39,7 @@
                                     <td>{{ $data->created_at->diffForHumans() }}</td>
                                     <td>
                                         @if (auth()->user()->id == $data->id)
-                                            User sedang login
+                                            <small class="text-danger">User Sedang Login</small>
                                         @else
                                             <a href="{{ route('user.edit', $data) }}"
                                                 class="btn btn-warning btn-sm mr-2 d-inline">
