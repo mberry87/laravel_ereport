@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\BenderaController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\JeniskapalController;
@@ -25,15 +26,26 @@ use PhpParser\Node\Expr\Ternary;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    return response()->json([
+        'msg' => 'Hello world'
+    ]);
 });
 
-Route::resource('/bendera', BenderaController::class);
-Route::resource('/pelabuhan', PelabuhanController::class);
-Route::resource('/terminal', TerminalController::class);
-Route::resource('/jenis_kapal', JeniskapalController::class);
-Route::resource('/status_trayek', StatustrayekController::class);
-Route::resource('/tersus', TersusController::class);
-Route::resource('/tersus_datang', TersusdatangController::class);
-Route::resource('/user', UserdataController::class);
-Route::resource('login', LoginController::class);
+Auth::routes([
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::resource('/bendera', BenderaController::class);
+    Route::resource('/pelabuhan', PelabuhanController::class);
+    Route::resource('/terminal', TerminalController::class);
+    Route::resource('/jenis_kapal', JeniskapalController::class);
+    Route::resource('/status_trayek', StatustrayekController::class);
+    Route::resource('/tersus', TersusController::class);
+    Route::resource('/tersus_datang', TersusdatangController::class);
+    Route::resource('/user', UserdataController::class);
+});
