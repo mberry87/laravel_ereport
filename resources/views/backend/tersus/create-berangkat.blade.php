@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Data Tersus Datang')
+@section('title', 'Tambah Data Tersus berangkat')
 
 @section('breadcump')
 <ol class="breadcrumb float-sm-right">
@@ -17,7 +17,7 @@
                 <a href="{{ route('tersus.index') }}" class="btn btn-secondary btn-sm mb-3 mr-3">
                     <i class="fas fa-arrow-left mr-3"></i>Kembali
                 </a>
-                <form action="{{ route('tersus.store') }}" method="POST">
+                <form action="{{ route('tersus.berangkat.store') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -38,23 +38,23 @@
                                 <input type="text" name="isi_kotor" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Tanggal datang</label>
-                                <input type="date" name="tgl_datang" class="form-control" required>
+                                <label>Tanggal berangkat</label>
+                                <input type="date" name="tgl_berangkat" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Pelabuhan datang</label>
-                                <select name="id_pelabuhan_datang" id="id_pelabuhan_datang" class="form-control">
+                                <label>Pelabuhan berangkat</label>
+                                <select name="id_pelabuhan_berangkat" id="id_pelabuhan_berangkat" class="form-control">
                                     @foreach ($pelabuhan as $data)
                                     <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Terminal datang</label>
-                                <select name="id_terminal_datang" id="id_terminal_datang" class="form-control">
+                                <label>Terminal berangkat</label>
+                                <select name="id_terminal_berangkat" id="id_terminal_berangkat" class="form-control">
                                     @foreach ($terminal as $data)
                                     <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                     @endforeach
@@ -62,11 +62,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Jumlah bongkar</label>
-                                <input type="text" name="jumlah_bongkar_datang" class="form-control" required>
+                                <input type="text" name="jumlah_bongkar_berangkat" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Jenis muatan</label>
-                                <input type="text" name="jenis_muatan_datang" class="form-control" required>
+                                <input type="text" name="jenis_muatan_berangkat" class="form-control" required>
                             </div>
                         </div>
                     </div>

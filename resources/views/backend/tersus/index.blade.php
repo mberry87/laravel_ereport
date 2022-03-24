@@ -14,10 +14,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('tersus_datang.index') }}" class="btn btn-primary btn-sm mb-3 mr-3">
+                    <a href="{{ route('tersus.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
                         <i class="fas fa-backward mr-3"></i>Datang
                     </a>
-                    <a href="#" class="btn btn-danger btn-sm mb-3">
+                    <a href="{{ route('tersus.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
                         <i class="fas fa-forward mr-3"></i>Berangkat
                     </a>
                     <table class="table table-bordered table-sm">
@@ -32,32 +32,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($terminal as $data)
+                            @foreach ($tersus as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data->kode }}</td>
-                                    <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->keterangan }}</td>
-                                    <td>{{ $data->created_at->diffForHumans() }}</td>
+                                    <td>{{ $data->nama_kapal }}</td>
+                                    <td>{{ $data->bendera->nama }}</td>
+                                    <td>{{ $data->tgl_berangkat }}</td>
+                                    <td>{{ $data->tgl_datang }}</td>
                                     <td>
-                                        <a href="{{ route('terminal.edit', $data) }}"
-                                            class="btn btn-warning btn-sm mr-2 d-inline">
-                                            <i class="fas fa-edit mr-2"></i>
-                                            edit
-                                        </a>
-                                        <form action="{{ route('terminal.destroy', $data) }}" method="POST"
-                                            class="d-inline">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Hapus Terminal ini?')" type="submit">
-                                                <i class="fas fa-trash mr-2"></i>hapus
-                                            </button>
 
-                                        </form>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
