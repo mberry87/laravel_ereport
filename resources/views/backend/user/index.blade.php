@@ -12,6 +12,21 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            @if ($pesan = Session::get('sukses'))
+                <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                    {{ $pesan }}
+                </div>
+            @endif
+
+            @if ($pesan = Session::get('hapus'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                    {{ $pesan }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="card-body">

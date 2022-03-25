@@ -39,7 +39,7 @@ class PelabuhanController extends Controller
     public function store(Request $request)
     {
         Pelabuhan::create($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('pelabuhan.index');
+        return redirect()->route('pelabuhan.index')->with('sukses', 'Data pelabuhan berhasil disimpan');
     }
 
     /**
@@ -76,7 +76,7 @@ class PelabuhanController extends Controller
     public function update(Request $request, Pelabuhan $pelabuhan)
     {
         $pelabuhan->update($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('pelabuhan.index');
+        return redirect()->route('pelabuhan.index')->with('sukses', 'Data pelabuhan berhasil diubah');
     }
 
     /**
@@ -88,6 +88,6 @@ class PelabuhanController extends Controller
     public function destroy(Pelabuhan $pelabuhan)
     {
         $pelabuhan->delete();
-        return redirect()->route('pelabuhan.index');
+        return redirect()->route('pelabuhan.index')->with('hapus', 'Data bendera berhasil dihapus');
     }
 }

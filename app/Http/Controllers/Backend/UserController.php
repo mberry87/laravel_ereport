@@ -45,7 +45,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $password
         ]);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('sukses', 'Data user berhasil disimpan');
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->only('name', 'email',));
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('sukses', 'Data user berhasil diubah');
     }
 
     /**
@@ -94,6 +94,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('hapus', 'Data user berhasil dihapus');
     }
 }

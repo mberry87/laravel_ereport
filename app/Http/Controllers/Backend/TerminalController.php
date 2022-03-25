@@ -39,7 +39,7 @@ class TerminalController extends Controller
     public function store(Request $request)
     {
         Terminal::create($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('terminal.index');
+        return redirect()->route('terminal.index')->with('sukses', 'Data terminal berhasil disimpan');
     }
 
     /**
@@ -76,7 +76,7 @@ class TerminalController extends Controller
     public function update(Request $request, Terminal $terminal)
     {
         $terminal->update($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('terminal.index');
+        return redirect()->route('terminal.index')->with('sukses', 'Data terminal berhasil diubah');
     }
 
     /**
@@ -88,6 +88,6 @@ class TerminalController extends Controller
     public function destroy(Terminal $terminal)
     {
         $terminal->delete();
-        return redirect()->route('terminal.index');
+        return redirect()->route('terminal.index')->with('hapus', 'Data terminal berhasil dihapus');
     }
 }

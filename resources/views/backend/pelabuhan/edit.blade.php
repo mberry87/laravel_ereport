@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Pelabuahan')
+@section('title', 'Edit Pelabuhan')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
