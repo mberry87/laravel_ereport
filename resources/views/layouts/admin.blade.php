@@ -57,13 +57,13 @@
 
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('image') }}/perhubungan.png" class="user-image img-circle elevation-2"
+                        <img src="{{ asset('image') }}/avatar.jpeg" class="user-image img-circle elevation-2"
                             alt="User Image">
                         <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <li class="user-header bg-primary">
-                            <img src="{{ asset('image') }}/perhubungan.png" class="img-circle elevation-2"
+                            <img src="{{ asset('image') }}/avatar.jpeg" class="img-circle elevation-2"
                                 alt="User Image">
                             <p>
                                 {{ auth()->user()->name }}
@@ -72,7 +72,7 @@
                         </li>
 
                         <li class="user-footer">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="{{ route('profile.index') }}" class="btn btn-default btn-flat">Profile</a>
                             <a class="btn btn-default btn-flat float-right" href="{{ route('logout') }}" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">Sign out</a>
 

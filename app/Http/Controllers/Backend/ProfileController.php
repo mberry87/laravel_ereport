@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('backend');
+        return view('backend.profile.index');
     }
 
     public function updateGeneralData(Request $request)
@@ -17,7 +17,7 @@ class ProfileController extends Controller
         # code...
     }
 
-    public function updatePassword(Type $var = null)
+    public function updatePassword()
     {
         # code...
     }

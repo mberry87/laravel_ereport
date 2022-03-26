@@ -66,7 +66,6 @@
                                                     onclick="return confirm('Hapus Terminal ini?')" type="submit">
                                                     <i class="fas fa-trash mr-2"></i>hapus
                                                 </button>
-
                                             </form>
                                         </td>
                                     </tr>

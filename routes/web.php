@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\JeniskapalController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
@@ -45,4 +46,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/tersus', TersusController::class);
 
     Route::resource('/user', UserController::class);
+
+    Route::resource('/profile', ProfileController::class);
 });
