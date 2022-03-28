@@ -61,18 +61,18 @@
                                     <td>
                                         <a href="{{ route('tersus.show', $data) }}"
                                             class="btn btn-warning btn-sm mr-2 d-inline" data-toggle="tooltip" title="show">
-                                            <i class="fas fa-eye mr-2"></i>
+                                            <i class="fas fa-eye"></i>
 
                                         </a>
                                         <a href="{{ route('tersus.datang.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2 d-inline" data-toggle="tooltip"
                                             title="edit datang">
-                                            <i class="fas fa-edit mr-2"></i>
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="{{ route('tersus.berangkat.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2  d-inline" data-toggle="tooltip"
                                             title="edit berangkat">
-                                            <i class="fas fa-edit mr-2"></i>
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="{{ route('tersus.destroy', $data->id) }}" method="POST"
                                             class="d-inline">
@@ -81,7 +81,7 @@
                                             <button class="btn btn-danger btn-sm d-inline"
                                                 onclick="return confirm('Hapus data ini?')" type="submit"
                                                 data-toggle="tooltip" title="hapus">
-                                                <i class="fas fa-trash mr-2"></i>
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
                                     </td>
