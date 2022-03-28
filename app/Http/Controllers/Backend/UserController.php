@@ -39,14 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
 
-    { {
-            $validateData = $request->validate([
-                'image' => 'image|file|max:1024',
-            ]);
-
-            $validateData['name'] = auth()->user()->id;
-            return redirect()->route('profile.index');
-        }
+    {
 
         $password = Hash::make($request->email);
 
