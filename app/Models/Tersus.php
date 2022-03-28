@@ -58,4 +58,9 @@ class Tersus extends Model
             return "Belum berangkat";
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

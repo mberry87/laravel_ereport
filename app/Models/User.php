@@ -45,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tersus()
+    {
+        return $this->hasMany(Tersus::class, 'id_user');
+    }
 }
