@@ -51,6 +51,7 @@ class UserController extends Controller
             'alamat' => $request->alamat,
             'status' => 'aktif',
             'avatar' => null,
+            'nama_perusahaan' => $request->nama_perusahaan,
         ]);
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil disimpan');
     }
@@ -88,7 +89,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->only('name', 'email', 'role', 'alamat', 'no_hp', 'status'));
+        $user->update($request->only('name', 'email', 'role', 'alamat', 'no_hp', 'status', 'nama_perusahaan'));
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil diubah');
     }
 

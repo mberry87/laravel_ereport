@@ -43,7 +43,6 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-
                             <div class="form-group">
                                 <label>Pelabuhan datang</label>
                                 <select name="id_pelabuhan_datang" id="id_pelabuhan_datang" class="form-control">

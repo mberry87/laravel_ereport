@@ -28,7 +28,8 @@ class User extends Authenticatable
         'avatar',
         'no_hp',
         'alamat',
-        'status'
+        'status',
+        'nama_perusahaan'
     ];
 
     /**

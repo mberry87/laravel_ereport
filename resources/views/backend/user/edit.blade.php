@@ -33,6 +33,10 @@
                             <input name="no_hp" type="text" class="form-control" required value="{{ $user->no_hp }}">
                         </div>
                         <div class="form-group">
+                            <label>Nama Perusahaan</label>
+                            <input name="nama_perusahaan" type="text" class="form-control" required required value="{{ $user->nama_perusahaan }}">
+                        </div>
+                        <div class="form-group">
                             <label>Role</label>
                             <select name="role" class="form-control" required>
                                 <option value="">-- Pilih --</option>

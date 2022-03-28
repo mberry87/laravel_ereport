@@ -31,10 +31,13 @@
                             <label>Email</label>
                             <input name="email" type="email" class="form-control" required>
                         </div>
-
                         <div class="form-group">
                             <label>No.HP</label>
                             <input name="no_hp" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Perusahaan</label>
+                            <input name="nama_perusahaan" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Role</label>
