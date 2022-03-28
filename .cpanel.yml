@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jatranse/ereport.jatranses.id/
+    - /bin/cp -r * $DEPLOYPATH
