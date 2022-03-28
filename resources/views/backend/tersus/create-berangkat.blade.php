@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah muatan</label>
-                                    <input type="text" name="jumlah_bongkar_berangkat" class="form-control" required>
+                                    <input type="text" name="jumlah_muatan_berangkat" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis muatan</label>

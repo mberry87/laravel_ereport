@@ -45,7 +45,7 @@ class Tersus extends Model
             $date = strtotime($this->tgl_datang);
             return date('d-M-Y', $date);
         } else {
-            return "-";
+            return "Belum datang";
         }
     }
 

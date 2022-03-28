@@ -290,7 +290,12 @@
         });
     </script>
 
-    {{-- image preview --}}
+    {{-- tooltip --}}
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
 
 </body>

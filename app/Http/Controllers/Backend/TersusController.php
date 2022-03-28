@@ -46,7 +46,7 @@ class TersusController extends Controller
     public function storeDatang(Request $request)
     {
         Tersus::create($request->all() + ['input_oleh' => auth()->user()->name]);
-        return redirect()->route('tersus.index');
+        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     /**
@@ -101,7 +101,7 @@ class TersusController extends Controller
             'jenis_muatan_datang' => $request->jenis_muatan_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('tersus.index');
+        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil diubah');
     }
 
     /**
@@ -113,7 +113,7 @@ class TersusController extends Controller
     public function destroy($id)
     {
         Tersus::destroy($id);
-        return redirect()->route('tersus.index');
+        return redirect()->route('tersus.index')->with('hapus', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()
@@ -128,32 +128,19 @@ class TersusController extends Controller
 
     public function storeBerangkat(Request $request)
     {
-        $tersus = Tersus::where('nama_kapal', '=', $request->nama_kapal)
-            ->whereNull('tgl_berangkat')
-            ->first();
-        if ($tersus) {
-            $tersus->update([
-                'tgl_berangkat' => $request->tgl_berangkat,
-                'id_terminal_berangkat' => $request->id_terminal_berangkat,
-                'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-                'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
-                'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
-                'update_oleh' =>  auth()->user()->name,
-            ]);
-            return redirect()->route('tersus.index');
-        } else {
-            Tersus::create([
-                'nama_kapal' => $request->nama_kapal,
-                'id_bendera' => $request->id_bendera,
-                'tgl_berangkat' => $request->tgl_berangkat,
-                'id_terminal_berangkat' => $request->id_terminal_berangkat,
-                'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-                'jumlah_bongkar_berangkat' => $request->jumlah_bongkar_berangkat,
-                'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
-                'input_oleh' =>  auth()->user()->name,
-            ]);
-            return redirect()->route('tersus.index');
-        }
+
+        Tersus::create([
+            'nama_kapal' => $request->nama_kapal,
+            'id_bendera' => $request->id_bendera,
+            'isi_kotor' => $request->isi_kotor,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_terminal_berangkat' => $request->id_terminal_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
+            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
+            'input_oleh' =>  auth()->user()->name,
+        ]);
+        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
@@ -177,10 +164,10 @@ class TersusController extends Controller
             'tgl_berangkat' => $request->tgl_berangkat,
             'id_terminal_berangkat' => $request->id_terminal_berangkat,
             'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-            'jumlah_bongkar_berangkat' => $request->jumlah_bongkar_berangkat,
+            'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('tersus.index');
+        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil diubah');
     }
 }
