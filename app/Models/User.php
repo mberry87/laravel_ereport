@@ -23,8 +23,11 @@ class User extends Authenticatable
         'email',
         'password',
         'last_login_time',
-        'last_login_ip'
-
+        'last_login_ip',
+        'role',
+        'avatar',
+        'no_hp',
+        'alamat'
     ];
 
     /**
