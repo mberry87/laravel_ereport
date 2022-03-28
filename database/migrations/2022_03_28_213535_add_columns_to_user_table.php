@@ -18,6 +18,7 @@ class AddColumnsToUserTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
+            $table->enum('status', ['aktif', 'suspend'])->default('aktif');
         });
     }
 

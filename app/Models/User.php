@@ -27,7 +27,8 @@ class User extends Authenticatable
         'role',
         'avatar',
         'no_hp',
-        'alamat'
+        'alamat',
+        'status'
     ];
 
     /**
