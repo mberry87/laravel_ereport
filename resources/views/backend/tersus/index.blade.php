@@ -38,8 +38,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->nama_kapal }}</td>
                                         <td>{{ $data->bendera->nama }}</td>
-                                        <td>{{ $data->tgl_datang }}</td>
-                                        <td>{{ $data->tgl_berangkat }}</td>
+                                        <td>{{ $data->datang }}</td>
+                                        <td>{{ $data->berangkat }}</td>
                                         <td><a href="{{ route('tersus.show', $data) }}"
                                                 class="btn btn-warning btn-sm mr-2 d-inline">
                                                 <i class="fas fa-eye mr-2"></i>

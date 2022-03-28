@@ -116,7 +116,7 @@ class TersusController extends Controller
                 'tgl_berangkat' => $request->tgl_berangkat,
                 'id_terminal_berangkat' => $request->id_terminal_berangkat,
                 'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-                'jumlah_bongkar_berangkat' => $request->jumlah_bongkar_berangkat,
+                'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
                 'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
                 'update_oleh' =>  auth()->user()->name,
             ]);

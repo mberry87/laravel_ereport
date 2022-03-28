@@ -70,41 +70,43 @@
                         <h5 class="mt-4">Laporan Keberangkatan</h5>
                         <table class="table table-striped table-sm">
                             <tbody>
-                                <tr>
-                                    <td style="width: 40%">Nama Kapal</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 40%">Bendera</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 40%">Isi Kotor (GT)</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 40%">Tanggal Berangakt</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 40%">Pelabuhan Berangkat</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 40%">Terminal Berangkat</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 40%">Jenis Muatan</td>
-                                    <td class="text-center" style="width: 5%">:</td>
-                                    <td></td>
-                                </tr>
+                                @foreach ($tersus as $data)
+                                    <tr>
+                                        <td style="width: 40%">Nama Kapal</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->nama_kapal }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 40%">Bendera</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->bendera->nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 40%">Isi Kotor (GT)</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->isi_kotor }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 40%">Tanggal Berangakt</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->tgl_berangkat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 40%">Pelabuhan Berangkat</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->pelabuhan_berangkat->nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 40%">Terminal Berangkat</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->terminal_berangkat->nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 40%">Jenis Muatan</td>
+                                        <td class="text-center" style="width: 5%">:</td>
+                                        <td>{{ $data->jenis_muatan_berangkat }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
