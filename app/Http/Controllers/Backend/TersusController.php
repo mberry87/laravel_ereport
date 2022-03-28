@@ -28,9 +28,9 @@ class TersusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createDatang()
     {
-        return view('backend.tersus.create', [
+        return view('backend.tersus.create-datang', [
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all()
@@ -43,7 +43,7 @@ class TersusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeDatang(Request $request)
     {
         Tersus::create($request->all() + ['input_oleh' => auth()->user()->name]);
         return redirect()->route('tersus.index');
@@ -55,10 +55,11 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function show(Tersus $tersus)
+    public function show($id)
     {
+        $tersus = Tersus::findOrFail($id);
         return view('backend.tersus.show', [
-            'tersus' => Tersus::all()
+            'tersus' => $tersus
         ]);
     }
 
@@ -68,9 +69,15 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tersus $tersus)
+    public function editDatang($id)
     {
-        //
+        $tersus = Tersus::findOrFail($id);
+        return view('backend.tersus.edit-datang', [
+            'tersus' => $tersus,
+            'bendera' => Bendera::all(),
+            'terminal' => Terminal::all(),
+            'pelabuhan' => Pelabuhan::all(),
+        ]);
     }
 
     /**
@@ -80,9 +87,21 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tersus $tersus)
+    public function updateDatang(Request $request, $id)
     {
-        //
+        $tersus = Tersus::findOrFail($id);
+        $tersus->update([
+            'nama_kapal' => $request->nama_kapal,
+            'id_bendera' => $request->id_bendera,
+            'isi_kotor' => $request->isi_kotor,
+            'tgl_datang' => $request->tgl_datang,
+            'id_terminal_datang' => $request->id_terminal_datang,
+            'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
+            'jumlah_bongkar_datang' => $request->jumlah_bongkar_datang,
+            'jenis_muatan_datang' => $request->jenis_muatan_datang,
+            'update_oleh' =>  auth()->user()->name,
+        ]);
+        return redirect()->route('tersus.index');
     }
 
     /**
@@ -91,12 +110,13 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tersus $tersus)
+    public function destroy($id)
     {
-        //
+        Tersus::destroy($id);
+        return redirect()->route('tersus.index');
     }
 
-    public function createTersusBerangkat()
+    public function createBerangkat()
     {
         return view('backend.tersus.create-berangkat', [
             'bendera' => Bendera::all(),
@@ -106,7 +126,7 @@ class TersusController extends Controller
     }
 
 
-    public function storeTersusBerangkat(Request $request)
+    public function storeBerangkat(Request $request)
     {
         $tersus = Tersus::where('nama_kapal', '=', $request->nama_kapal)
             ->whereNull('tgl_berangkat')
@@ -122,7 +142,45 @@ class TersusController extends Controller
             ]);
             return redirect()->route('tersus.index');
         } else {
+            Tersus::create([
+                'nama_kapal' => $request->nama_kapal,
+                'id_bendera' => $request->id_bendera,
+                'tgl_berangkat' => $request->tgl_berangkat,
+                'id_terminal_berangkat' => $request->id_terminal_berangkat,
+                'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+                'jumlah_bongkar_berangkat' => $request->jumlah_bongkar_berangkat,
+                'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
+                'input_oleh' =>  auth()->user()->name,
+            ]);
             return redirect()->route('tersus.index');
         }
+    }
+
+    public function editBerangkat($id)
+    {
+        $tersus = Tersus::findOrFail($id);
+        return view('backend.tersus.edit-berangkat', [
+            'tersus' => $tersus,
+            'bendera' => Bendera::all(),
+            'terminal' => Terminal::all(),
+            'pelabuhan' => Pelabuhan::all(),
+        ]);
+    }
+
+    public function updateBerangkat(Request $request, $id)
+    {
+        $tersus = Tersus::findOrFail($id);
+        $tersus->update([
+            'nama_kapal' => $request->nama_kapal,
+            'id_bendera' => $request->id_bendera,
+            'isi_kotor' => $request->isi_kotor,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_terminal_berangkat' => $request->id_terminal_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'jumlah_bongkar_berangkat' => $request->jumlah_bongkar_berangkat,
+            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
+            'update_oleh' =>  auth()->user()->name,
+        ]);
+        return redirect()->route('tersus.index');
     }
 }
