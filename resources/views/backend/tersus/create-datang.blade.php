@@ -17,7 +17,7 @@
                 <a href="{{ route('tersus.index') }}" class="btn btn-secondary btn-sm mb-3 mr-3">
                     <i class="fas fa-arrow-left mr-3"></i>Kembali
                 </a>
-                <form action="{{ route('tersus.store') }}" method="POST">
+                <form action="{{ route('tersus.datang.store') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

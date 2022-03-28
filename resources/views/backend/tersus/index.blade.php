@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-body">
-                        <a href="{{ route('tersus.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
+                        <a href="{{ route('tersus.datang.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
                             <i class="fas fa-backward mr-3"></i>Datang
                         </a>
                         <a href="{{ route('tersus.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
@@ -40,11 +40,32 @@
                                         <td>{{ $data->bendera->nama }}</td>
                                         <td>{{ $data->datang }}</td>
                                         <td>{{ $data->berangkat }}</td>
-                                        <td><a href="{{ route('tersus.show', $data) }}"
+                                        <td>
+                                            <a href="{{ route('tersus.show', $data) }}"
                                                 class="btn btn-warning btn-sm mr-2 d-inline">
                                                 <i class="fas fa-eye mr-2"></i>
                                                 show
-                                            </a></td>
+                                            </a>
+                                            <a href="{{ route('tersus.datang.edit', $data->id) }}"
+                                                class="btn btn-warning btn-sm mr-2 d-inline">
+                                                <i class="fas fa-edit mr-2"></i>
+                                                Edit kedatangan
+                                            </a>
+                                            <a href="{{ route('tersus.berangkat.edit', $data->id) }}"
+                                                class="btn btn-warning btn-sm mr-2 d-inline">
+                                                <i class="fas fa-edit mr-2"></i>
+                                                Edit keberangkatan
+                                            </a>
+                                            <form action="{{ route('tersus.destroy', $data->id) }}" method="POST"
+                                                class="d-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Hapus data ini?')" type="submit">
+                                                    <i class="fas fa-trash mr-2"></i>hapus
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
