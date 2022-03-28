@@ -38,4 +38,16 @@ class Tersus extends Model
     {
         return $this->belongsTo(Terminal::class, 'id_pelabuhan_berangkat');
     }
+
+    public function getDatangAttribute()
+    {
+        $date = strtotime($this->tgl_datang);
+        return date('d-M-Y', $date);
+    }
+
+    public function getBerangkatAttribute()
+    {
+        $date = strtotime($this->tgl_berangkat);
+        return date('d-M-Y', $date);
+    }
 }
