@@ -38,7 +38,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
 
         $password = Hash::make($request->email);
@@ -47,9 +46,12 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $password,
+            'role' => $request->role,
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'status' => 'aktif',
+            'avatar' => null,
         ]);
-
-
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil disimpan');
     }
 
@@ -86,7 +88,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->only('name', 'email',));
+        $user->update($request->only('name', 'email', 'role', 'alamat', 'no_hp', 'status'));
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil diubah');
     }
 
