@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Tanggal datang</label>
-                                <input type="date" name="tgl_datang" class="form-control" required value="{{ $tersus->tgl_berangkat }}"">
+                                <input type="date" name="tgl_datang" class="form-control" required value="{{ $tersus->tgl_datang }}"">
                             </div>
                         </div>
                         <div class="col-md-6">

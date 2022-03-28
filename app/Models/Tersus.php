@@ -41,13 +41,21 @@ class Tersus extends Model
 
     public function getDatangAttribute()
     {
-        $date = strtotime($this->tgl_datang);
-        return date('d-M-Y', $date);
+        if (!$this->tgl_datang == null) {
+            $date = strtotime($this->tgl_datang);
+            return date('d-M-Y', $date);
+        } else {
+            return "-";
+        }
     }
 
     public function getBerangkatAttribute()
     {
-        $date = strtotime($this->tgl_berangkat);
-        return date('d-M-Y', $date);
+        if (!$this->tgl_berangkat == null) {
+            $date = strtotime($this->tgl_berangkat);
+            return date('d-M-Y', $date);
+        } else {
+            return "Belum berangkat";
+        }
     }
 }
