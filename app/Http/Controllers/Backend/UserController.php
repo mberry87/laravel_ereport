@@ -38,13 +38,25 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+
+    { {
+            $validateData = $request->validate([
+                'image' => 'image|file|max:1024',
+            ]);
+
+            $validateData['name'] = auth()->user()->id;
+            return redirect()->route('profile.index');
+        }
+
         $password = Hash::make($request->email);
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $password
+            'password' => $password,
         ]);
+
+
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil disimpan');
     }
 

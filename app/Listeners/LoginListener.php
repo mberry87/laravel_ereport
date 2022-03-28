@@ -2,12 +2,10 @@
 
 namespace App\Listeners;
 
-use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class UpdateLastSignInAt
+class LoginListener
 {
     /**
      * Create the event listener.
@@ -22,12 +20,14 @@ class UpdateLastSignInAt
     /**
      * Handle the event.
      *
-     * @param  \Illuminate\Auth\Events\Login  $event
+     * @param  object  $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle($event)
     {
-        $event->user->last_sign_in_at = Carbon::now();
-        $event->user->save();
+        $event->user->update([
+            'last_login_time' => now(),
+            'last_login_ip' => request()->getClientIp(),
+        ]);
     }
 }

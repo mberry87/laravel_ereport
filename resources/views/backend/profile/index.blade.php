@@ -16,9 +16,26 @@
                 <div class="card-body text-center">
                     <img src="{{ asset('image') }}/avatar.jpeg" alt="avatar" class="rounded-circle img-fluid"
                         style="width: 150px;">
+                    <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group my-4">
+                            <label for="image">Upload Gambar</label>
+                            <input type="file" class="form-control-file" @error('image') is-invalid @enderror name="image">
+                            @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <button class="btn btn-primary btn-sm mr-3" type="submit">
+                            <i class="fas fa-undo"></i>
+                            Update Gambar
+                        </button>
+                    </form>
                     <h5 class="mt-3">{{ auth()->user()->name }}</h5>
                     <p class="text-success">&bull; Online</p>
-                    <p class="text-secondary">Terkahir login : {{ auth()->user()->last_sign_in_at }}</p>
+                    <p class="text-secondary">Terkahir login : <span
+                            class="text-danger">{{ auth()->user()->last_login_time }}</span></p>
                 </div>
             </div>
         </div>
@@ -26,58 +43,32 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label>Upload Gambar</label>
-                                <input type="file" class="form-control-file">
-                            </div>
-                        </form>
-                        <br>
                         <p class="text-secondary">Info Profile</p>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Nama Lengkap</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ auth()->user()->name }}</p>
-                            </div>
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}"
+                                required>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ auth()->user()->email }}</p>
-                            </div>
+                        <div class="form-group">
+                            <label>Alamat Email</label>
+                            <input type="text" class="form-control" name="email" value="{{ auth()->user()->email }}"
+                                required>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Perusahaan</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">-</p>
-                            </div>
+                        <div class="form-group">
+                            <label>Handphone</label>
+                            <input type="text" class="form-control" name="name" value="{{ auth()->user()->handphone }}"
+                                required>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Handphone</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">0812 00xx xxxx</p>
-                            </div>
+                        <div class="form-group">
+                            <label>Nama Perusahaan</label>
+                            <input type="text" class="form-control" name="name" value="{{ auth()->user()->Company }}"
+                                required>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Alamat</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">Jalan Angkasa Raya no.3</p>
-                            </div>
+                        <div class="form-group">
+                            <label>Alamat Lengkap</label>
+                            <input type="text" class="form-control" name="name" value="{{ auth()->user()->address }}"
+                                required>
                         </div>
                     </div>
                     <button class="btn btn-primary btn-sm mr-3" type="submit">

@@ -290,6 +290,9 @@
         });
     </script>
 
+    {{-- image preview --}}
+
+
 </body>
 
 </html>

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Listeners\LoginListener;
+use App\Listeners\UpdateLastSignInAt;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -19,8 +22,13 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-        'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\UpdateLastSignInAt',
+        Login::class => [
+            UpdateLastSignInAt::class
+        ],
+
+        login::class => [
+            LoginListener::class,
+
         ],
     ];
 
