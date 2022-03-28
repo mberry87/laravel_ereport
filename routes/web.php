@@ -59,6 +59,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/tersus/show/{id}', [TersusController::class, 'show'])->name('tersus.show');
     Route::delete('/tersus/delete/{id}', [TersusController::class, 'destroy'])->name('tersus.destroy');
 
+    Route::get('/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
+    Route::get('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.reset.status');
     Route::resource('/user', UserController::class);
 
     Route::resource('/profile', ProfileController::class);

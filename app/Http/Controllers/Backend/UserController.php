@@ -64,7 +64,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('backend.user.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -103,5 +105,32 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index')->with('hapus', 'Data user berhasil dihapus');
+    }
+
+    public function resetPassword($id)
+    {
+        $user = User::findOrFail($id);
+        $user->update([
+            'password' => Hash::make($user->email)
+        ]);
+        return back()->with('sukses', 'Password user berhasil direset');
+    }
+
+    public function updateStatus($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->status == 'aktif') {
+            $user->update([
+                'status' => 'suspend'
+            ]);
+        } else {
+            $user->update([
+                'status' => 'aktif'
+            ]);
+        }
+        $user->update([
+            'password' => Hash::make($user->email)
+        ]);
+        return back()->with('sukses', 'Status user berhasil diubah');
     }
 }
