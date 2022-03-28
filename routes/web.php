@@ -26,10 +26,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-\Auth::routes([
-    'reset' => false, // Password Reset Routes...
-    'verify' => false, // Email Verification Routes...
-]);
+Route::group(['middleware' => ['isUserActive']], function () {
+    Auth::routes([
+        'reset' => false, // Password Reset Routes...
+        'verify' => false, // Email Verification Routes...
+    ]);
+});
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
