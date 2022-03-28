@@ -33,7 +33,6 @@
                         </button>
                     </form>
                     <h5 class="mt-3">{{ auth()->user()->name }}</h5>
-                    <p class="text-success">&bull; Online</p>
                     <p class="text-secondary">Terkahir login : <span
                             class="text-danger">{{ auth()->user()->last_login_time }}</span></p>
                 </div>
@@ -66,9 +65,9 @@
                                 required>
                         </div>
                         <div class="form-group">
-                            <label>Alamat Lengkap</label>
-                            <input type="text" class="form-control" name="name" value="{{ auth()->user()->address }}"
-                                required>
+                            <label>Alamat</label>
+                            <textarea type="text" class="form-control" name="name" value="{{ auth()->user()->address }}" rows="3"
+                                required></textarea>
                         </div>
                     </div>
                     <button class="btn btn-primary btn-sm mr-3" type="submit">

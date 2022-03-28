@@ -33,7 +33,7 @@
                         <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mb-3">
                             <i class="fas fa-plus mr-3"></i>Tambah
                         </a>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -51,11 +51,10 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->email }}</td>
-                                        <td></td>
+                                        <td><span class="badge badge-primary">Online</span></td>
                                         <td>{{ $data->created_at->diffForHumans() }}</td>
                                         <td>
                                             @if (auth()->user()->id == $data->id)
-                                                <span class="badge badge-primary">Online</span>
                                             @else
                                                 <a href="{{ route('user.edit', $data) }}"
                                                     class="btn btn-warning btn-sm mr-2 d-inline">

@@ -57,7 +57,9 @@ class TersusController extends Controller
      */
     public function show(Tersus $tersus)
     {
-        //
+        return view('backend.tersus.show', [
+            'tersus' => Tersus::all()
+        ]);
     }
 
     /**

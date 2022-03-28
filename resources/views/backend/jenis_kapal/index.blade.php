@@ -33,7 +33,7 @@
                         <a href="{{ route('jenis_kapal.create') }}" class="btn btn-primary btn-sm mb-3">
                             <i class="fas fa-plus mr-3"></i>Tambah
                         </a>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>No</th>
