@@ -30,6 +30,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
+                    <h5 class="font-weight-bold">Info Kapal</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
                             <tr>
@@ -53,7 +54,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="">Laporan Kedatangan</h5>
+                    <h5 class="font-weight-bold">Laporan Kedatangan</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
                             <tr>
@@ -75,7 +76,7 @@
                             <tr>
                                 <td style="width: 40%">Jenis Muatan</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $tersus->jenis_muatan != null ? $tersus->jenis_muatan : '-' }}</td>
+                                <td>{{ $tersus->jenis_muatan_datang != null ? $tersus->jenis_muatan_datang : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Jumlah Bongkar</td>
@@ -89,7 +90,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5>Laporan Keberangkatan</h5>
+                    <h5 class="font-weight-bold">Laporan Keberangkatan</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
                             <tr>
