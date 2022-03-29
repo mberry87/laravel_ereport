@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Data Tersus Datang')
+@section('title', 'Edit Data Bup Berangkat')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data TERSUS</li>
+        <li class="breadcrumb-item active">Data Bup Berangkat</li>
     </ol>
 @endsection
 
@@ -14,10 +14,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('tersus.index') }}" class="btn btn-secondary btn-sm mb-3 mr-3">
+                    <a href="{{ route('bup.index') }}" class="btn btn-secondary btn-sm mb-3 mr-3">
                         <i class="fas fa-arrow-left mr-3"></i>Kembali
                     </a>
-                    <form action="{{ route('tersus.datang.update', $tersus->id) }}" method="POST">
+                    <form action="{{ route('bup.berangkat.update', $bup->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -25,14 +25,14 @@
                                 <div class="form-group">
                                     <label>Nama kapal</label>
                                     <input type="text" name="nama_kapal" class="form-control" required
-                                        value="{{ $tersus->nama_kapal }}">
+                                        value="{{ $bup->nama_kapal }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Bendera</label>
                                     <select name="id_bendera" id="id_bendera" class="form-control">
                                         @foreach ($bendera as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $tersus->id_bendera ? 'selected' : '' }}>
+                                                {{ $data->id == $bup->id_bendera ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>
@@ -40,44 +40,41 @@
                                 <div class="form-group">
                                     <label>Isi kotor</label>
                                     <input type="text" name="isi_kotor" class="form-control" required
-                                        value="{{ $tersus->isi_kotor }}">
+                                        value="{{ $bup->isi_kotor }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Tanggal datang</label>
-                                    <input type="date" name="tgl_datang" class="form-control" required
-                                        value="{{ $tersus->tgl_datang }}">
+                                    <label>Tanggal berangkat</label>
+                                    <input type="date" name="tgl_berangkat" class="form-control" required
+                                        value="{{ $bup->tgl_berangkat }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
+
                                 <div class="form-group">
-                                    <label>Pelabuhan datang</label>
-                                    <select name="id_pelabuhan_datang" id="id_pelabuhan_datang" class="form-control">
+                                    <label>Pelabuhan berangkat</label>
+                                    <select name="id_pelabuhan_berangkat" id="id_pelabuhan_berangkat"
+                                        class="form-control">
                                         @foreach ($pelabuhan as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $tersus->id_pelabuhan_datang ? 'selected' : '' }}>
+                                                {{ $data->id == $bup->id_pelabuhan_berangkat ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Terminal datang</label>
-                                    <select name="id_terminal_datang" id="id_terminal_datang" class="form-control">
+                                    <label>Terminal berangkat</label>
+                                    <select name="id_terminal_berangkat" id="id_terminal_berangkat" class="form-control">
                                         @foreach ($terminal as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $tersus->id_terminal_datang ? 'selected' : '' }}>
+                                                {{ $data->id == $bup->id_terminal_berangkat ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Jumlah bongkar</label>
-                                    <input type="text" name="jumlah_bongkar_datang" class="form-control" required
-                                        value="{{ $tersus->jumlah_bongkar_datang }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Jenis muatan</label>
-                                    <input type="text" name="jenis_muatan_datang" class="form-control" required
-                                        value="{{ $tersus->jenis_muatan_datang }}">
+                                    <label>Kegiatan Berangkat</label>
+                                    <textarea name="jumlah_muatan_berangkat" class="form-control" required
+                                        rows="4">{{ $bup->kegiatan_berangkat }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +83,7 @@
                                 <i class="fas fa-save mr-3"></i>
                                 Simpan
                             </button>
-                            <a href="{{ route('tersus.index') }}" class="btn btn-warning btn-sm ml-2">
+                            <a href="{{ route('bup.index') }}" class="btn btn-warning btn-sm ml-2">
                                 <i class="fas fa-times mr-3"></i>
                                 Batal
                             </a>

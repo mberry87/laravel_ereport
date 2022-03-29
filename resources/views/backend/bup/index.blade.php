@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Data TERSUS')
+@section('title', 'Data BUP')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data TERSUS</li>
+        <li class="breadcrumb-item active">Data BUP</li>
     </ol>
 @endsection
 
@@ -29,10 +29,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('tersus.datang.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
+                    <a href="{{ route('bup.datang.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
                         <i class="fas fa-backward mr-3"></i>Datang
                     </a>
-                    <a href="{{ route('tersus.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
+                    <a href="{{ route('bup.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
                         <i class="fas fa-forward mr-3"></i>Berangkat
                     </a>
                 </div>
@@ -51,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tersus as $data)
+                            @foreach ($bup as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kapal }}</td>
@@ -59,22 +59,22 @@
                                     <td>{{ $data->datang }}</td>
                                     <td>{{ $data->berangkat }}</td>
                                     <td>
-                                        <a href="{{ route('tersus.show', $data) }}"
+                                        <a href="{{ route('bup.show', $data) }}"
                                             class="btn btn-success btn-sm mr-2 d-inline" data-toggle="tooltip" title="show">
                                             <i class="fas fa-eye"></i>
 
                                         </a>
-                                        <a href="{{ route('tersus.datang.edit', $data->id) }}"
+                                        <a href="{{ route('bup.datang.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2 d-inline" data-toggle="tooltip"
                                             title="edit datang">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('tersus.berangkat.edit', $data->id) }}"
+                                        <a href="{{ route('bup.berangkat.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2  d-inline" data-toggle="tooltip"
                                             title="edit berangkat">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('tersus.destroy', $data->id) }}" method="POST"
+                                        <form action="{{ route('bup.destroy', $data->id) }}" method="POST"
                                             class="d-inline">
                                             @method('DELETE')
                                             @csrf

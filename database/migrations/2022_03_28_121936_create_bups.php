@@ -15,14 +15,15 @@ class CreateBups extends Migration
     {
         Schema::create('bup', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_kapal');
             $table->foreignId('id_bendera')
                 ->nullable()
                 ->references('id')
                 ->on('bendera')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('tgl_datang')->nullable();
             $table->string('isi_kotor')->nullable();
+            $table->string('tgl_datang')->nullable();
             $table->foreignId('id_terminal_datang')
                 ->nullable()
                 ->references('id')
@@ -36,6 +37,7 @@ class CreateBups extends Migration
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
             $table->string('kegiatan_datang')->nullable();
+            $table->string('tgl_berangkat')->nullable();
             $table->foreignId('id_terminal_berangkat')
                 ->nullable()
                 ->references('id')
