@@ -57,14 +57,22 @@
 
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('image') }}/avatar.jpeg" class="user-image img-circle elevation-2"
-                            alt="User Image">
+                        @if (auth()->user()->avatar == null)
+                        <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}" class="user-image img-circle elevation-2" alt="img">
+                        @else
+                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="user-image img-circle elevation-2"
+                            width="128" alt="img">
+                        @endif
                         <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <li class="user-header bg-primary">
-                            <img src="{{ asset('image') }}/avatar.jpeg" class="img-circle elevation-2"
-                                alt="User Image">
+                            @if (auth()->user()->avatar == null)
+                        <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"  class="img-circle elevation-2" alt="img">
+                        @else
+                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}"  class="img-circle elevation-2"
+                            width="128" alt="img">
+                        @endif
                             <p>
                                 {{ auth()->user()->name }}
                                 <small>{{ auth()->user()->created_at->format('d-M-Y') }}</small>
