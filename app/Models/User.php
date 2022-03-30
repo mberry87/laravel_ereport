@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tersus::class, 'id_user');
     }
+
+    public function bup()
+    {
+        return $this->hasMany(Bup::class, 'id_user');
+    }
 }

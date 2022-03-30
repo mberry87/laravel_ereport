@@ -99,5 +99,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('/user', UserController::class);
 
-    Route::resource('/profile', ProfileController::class);
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile/updateGeneralData/{id}', [ProfileController::class, 'updateGeneralData'])->name('profile.update.data');
+    Route::put('/profile/updatePassword/{id}', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+    Route::put('/profile/updateAVatar/{id}', [ProfileController::class, 'updateImage'])->name('profile.update.avatar');
 });
