@@ -23,8 +23,13 @@ class User extends Authenticatable
         'email',
         'password',
         'last_login_time',
-        'last_login_ip'
-
+        'last_login_ip',
+        'role',
+        'avatar',
+        'no_hp',
+        'alamat',
+        'status',
+        'nama_perusahaan'
     ];
 
     /**
@@ -45,4 +50,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tersus()
+    {
+        return $this->hasMany(Tersus::class, 'id_user');
+    }
 }

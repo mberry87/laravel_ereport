@@ -27,10 +27,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-\Auth::routes([
-    'reset' => false, // Password Reset Routes...
-    'verify' => false, // Email Verification Routes...
-]);
+Route::group(['middleware' => ['isUserActive']], function () {
+    Auth::routes([
+        'reset' => false, // Password Reset Routes...
+        'verify' => false, // Email Verification Routes...
+    ]);
+});
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
@@ -73,6 +76,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/bup/show/{id}', [BupController::class, 'show'])->name('bup.show');
     Route::delete('/bup/delete/{id}', [BupController::class, 'destroy'])->name('bup.destroy');
 
+    Route::get('/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
+    Route::get('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.reset.status');
     Route::resource('/user', UserController::class);
 
     Route::resource('/profile', ProfileController::class);

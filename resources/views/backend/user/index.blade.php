@@ -39,9 +39,9 @@
                                     <th>No</th>
                                     <th>Nama User</th>
                                     <th>Email</th>
+                                    <th>No.HP</th>
                                     <th>Status</th>
-                                    <th>Waktu Input</th>
-
+                                    <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -51,11 +51,17 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->email }}</td>
-                                        <td><span class="badge badge-primary">Online</span></td>
-                                        <td>{{ $data->created_at->diffForHumans() }}</td>
+                                        <td>{{ $data->no_hp }}</td>
+                                        <td><span class="badge badge-primary">{{ $data->status }}</span></td>
+                                        <td><span class="badge badge-secondary">{{ $data->role }}</span></td>
                                         <td>
                                             @if (auth()->user()->id == $data->id)
                                             @else
+                                            <a href="{{ route('user.show', $data) }}"
+                                                class="btn btn-warning btn-sm mr-2 d-inline">
+                                                <i class="fas fa-eye mr-2"></i>
+                                                show
+                                            </a>
                                                 <a href="{{ route('user.edit', $data) }}"
                                                     class="btn btn-warning btn-sm mr-2 d-inline">
                                                     <i class="fas fa-edit mr-2"></i>

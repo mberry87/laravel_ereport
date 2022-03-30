@@ -45,8 +45,11 @@ class TersusController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        Tersus::create($request->all() + ['input_oleh' => auth()->user()->name]);
-        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil disimpan');
+        Tersus::create($request->all() + [
+            'input_oleh' => auth()->user()->name,
+            'id_user' => auth()->user()->id,
+        ]);
+        return redirect()->route('tersus.index');
     }
 
     /**
@@ -139,6 +142,7 @@ class TersusController extends Controller
             'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'input_oleh' =>  auth()->user()->name,
+            'id_user' => auth()->user()->id,
         ]);
         return redirect()->route('tersus.index')->with('sukses', 'Data berhasil disimpan');
     }
