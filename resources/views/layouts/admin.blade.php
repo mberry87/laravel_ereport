@@ -145,6 +145,16 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ">
+                                    <a href="{{ route('pelnas.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-check-circle"></i>
+                                        <p>
+                                            Data PELNAS
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link ">

@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kegiatan Berangkat</label>
-                                    <textarea name="jumlah_muatan_berangkat" class="form-control" required
+                                    <textarea name="kegiatan_berangkat" class="form-control" required
                                         rows="4">{{ $bup->kegiatan_berangkat }}</textarea>
                                 </div>
                             </div>

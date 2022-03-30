@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBups extends Migration
+class CreatePelnasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBups extends Migration
      */
     public function up()
     {
-        Schema::create('bup', function (Blueprint $table) {
+        Schema::create('pelnas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kapal');
             $table->foreignId('id_bendera')
@@ -36,7 +36,8 @@ class CreateBups extends Migration
                 ->on('pelabuhan')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('kegiatan_datang')->nullable();
+            $table->string('jumlah_bongkar_datang')->nullable();
+            $table->string('jenis_muatan_datang')->nullable();
             $table->string('tgl_berangkat')->nullable();
             $table->foreignId('id_terminal_berangkat')
                 ->nullable()
@@ -50,7 +51,32 @@ class CreateBups extends Migration
                 ->on('pelabuhan')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('kegiatan_berangkat')->nullable();
+            $table->string('jumlah_muatan_berangkat')->nullable();
+            $table->string('jenis_muatan_berangkat')->nullable();
+            $table->foreignId('id_status_trayek_datang')
+                ->nullable()
+                ->references('id')
+                ->on('status_trayek')
+                ->onUpdate('SET NULL')
+                ->onDelete('SET NULL');
+            $table->foreignId('id_status_trayek_berangkat')
+                ->nullable()
+                ->references('id')
+                ->on('status_trayek')
+                ->onUpdate('SET NULL')
+                ->onDelete('SET NULL');
+            $table->foreignId('id_jenis_kapal_datang')
+                ->nullable()
+                ->references('id')
+                ->on('jenis_kapal')
+                ->onUpdate('SET NULL')
+                ->onDelete('SET NULL');
+            $table->foreignId('id_jenis_kapal_berangkat')
+                ->nullable()
+                ->references('id')
+                ->on('jenis_kapal')
+                ->onUpdate('SET NULL')
+                ->onDelete('SET NULL');
             $table->string('input_oleh')->nullable();
             $table->string('update_oleh')->nullable();
             $table->timestamps();
@@ -64,6 +90,6 @@ class CreateBups extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bup');
+        Schema::dropIfExists('pelnas');
     }
 }
