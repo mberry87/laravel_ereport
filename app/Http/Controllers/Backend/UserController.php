@@ -38,7 +38,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
 
         $password = Hash::make($request->email);
@@ -47,9 +46,13 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $password,
+            'role' => $request->role,
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'status' => 'aktif',
+            'avatar' => null,
+            'nama_perusahaan' => $request->nama_perusahaan,
         ]);
-
-
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil disimpan');
     }
 
@@ -61,7 +64,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('backend.user.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -86,7 +91,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->only('name', 'email',));
+        $user->update($request->only('name', 'email', 'role', 'alamat', 'no_hp', 'status', 'nama_perusahaan'));
         return redirect()->route('user.index')->with('sukses', 'Data user berhasil diubah');
     }
 
@@ -100,5 +105,32 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index')->with('hapus', 'Data user berhasil dihapus');
+    }
+
+    public function resetPassword($id)
+    {
+        $user = User::findOrFail($id);
+        $user->update([
+            'password' => Hash::make($user->email)
+        ]);
+        return back()->with('sukses', 'Password user berhasil direset');
+    }
+
+    public function updateStatus($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->status == 'aktif') {
+            $user->update([
+                'status' => 'suspend'
+            ]);
+        } else {
+            $user->update([
+                'status' => 'aktif'
+            ]);
+        }
+        $user->update([
+            'password' => Hash::make($user->email)
+        ]);
+        return back()->with('sukses', 'Status user berhasil diubah');
     }
 }
