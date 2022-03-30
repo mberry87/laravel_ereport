@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\JeniskapalController;
+use App\Http\Controllers\Backend\PelnasController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
@@ -72,6 +73,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/bup/show/{id}', [BupController::class, 'show'])->name('bup.show');
     Route::delete('/bup/delete/{id}', [BupController::class, 'destroy'])->name('bup.destroy');
+
+    // pelnas
+    Route::get('/pelnas/index', [PelnasController::class, 'index'])->name('pelnas.index');
+    Route::get('/pelnas/create-bup-datang', [PelnasController::class, 'createDatang'])->name('pelnas.datang.create');
+    Route::post('/pelnas/store-bup-datang', [PelnasController::class, 'storeDatang'])->name('pelnas.datang.store');
+    Route::get('/pelnas/{id}/edit-bup-datang/', [PelnasController::class, 'editDatang'])->name('pelnas.datang.edit');
+    Route::put('/pelnas/update-bup-datang/{id}', [PelnasController::class, 'updateDatang'])->name('pelnas.datang.update');
+
+    Route::get('/pelnas/create-bup-berangkat', [PelnasController::class, 'createBerangkat'])->name('pelnas.berangkat.create');
+    Route::post('/pelnas/create-bup-berangkat', [PelnasController::class, 'storeBerangkat'])->name('pelnas.berangkat.store');
+    Route::get('/pelnas/{id}/edit-bup-berangkat/', [PelnasController::class, 'editBerangkat'])->name('pelnas.berangkat.edit');
+    Route::put('/pelnas/update-bup-berangkat/{id}', [PelnasController::class, 'updateBerangkat'])->name('pelnas.berangkat.update');
+
+    Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
+    Route::delete('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
+
 
     Route::resource('/user', UserController::class);
 

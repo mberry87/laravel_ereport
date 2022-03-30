@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Show Bup')
+@section('title', 'Show PELNAS')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Show Bup</li>
+        <li class="breadcrumb-item active">Show PELNAS</li>
     </ol>
 @endsection
 
@@ -14,14 +14,15 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('bup.index') }}" class="btn btn-secondary btn-sm d-inline">
+                    <a href="{{ route('pelnas.index') }}" class="btn btn-secondary btn-sm d-inline">
                         <i class="fas fa-arrow-left mr-2"></i>Kembali
                     </a>
-                    <a href="{{ route('bup.datang.edit', $bup->id) }}" class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
+                    <a href="{{ route('pelnas.datang.edit', $pelnas->id) }}"
+                        class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
                         <i class="fas fa-edit mr-2"></i>
                         Edit kedatangan
                     </a>
-                    <a href="{{ route('bup.berangkat.edit', $bup->id) }}" class="btn btn-warning btn-sm d-inline">
+                    <a href="{{ route('pelnas.berangkat.edit', $pelnas->id) }}" class="btn btn-warning btn-sm d-inline">
                         <i class="fas fa-edit mr-2"></i>
                         Edit keberangkatan
                     </a>
@@ -35,17 +36,17 @@
                             <tr>
                                 <td style="width: 40%">Nama Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->nama_kapal }}</td>
+                                <td>{{ $pelnas->nama_kapal }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Bendera</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->bendera->nama }}</td>
+                                <td>{{ $pelnas->bendera->nama }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Isi Kotor (GT)</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->isi_kotor != null ? $bup->isi_kotor : '-' }}</td>
+                                <td>{{ $pelnas->isi_kotor != null ? $pelnas->isi_kotor : '-' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -59,23 +60,41 @@
                             <tr>
                                 <td style="width: 40%">Tanggal Kedatangan</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->datang }}</td>
+                                <td>{{ $pelnas->datang }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Pelabuhan Kedatangan</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->pelabuhan_datang != null ? $bup->pelabuhan_datang->nama : '-' }}
+                                <td>{{ $pelnas->pelabuhan_datang != null ? $pelnas->pelabuhan_datang->nama : '-' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Terminal Kedatangan</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->terminal_datang != null ? $bup->terminal_datang->nama : '-' }}</td>
+                                <td>{{ $pelnas->terminal_datang != null ? $pelnas->terminal_datang->nama : '-' }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Kegiatan Datang</td>
+                                <td style="width: 40%">Jenis Muatan</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->kegiatan_datang != null ? $bup->kegiatan_datang : '-' }}</td>
+                                <td>{{ $pelnas->jenis_muatan_datang != null ? $pelnas->jenis_muatan_datang : '-' }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Jumlah Bongkar</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->jumlah_bongkar_datang != null ? $pelnas->jumlah_bongkar_datang : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Status Trayek</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->status_trayek_datang != null ? $pelnas->status_trayek_datang->nama : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Jenis Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->jenis_kapal_datang != null ? $pelnas->jenis_kapal_datang->nama : '-' }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,24 +108,43 @@
                             <tr>
                                 <td style="width: 40%">Tanggal Berangakt</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->berangkat }}</td>
+                                <td>{{ $pelnas->berangkat }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Pelabuhan Berangkat</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->pelabuhan_berangkat != null ? $bup->pelabuhan_berangkat->nama : '-' }}
+                                <td>{{ $pelnas->pelabuhan_berangkat != null ? $pelnas->pelabuhan_berangkat->nama : '-' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Terminal Berangkat</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->terminal_berangkat != null ? $bup->terminal_berangkat->nama : '-' }}
+                                <td>{{ $pelnas->terminal_berangkat != null ? $pelnas->terminal_berangkat->nama : '-' }}
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Kegiatan Berangkat</td>
+                                <td style="width: 40%">Jenis Muatan</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $bup->kegiatan_berangkat != null ? $bup->kegiatan_berangkat : '-' }}</td>
+                                <td>{{ $pelnas->jenis_muatan_berangkat != null ? $pelnas->jenis_muatan_berangkat : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Jumlah Muatan</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->jumlah_muatan_berangkat != null ? $pelnas->jumlah_muatan_berangkat : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Status Trayek</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->status_trayek_berangkat != null ? $pelnas->status_trayek_berangkat->nama : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Jenis Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->jenis_kapal_berangkat != null ? $pelnas->jenis_kapal_berangkat->nama : '-' }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Data Tersus Datang')
+@section('title', 'Tambah Data Pelnas Datang')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data Tersus Datang</li>
+        <li class="breadcrumb-item active">Data Pelnas Datang</li>
     </ol>
 @endsection
 
@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('tersus.datang.store') }}" method="POST">
+                    <form action="{{ route('pelnas.datang.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -37,6 +37,15 @@
                                 <div class="form-group">
                                     <label>Tanggal datang</label>
                                     <input type="date" name="tgl_datang" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status Trayek</label>
+                                    <select name="id_status_trayek_datang" id="id_status_trayek_datang"
+                                        class="form-control">
+                                        @foreach ($status_trayek as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -65,6 +74,14 @@
                                     <label>Jenis muatan</label>
                                     <input type="text" name="jenis_muatan_datang" class="form-control" required>
                                 </div>
+                                <div class="form-group">
+                                    <label>Jenis Kapal</label>
+                                    <select name="id_jenis_kapal_datang" id="id_jenis_kapal_datang" class="form-control">
+                                        @foreach ($jenis_kapal as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -72,7 +89,7 @@
                                 <i class="fas fa-save mr-3"></i>
                                 Simpan
                             </button>
-                            <a href="{{ route('tersus.index') }}" class="btn btn-warning btn-sm ml-2">
+                            <a href="{{ route('pelnas.index') }}" class="btn btn-warning btn-sm ml-2">
                                 <i class="fas fa-times mr-3"></i>
                                 Batal
                             </a>
