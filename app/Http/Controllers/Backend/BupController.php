@@ -18,8 +18,13 @@ class BupController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role == 'admin') {
+            return view('backend.bup.index', [
+                'bup' => Bup::with('bendera')->get()
+            ]);
+        }
         return view('backend.bup.index', [
-            'bup' => Bup::with('bendera')->get()
+            'bup' => Bup::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -57,6 +62,7 @@ class BupController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Bup::findOrFail($id));
         $tersus = Bup::findOrFail($id);
         return view('backend.bup.show', [
             'bup' => $tersus
@@ -71,6 +77,7 @@ class BupController extends Controller
      */
     public function editDatang($id)
     {
+        $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
         return view('backend.bup.edit-datang', [
             'bup' => $bup,
@@ -89,6 +96,7 @@ class BupController extends Controller
      */
     public function updateDatang(Request $request, $id)
     {
+        $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
         $bup->update([
             'nama_kapal' => $request->nama_kapal,
@@ -113,6 +121,7 @@ class BupController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('view', Bup::findOrFail($id));
         Bup::destroy($id);
         return redirect()->route('bup.index')->with('hapus', 'Data berhasil dihapus');
     }
@@ -144,6 +153,7 @@ class BupController extends Controller
 
     public function editBerangkat($id)
     {
+        $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
         return view('backend.bup.edit-berangkat', [
             'bup' => $bup,
@@ -155,6 +165,7 @@ class BupController extends Controller
 
     public function updateBerangkat(Request $request, $id)
     {
+        $this->authorize('view', Bup::findOrFail($id));
         $tersus = bup::findOrFail($id);
         $tersus->update([
             'nama_kapal' => $request->nama_kapal,
