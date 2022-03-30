@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJenisKapalsTable extends Migration
+class CreateStatusKapalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateJenisKapalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jenis_kapal', function (Blueprint $table) {
+        Schema::create('status_kapal', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('kode');
@@ -29,6 +29,6 @@ class CreateJenisKapalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis_kapal');
+        Schema::dropIfExists('status_kapal');
     }
 }

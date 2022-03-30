@@ -198,10 +198,10 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('jenis_kapal.index') }}" class="nav-link">
+                                    <a href="{{ route('status_kapal.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-ship"></i>
                                         <p>
-                                            Jenis Kapal
+                                            Status Kapal
                                         </p>
                                     </a>
                                 </li>

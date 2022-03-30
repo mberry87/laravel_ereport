@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Jenis Kapal')
+@section('title', 'Edit Status Kapal')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Tambah Jenis</li>
+        <li class="breadcrumb-item active">Edit Status Kapak</li>
     </ol>
 @endsection
 
@@ -14,27 +14,29 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('jenis_kapal.index') }}" class="btn btn-secondary btn-sm mb-3">
+                    <a href="{{ route('status_kapal.index') }}" class="btn btn-secondary btn-sm mb-3">
                         <i class="fas fa-arrow-left mr-3"></i>Kembali
                     </a>
-                    <form action="{{ route('jenis_kapal.store') }}" method="POST">
+                    <form action="{{ route('status_kapal.update', $status_kapal) }}" method="POST">
                         @csrf
 
                         <div class="form-group">
-                            <label>Kode Jenis Kapal</label>
-                            <input type="text" class="form-control" name="kode" required>
+                            <label>Kode</label>
+                            <input type="text" class="form-control" name="kode" value="{{ $status_kapal->kode }}"
+                                required>
                         </div>
 
+                        @method('PUT')
                         <div class="form-group">
-                            <label>Nama Jenis Kapal</label>
-                            <input type="text" class="form-control" name="nama" required>
+                            <label>Nama Status Kapal</label>
+                            <input type="text" class="form-control" name="nama" value="{{ $status_kapal->nama }}"
+                                required>
                         </div>
 
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <textarea name="keterangan" cols="30" rows="4" class="form-control">-</textarea>
+                            <textarea name="keterangan" cols="30" rows="4" class="form-control">{{ $status_kapal->keterangan }}</textarea>
                         </div>
-
                         <div class="form-group">
                             <button class="btn btn-primary btn-sm" type="submit">
                                 <i class="fas fa-save mr-2"></i>
