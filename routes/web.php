@@ -81,15 +81,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // pelnas
     Route::get('/pelnas/index', [PelnasController::class, 'index'])->name('pelnas.index');
-    Route::get('/pelnas/create-bup-datang', [PelnasController::class, 'createDatang'])->name('pelnas.datang.create');
-    Route::post('/pelnas/store-bup-datang', [PelnasController::class, 'storeDatang'])->name('pelnas.datang.store');
-    Route::get('/pelnas/{id}/edit-bup-datang/', [PelnasController::class, 'editDatang'])->name('pelnas.datang.edit');
-    Route::put('/pelnas/update-bup-datang/{id}', [PelnasController::class, 'updateDatang'])->name('pelnas.datang.update');
+    Route::get('/pelnas/create-pelnas-datang', [PelnasController::class, 'createDatang'])->name('pelnas.datang.create');
+    Route::post('/pelnas/store-pelnas-datang', [PelnasController::class, 'storeDatang'])->name('pelnas.datang.store');
+    Route::get('/pelnas/{id}/edit-pelnas-datang/', [PelnasController::class, 'editDatang'])->name('pelnas.datang.edit');
+    Route::put('/pelnas/update-pelnas-datang/{id}', [PelnasController::class, 'updateDatang'])->name('pelnas.datang.update');
 
-    Route::get('/pelnas/create-bup-berangkat', [PelnasController::class, 'createBerangkat'])->name('pelnas.berangkat.create');
-    Route::post('/pelnas/create-bup-berangkat', [PelnasController::class, 'storeBerangkat'])->name('pelnas.berangkat.store');
-    Route::get('/pelnas/{id}/edit-bup-berangkat/', [PelnasController::class, 'editBerangkat'])->name('pelnas.berangkat.edit');
-    Route::put('/pelnas/update-bup-berangkat/{id}', [PelnasController::class, 'updateBerangkat'])->name('pelnas.berangkat.update');
+    Route::get('/pelnas/create-pelnas-berangkat', [PelnasController::class, 'createBerangkat'])->name('pelnas.berangkat.create');
+    Route::post('/pelnas/create-pelnas-berangkat', [PelnasController::class, 'storeBerangkat'])->name('pelnas.berangkat.store');
+    Route::get('/pelnas/{id}/edit-pelnas-berangkat/', [PelnasController::class, 'editBerangkat'])->name('pelnas.berangkat.edit');
+    Route::put('/pelnas/update-pelnas-berangkat/{id}', [PelnasController::class, 'updateBerangkat'])->name('pelnas.berangkat.update');
 
     Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
     Route::delete('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
