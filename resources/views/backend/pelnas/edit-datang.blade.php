@@ -92,10 +92,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal_datang" id="id_jenis_kapal_datang" class="form-control">
-                                        @foreach ($jenis_kapal as $data)
+                                    <select name="id_status_kapal_datang" id="id_status_kapal_datang"
+                                        class="form-control">
+                                        @foreach ($status_kapal as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $pelnas->id_jenis_kapal_datang ? 'selected' : '' }}>
+                                                {{ $data->id == $pelnas->id_status_kapal_datang ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>

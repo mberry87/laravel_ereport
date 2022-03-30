@@ -44,9 +44,9 @@ class Pelnas extends Model
         return $this->belongsTo(StatusTrayek::class, 'id_status_trayek_datang');
     }
 
-    public function jenis_kapal_datang()
+    public function status_kapal_datang()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_datang');
+        return $this->belongsTo(StatusKapal::class, 'id_status_kapal_datang');
     }
 
     public function status_trayek_berangkat()
@@ -54,9 +54,9 @@ class Pelnas extends Model
         return $this->belongsTo(StatusTrayek::class, 'id_status_trayek_berangkat');
     }
 
-    public function jenis_kapal_berangkat()
+    public function status_kapal_berangkat()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_berangkat');
+        return $this->belongsTo(StatusKapal::class, 'id_status_kapal_berangkat');
     }
 
     public function getDatangAttribute()

@@ -65,16 +65,16 @@ class CreatePelnasesTable extends Migration
                 ->on('status_trayek')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal_datang')
+            $table->foreignId('id_status_kapal_datang')
                 ->nullable()
                 ->references('id')
-                ->on('jenis_kapal')
+                ->on('status_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal_berangkat')
+            $table->foreignId('id_status_kapal_berangkat')
                 ->nullable()
                 ->references('id')
-                ->on('jenis_kapal')
+                ->on('status_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
             $table->string('input_oleh')->nullable();

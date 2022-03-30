@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bendera;
-use App\Models\JenisKapal;
+use App\Models\StatusKapal;
 use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Pelnas;
@@ -37,7 +37,7 @@ class PelnasController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'jenis_kapal' => JenisKapal::all()
+            'status_kapal' => StatusKapal::all()
         ]);
     }
 
@@ -82,7 +82,7 @@ class PelnasController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'jenis_kapal' => JenisKapal::all()
+            'status_kapal' => StatusKapal::all()
         ]);
     }
 
@@ -106,7 +106,7 @@ class PelnasController extends Controller
             'jumlah_bongkar_datang' => $request->jumlah_bongkar_datang,
             'jenis_muatan_datang' => $request->jenis_muatan_datang,
             'id_status_trayek_datang' => $request->id_status_trayek_datang,
-            'id_jenis_kapal_datang' => $request->id_jenis_kapal_datang,
+            'id_status_kapal_datang' => $request->id_status_kapal_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
@@ -131,7 +131,7 @@ class PelnasController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'jenis_kapal' => JenisKapal::all()
+            'status_kapal' => StatusKapal::all()
         ]);
     }
 
@@ -148,7 +148,7 @@ class PelnasController extends Controller
             'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'id_status_trayek_berangkat' => $request->id_status_trayek_berangkat,
-            'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
+            'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
             'input_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
@@ -165,7 +165,7 @@ class PelnasController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'jenis_kapal' => JenisKapal::all()
+            'status_kapal' => StatusKapal::all()
 
         ]);
         return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
@@ -184,9 +184,9 @@ class PelnasController extends Controller
             'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'id_status_trayek_berangkat' => $request->id_status_trayek_berangkat,
-            'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
+            'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
             'id_status_trayek_berangkat' => $request->id_status_trayek_berangkat,
-            'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
+            'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');

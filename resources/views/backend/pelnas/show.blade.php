@@ -91,9 +91,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Jenis Kapal</td>
+                                <td style="width: 40%">Status Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pelnas->jenis_kapal_datang != null ? $pelnas->jenis_kapal_datang->nama : '-' }}
+                                <td>{{ $pelnas->status_kapal_datang != null ? $pelnas->status_kapal_datang->nama : '-' }}
                                 </td>
                             </tr>
                         </tbody>
@@ -141,9 +141,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Jenis Kapal</td>
+                                <td style="width: 40%">Status Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pelnas->jenis_kapal_berangkat != null ? $pelnas->jenis_kapal_berangkat->nama : '-' }}
+                                <td>{{ $pelnas->status_kapal_berangkat != null ? $pelnas->status_kapal_berangkat->nama : '-' }}
                                 </td>
                             </tr>
                         </tbody>
