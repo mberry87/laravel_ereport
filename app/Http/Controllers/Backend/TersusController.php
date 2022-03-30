@@ -18,8 +18,14 @@ class TersusController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role == 'admin') {
+            return view('backend.tersus.index', [
+                'tersus' => Tersus::with('bendera')->get()
+            ]);
+        }
+
         return view('backend.tersus.index', [
-            'tersus' => Tersus::with('bendera')->get()
+            'tersus' => Tersus::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -60,6 +66,7 @@ class TersusController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
         return view('backend.tersus.show', [
             'tersus' => $tersus
@@ -74,6 +81,7 @@ class TersusController extends Controller
      */
     public function editDatang($id)
     {
+        $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
         return view('backend.tersus.edit-datang', [
             'tersus' => $tersus,
@@ -92,6 +100,7 @@ class TersusController extends Controller
      */
     public function updateDatang(Request $request, $id)
     {
+        $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
         $tersus->update([
             'nama_kapal' => $request->nama_kapal,
@@ -115,6 +124,7 @@ class TersusController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('view', Tersus::findOrFail($id));
         Tersus::destroy($id);
         return redirect()->route('tersus.index')->with('hapus', 'Data berhasil dihapus');
     }
@@ -131,7 +141,6 @@ class TersusController extends Controller
 
     public function storeBerangkat(Request $request)
     {
-
         Tersus::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -149,6 +158,7 @@ class TersusController extends Controller
 
     public function editBerangkat($id)
     {
+        $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
         return view('backend.tersus.edit-berangkat', [
             'tersus' => $tersus,
@@ -160,6 +170,7 @@ class TersusController extends Controller
 
     public function updateBerangkat(Request $request, $id)
     {
+        $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
         $tersus->update([
             'nama_kapal' => $request->nama_kapal,
