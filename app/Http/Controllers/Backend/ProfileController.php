@@ -37,7 +37,7 @@ class ProfileController extends Controller
         } else {
             $user = User::findOrFail($id);
             $user->update([
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($request->password1),
             ]);
             return redirect()->back()->with('success', 'Password berhasil diperbarui');
         }
