@@ -146,6 +146,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @if (auth()->user()->role == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-database"></i>
@@ -205,6 +206,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
