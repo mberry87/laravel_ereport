@@ -63,7 +63,7 @@
                                 <td>{{ $pelnas->datang }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Pelabuhan Kedatangan</td>
+                                <td style="width: 40%">Dari Pelabuhan</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pelnas->pelabuhan_datang != null ? $pelnas->pelabuhan_datang->nama : '-' }}
                                 </td>
@@ -111,7 +111,7 @@
                                 <td>{{ $pelnas->berangkat }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Pelabuhan Berangkat</td>
+                                <td style="width: 40%">Ke Pelabuhan</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pelnas->pelabuhan_berangkat != null ? $pelnas->pelabuhan_berangkat->nama : '-' }}
                                 </td>

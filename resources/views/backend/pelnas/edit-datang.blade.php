@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Pelabuhan datang</label>
+                                    <label>Dari Pelabuhan</label>
                                     <select name="id_pelabuhan_datang" id="id_pelabuhan_datang" class="form-control">
                                         @foreach ($pelabuhan as $data)
                                             <option value="{{ $data->id }}"
@@ -91,7 +91,7 @@
                                         value="{{ $pelnas->jenis_muatan_datang }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Jenis Kapal</label>
+                                    <label>Status Kapal</label>
                                     <select name="id_status_kapal_datang" id="id_status_kapal_datang"
                                         class="form-control">
                                         @foreach ($status_kapal as $data)

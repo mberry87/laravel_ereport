@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Data Bup Datang')
+@section('title', 'Tambah Data Keagenan Kapal Datang')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data Bup Datang</li>
+        <li class="breadcrumb-item active">Data Keagenan Kapal</li>
     </ol>
 @endsection
 
@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('bup.datang.store') }}" method="POST">
+                    <form action="{{ route('keagenan_kapal.datang.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -38,6 +38,15 @@
                                     <label>Tanggal datang</label>
                                     <input type="date" name="tgl_datang" class="form-control" required>
                                 </div>
+                                <div class="form-group">
+                                    <label>Status Trayek</label>
+                                    <select name="id_status_trayek_datang" id="id_status_trayek_datang"
+                                        class="form-control">
+                                        @foreach ($status_trayek as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-6">
 
@@ -58,8 +67,21 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Kegiatan Datang</label>
-                                    <textarea type="text" name="kegiatan_datang" class="form-control" rows="4" required></textarea>
+                                    <label>Jumlah bongkar</label>
+                                    <input type="text" name="jumlah_bongkar_datang" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Jenis muatan</label>
+                                    <input type="text" name="jenis_muatan_datang" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status Kapal</label>
+                                    <select name="id_status_kapal_datang" id="id_status_kapal_datang"
+                                        class="form-control">
+                                        @foreach ($status_kapal as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +90,7 @@
                                 <i class="fas fa-save mr-3"></i>
                                 Simpan
                             </button>
-                            <a href="{{ route('bup.index') }}" class="btn btn-warning btn-sm ml-2">
+                            <a href="{{ route('keagenan_kapal.index') }}" class="btn btn-warning btn-sm ml-2">
                                 <i class="fas fa-times mr-3"></i>
                                 Batal
                             </a>

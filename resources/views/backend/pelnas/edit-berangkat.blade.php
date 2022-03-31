@@ -62,7 +62,7 @@
                             <div class="col-md-6">
 
                                 <div class="form-group">
-                                    <label>Pelabuhan berangkat</label>
+                                    <label>Ke Pelabuhan</label>
                                     <select name="id_pelabuhan_berangkat" id="id_pelabuhan_berangkat"
                                         class="form-control">
                                         @foreach ($pelabuhan as $data)

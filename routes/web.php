@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BenderaController;
 use App\Http\Controllers\Backend\BupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\KeagenankapalController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
@@ -94,10 +95,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
     Route::delete('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
 
+    // keagenan kapal
+    Route::get('/keagenan_kapal/index', [KeagenankapalController::class, 'index'])->name('keagenan_kapal.index');
+    Route::get('/keagenan_kapal/create-pelnas-datang', [KeagenankapalController::class, 'createDatang'])->name('keagenan_kapal.datang.create');
+    Route::post('/keagenan_kapal/store-pelnas-datang', [KeagenankapalController::class, 'storeDatang'])->name('keagenan_kapal.datang.store');
+    Route::get('/keagenan_kapal/{id}/edit-pelnas-datang/', [KeagenankapalController::class, 'editDatang'])->name('keagenan_kapal.datang.edit');
+    Route::put('/keagenan_kapal/update-pelnas-datang/{id}', [KeagenankapalController::class, 'updateDatang'])->name('keagenan_kapal.datang.update');
+
+    Route::get('/keagenan_kapal/create-pelnas-berangkat', [KeagenankapalController::class, 'createBerangkat'])->name('keagenan_kapal.berangkat.create');
+    Route::post('/keagenan_kapal/create-pelnas-berangkat', [KeagenankapalController::class, 'storeBerangkat'])->name('keagenan_kapal.berangkat.store');
+    Route::get('/keagenan_kapal/{id}/edit-pelnas-berangkat/', [KeagenankapalController::class, 'editBerangkat'])->name('keagenan_kapal.berangkat.edit');
+    Route::put('/keagenan_kapal/update-pelnas-berangkat/{id}', [KeagenankapalController::class, 'updateBerangkat'])->name('keagenan_kapal.berangkat.update');
+
+    Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
+    Route::delete('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
+
+    // user
+    Route::resource('/user', UserController::class);
     Route::get('/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
     Route::get('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.reset.status');
-
-    Route::resource('/user', UserController::class);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile/updateGeneralData/{id}', [ProfileController::class, 'updateGeneralData'])->name('profile.update.data');

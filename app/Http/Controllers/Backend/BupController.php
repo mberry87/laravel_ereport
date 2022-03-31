@@ -63,7 +63,7 @@ class BupController extends Controller
     public function show($id)
     {
         $this->authorize('view', Bup::findOrFail($id));
-        $tersus = Bup::findOrFail($id);
+        $bup = Bup::findOrFail($id);
         return view('backend.bup.show', [
             'bup' => $bup
         ]);
