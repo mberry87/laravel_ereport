@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BenderaController;
 use App\Http\Controllers\Backend\BupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\JeniskapalController;
 use App\Http\Controllers\Backend\KeagenankapalController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
+use App\Models\JenisKapal;
 use App\Models\StatusKapal;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/pelabuhan', PelabuhanController::class);
     Route::resource('/terminal', TerminalController::class);
     Route::resource('/status_kapal', StatuskapalController::class);
+    Route::resource('/jenis_kapal', JeniskapalController::class);
     Route::resource('/status_trayek', StatustrayekController::class);
 
     // Tersus

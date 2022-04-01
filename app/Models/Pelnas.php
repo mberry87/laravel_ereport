@@ -59,6 +59,16 @@ class Pelnas extends Model
         return $this->belongsTo(StatusKapal::class, 'id_status_kapal_berangkat');
     }
 
+    public function jenis_kapal_datang()
+    {
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_datang');
+    }
+
+    public function jenis_kapal_berangkat()
+    {
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_berankat');
+    }
+
     public function getDatangAttribute()
     {
         if (!$this->tgl_datang == null) {
