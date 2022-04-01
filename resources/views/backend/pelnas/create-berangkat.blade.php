@@ -75,14 +75,29 @@
                                     <label>Jenis muatan</label>
                                     <input type="text" name="jenis_muatan_berangkat" class="form-control" required>
                                 </div>
-                                <div class="form-group">
-                                    <label>Status Kapal</label>
-                                    <select name="id_status_kapal_berangkat" id="id_status_kapal_berangkat"
-                                        class="form-control">
-                                        @foreach ($status_kapal as $data)
-                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Status Kapal</label>
+                                            <select name="id_status_kapal_berangkat" id="id_status_kapal_berangkat"
+                                                class="form-control">
+                                                @foreach ($status_kapal as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Jenis Kapal</label>
+                                            <select name="id_jenis_kapal_berangkat" id="id_jenis_kapal_berangkat"
+                                                class="form-control">
+                                                @foreach ($jenis_kapal as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -34,7 +34,7 @@
                     <table class="table table-striped table-sm">
                         <tbody>
                             <tr>
-                                <td style="width: 40%">Nama Kapal</td>
+                                <td style="width: 40%">Jenis Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pelnas->nama_kapal }}</td>
                             </tr>
@@ -96,6 +96,12 @@
                                 <td>{{ $pelnas->status_kapal_datang != null ? $pelnas->status_kapal_datang->nama : '-' }}
                                 </td>
                             </tr>
+                            <tr>
+                                <td style="width: 40%">Jenis Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->jenis_kapal_datang != null ? $pelnas->jenis_kapal_datang->nama : '-' }}
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -144,6 +150,12 @@
                                 <td style="width: 40%">Status Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pelnas->status_kapal_berangkat != null ? $pelnas->status_kapal_berangkat->nama : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">jenis Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pelnas->jenis_kapal_berangkat != null ? $pelnas->jenis_kapal_berangkat->nama : '-' }}
                                 </td>
                             </tr>
                         </tbody>

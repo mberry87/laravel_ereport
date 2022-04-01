@@ -77,6 +77,18 @@ class CreatePelnasesTable extends Migration
                 ->on('status_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
+            $table->foreignId('id_jenis_kapal_datang')
+                ->nullable()
+                ->references('id')
+                ->on('jenis_kapal')
+                ->onUpdate('SET NULL')
+                ->onDelete('SET NULL');
+            $table->foreignId('id_jenis_kapal_berangkat')
+                ->nullable()
+                ->references('id')
+                ->on('jenis_kapal')
+                ->onUpdate('SET NULL')
+                ->onDelete('SET NULL');
             $table->string('input_oleh')->nullable();
             $table->string('update_oleh')->nullable();
             $table->timestamps();
