@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Bendera;
 use App\Models\KeagenanKapal;
 use App\Models\StatusKapal;
+use App\Models\JenisKapal;
 use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\StatusTrayek;
@@ -37,7 +38,8 @@ class KeagenankapalController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'status_kapal' => StatusKapal::all()
+            'status_kapal' => StatusKapal::all(),
+            'jenis_kapal' => JenisKapal::all()
         ]);
     }
 
@@ -82,7 +84,8 @@ class KeagenankapalController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'status_kapal' => StatusKapal::all()
+            'status_kapal' => StatusKapal::all(),
+            'jenis_kapal' => JenisKapal::all()
         ]);
     }
 
@@ -107,6 +110,7 @@ class KeagenankapalController extends Controller
             'jenis_muatan_datang' => $request->jenis_muatan_datang,
             'id_status_trayek_datang' => $request->id_status_trayek_datang,
             'id_status_kapal_datang' => $request->id_status_kapal_datang,
+            'id_jenis_kapal_datang' => $request->id_jenis_kapal_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
@@ -131,7 +135,8 @@ class KeagenankapalController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'status_kapal' => StatusKapal::all()
+            'status_kapal' => StatusKapal::all(),
+            'jenis_kapal' => JenisKapal::all()
         ]);
     }
 
@@ -149,6 +154,7 @@ class KeagenankapalController extends Controller
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'id_status_trayek_berangkat' => $request->id_status_trayek_berangkat,
             'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
+            'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'input_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
@@ -165,7 +171,8 @@ class KeagenankapalController extends Controller
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
-            'status_kapal' => StatusKapal::all()
+            'status_kapal' => StatusKapal::all(),
+            'jenis_kapal' => JenisKapal::all()
 
         ]);
         return redirect()->route('keagenan.index')->with('sukses', 'Data berhasil diubah');
@@ -187,6 +194,7 @@ class KeagenankapalController extends Controller
             'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
             'id_status_trayek_berangkat' => $request->id_status_trayek_berangkat,
             'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
+            'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
