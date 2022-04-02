@@ -8,13 +8,12 @@ use App\Http\Controllers\Backend\KeagenankapalController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
+use App\Http\Controllers\Backend\PengaturanController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
-use App\Models\JenisKapal;
-use App\Models\StatusKapal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -122,4 +121,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/profile/updateGeneralData/{id}', [ProfileController::class, 'updateGeneralData'])->name('profile.update.data');
     Route::put('/profile/updatePassword/{id}', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
     Route::put('/profile/updateAVatar/{id}', [ProfileController::class, 'updateImage'])->name('profile.update.avatar');
+    Route::get('/pengaturan/index', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::post('/pengaturan/update_general_data', [PengaturanController::class, 'updateGeneralData'])->name('pengaturan.update.data');
+    Route::post('/pengaturan/update_logo', [PengaturanController::class, 'updateLogo'])->name('pengaturan.update.logo');
 });

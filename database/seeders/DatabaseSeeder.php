@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Bendera::factory(10)->create();
         \App\Models\Pelabuhan::factory(10)->create();
         $this->call(UserSeeder::class);
+        $this->call(PengaturanSeeder::class);
     }
 }
