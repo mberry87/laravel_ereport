@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Pelabuhan datang</label>
+                                    <label>Dari Pelabuhan</label>
                                     <select name="id_pelabuhan_datang" id="id_pelabuhan_datang" class="form-control">
                                         @foreach ($pelabuhan as $data)
                                             <option value="{{ $data->id }}"
@@ -90,16 +90,33 @@
                                     <input type="text" name="jenis_muatan_datang" class="form-control" required
                                         value="{{ $pelnas->jenis_muatan_datang }}">
                                 </div>
-                                <div class="form-group">
-                                    <label>Jenis Kapal</label>
-                                    <select name="id_status_kapal_datang" id="id_status_kapal_datang"
-                                        class="form-control">
-                                        @foreach ($status_kapal as $data)
-                                            <option value="{{ $data->id }}"
-                                                {{ $data->id == $pelnas->id_status_kapal_datang ? 'selected' : '' }}>
-                                                {{ $data->nama }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Status Kapal</label>
+                                            <select name="id_status_kapal_datang" id="id_status_kapal_datang"
+                                                class="form-control">
+                                                @foreach ($status_kapal as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ $data->id == $pelnas->id_status_kapal_datang ? 'selected' : '' }}>
+                                                        {{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Jenis Kapal</label>
+                                            <select name="id_jenis_kapal_datang" id="id_jenis_kapal_datang"
+                                                class="form-control">
+                                                @foreach ($jenis_kapal as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ $data->id == $pelnas->id_jenis_kapal_datang ? 'selected' : '' }}>
+                                                        {{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

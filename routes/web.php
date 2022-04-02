@@ -3,6 +3,8 @@
 use App\Http\Controllers\Backend\BenderaController;
 use App\Http\Controllers\Backend\BupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\JeniskapalController;
+use App\Http\Controllers\Backend\KeagenankapalController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
+use App\Models\JenisKapal;
 use App\Models\StatusKapal;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/pelabuhan', PelabuhanController::class);
     Route::resource('/terminal', TerminalController::class);
     Route::resource('/status_kapal', StatuskapalController::class);
+    Route::resource('/jenis_kapal', JeniskapalController::class);
     Route::resource('/status_trayek', StatustrayekController::class);
 
     // Tersus
@@ -81,23 +85,38 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // pelnas
     Route::get('/pelnas/index', [PelnasController::class, 'index'])->name('pelnas.index');
-    Route::get('/pelnas/create-bup-datang', [PelnasController::class, 'createDatang'])->name('pelnas.datang.create');
-    Route::post('/pelnas/store-bup-datang', [PelnasController::class, 'storeDatang'])->name('pelnas.datang.store');
-    Route::get('/pelnas/{id}/edit-bup-datang/', [PelnasController::class, 'editDatang'])->name('pelnas.datang.edit');
-    Route::put('/pelnas/update-bup-datang/{id}', [PelnasController::class, 'updateDatang'])->name('pelnas.datang.update');
+    Route::get('/pelnas/create-pelnas-datang', [PelnasController::class, 'createDatang'])->name('pelnas.datang.create');
+    Route::post('/pelnas/store-pelnas-datang', [PelnasController::class, 'storeDatang'])->name('pelnas.datang.store');
+    Route::get('/pelnas/{id}/edit-pelnas-datang/', [PelnasController::class, 'editDatang'])->name('pelnas.datang.edit');
+    Route::put('/pelnas/update-pelnas-datang/{id}', [PelnasController::class, 'updateDatang'])->name('pelnas.datang.update');
 
-    Route::get('/pelnas/create-bup-berangkat', [PelnasController::class, 'createBerangkat'])->name('pelnas.berangkat.create');
-    Route::post('/pelnas/create-bup-berangkat', [PelnasController::class, 'storeBerangkat'])->name('pelnas.berangkat.store');
-    Route::get('/pelnas/{id}/edit-bup-berangkat/', [PelnasController::class, 'editBerangkat'])->name('pelnas.berangkat.edit');
-    Route::put('/pelnas/update-bup-berangkat/{id}', [PelnasController::class, 'updateBerangkat'])->name('pelnas.berangkat.update');
+    Route::get('/pelnas/create-pelnas-berangkat', [PelnasController::class, 'createBerangkat'])->name('pelnas.berangkat.create');
+    Route::post('/pelnas/create-pelnas-berangkat', [PelnasController::class, 'storeBerangkat'])->name('pelnas.berangkat.store');
+    Route::get('/pelnas/{id}/edit-pelnas-berangkat/', [PelnasController::class, 'editBerangkat'])->name('pelnas.berangkat.edit');
+    Route::put('/pelnas/update-pelnas-berangkat/{id}', [PelnasController::class, 'updateBerangkat'])->name('pelnas.berangkat.update');
 
     Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
     Route::delete('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
 
+    // keagenan kapal
+    Route::get('/keagenan_kapal/index', [KeagenankapalController::class, 'index'])->name('keagenan_kapal.index');
+    Route::get('/keagenan_kapal/create-pelnas-datang', [KeagenankapalController::class, 'createDatang'])->name('keagenan_kapal.datang.create');
+    Route::post('/keagenan_kapal/store-pelnas-datang', [KeagenankapalController::class, 'storeDatang'])->name('keagenan_kapal.datang.store');
+    Route::get('/keagenan_kapal/{id}/edit-pelnas-datang/', [KeagenankapalController::class, 'editDatang'])->name('keagenan_kapal.datang.edit');
+    Route::put('/keagenan_kapal/update-pelnas-datang/{id}', [KeagenankapalController::class, 'updateDatang'])->name('keagenan_kapal.datang.update');
+
+    Route::get('/keagenan_kapal/create-pelnas-berangkat', [KeagenankapalController::class, 'createBerangkat'])->name('keagenan_kapal.berangkat.create');
+    Route::post('/keagenan_kapal/create-pelnas-berangkat', [KeagenankapalController::class, 'storeBerangkat'])->name('keagenan_kapal.berangkat.store');
+    Route::get('/keagenan_kapal/{id}/edit-pelnas-berangkat/', [KeagenankapalController::class, 'editBerangkat'])->name('keagenan_kapal.berangkat.edit');
+    Route::put('/keagenan_kapal/update-pelnas-berangkat/{id}', [KeagenankapalController::class, 'updateBerangkat'])->name('keagenan_kapal.berangkat.update');
+
+    Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
+    Route::delete('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
+
+    // user
+    Route::resource('/user', UserController::class);
     Route::get('/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
     Route::get('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.reset.status');
-
-    Route::resource('/user', UserController::class);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile/updateGeneralData/{id}', [ProfileController::class, 'updateGeneralData'])->name('profile.update.data');

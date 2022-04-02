@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Pelabuhan datang</label>
+                                    <label>Dari Pelabuhan</label>
                                     <select name="id_pelabuhan_datang" id="id_pelabuhan_datang" class="form-control">
                                         @foreach ($pelabuhan as $data)
                                             <option value="{{ $data->id }}"

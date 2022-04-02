@@ -62,7 +62,7 @@
                                 <td>{{ $bup->datang }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Pelabuhan Kedatangan</td>
+                                <td style="width: 40%">Dari Pelabuhan</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $bup->pelabuhan_datang != null ? $bup->pelabuhan_datang->nama : '-' }}
                                 </td>
@@ -92,7 +92,7 @@
                                 <td>{{ $bup->berangkat }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">Pelabuhan Berangkat</td>
+                                <td style="width: 40%">Ke Pelabuhan</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $bup->pelabuhan_berangkat != null ? $bup->pelabuhan_berangkat->nama : '-' }}
                                 </td>

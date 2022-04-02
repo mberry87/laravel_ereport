@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pelnas extends Model
+class KeagenanKapal extends Model
 {
     use HasFactory;
-    protected $table = 'pelnas';
+    use HasFactory;
+    protected $table = 'keagenan_kapal';
 
     protected $guarded = [];
 
@@ -66,8 +67,9 @@ class Pelnas extends Model
 
     public function jenis_kapal_berangkat()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_berankat');
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_berangkat');
     }
+
 
     public function getDatangAttribute()
     {

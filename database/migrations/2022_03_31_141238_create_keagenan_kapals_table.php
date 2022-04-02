@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePelnasesTable extends Migration
+class CreateKeagenanKapalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePelnasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelnas', function (Blueprint $table) {
+        Schema::create('keagenan_kapal', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kapal');
             $table->foreignId('id_bendera')
@@ -102,6 +102,6 @@ class CreatePelnasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelnas');
+        Schema::dropIfExists('keagenan_kapal');
     }
 }

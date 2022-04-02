@@ -58,21 +58,23 @@
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                         @if (auth()->user()->avatar == null)
-                        <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}" class="user-image img-circle elevation-2" alt="img">
+                            <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
+                                class="user-image img-circle elevation-2" alt="img">
                         @else
-                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="user-image img-circle elevation-2"
-                            width="128" alt="img">
+                            <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
+                                class="user-image img-circle elevation-2" width="128" alt="img">
                         @endif
                         <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <li class="user-header bg-primary">
                             @if (auth()->user()->avatar == null)
-                        <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"  class="img-circle elevation-2" alt="img">
-                        @else
-                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}"  class="img-circle elevation-2"
-                            width="128" alt="img">
-                        @endif
+                                <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
+                                    class="img-circle elevation-2" alt="img">
+                            @else
+                                <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
+                                    class="img-circle elevation-2" width="128" alt="img">
+                            @endif
                             <p>
                                 {{ auth()->user()->name }}
                                 <small>{{ auth()->user()->created_at->format('d-M-Y') }}</small>
@@ -117,7 +119,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="{{ route('dashboard.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -126,7 +128,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Form Data
@@ -163,67 +165,85 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        @if (auth()->user()->role == 'admin')
-                        <li class="nav-item">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Master Data
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item ">
-                                    <a href="{{ route('user.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-user"></i>
+                                    <a href="{{ route('keagenan_kapal.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-check-circle"></i>
                                         <p>
-                                            Data User
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a href="{{ route('bendera.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-flag"></i>
-                                        <p>
-                                            Data Bendera
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('pelabuhan.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-anchor"></i>
-                                        <p>
-                                            Data Pelabuhan
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('terminal.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-dolly"></i>
-                                        <p>
-                                            Data Terminal
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('status_kapal.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-ship"></i>
-                                        <p>
-                                            Status Kapal
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('status_trayek.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-clock"></i>
-                                        <p>
-                                            Status Trayek
+                                            Data KEAGENAN KAPAL
                                         </p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+                        @if (auth()->user()->role == 'admin')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>
+                                        Master Data
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item ">
+                                        <a href="{{ route('user.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-user"></i>
+                                            <p>
+                                                Data User
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="{{ route('bendera.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-flag"></i>
+                                            <p>
+                                                Data Bendera
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('pelabuhan.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-anchor"></i>
+                                            <p>
+                                                Data Pelabuhan
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('terminal.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-dolly"></i>
+                                            <p>
+                                                Data Terminal
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('jenis_kapal.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-ship"></i>
+                                            <p>
+                                                Jenis Kapal
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('status_kapal.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-ship"></i>
+                                            <p>
+                                                Status Kapal
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('status_trayek.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-clock"></i>
+                                            <p>
+                                                Status Trayek
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
                     </ul>
                 </nav>

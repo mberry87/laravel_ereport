@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Bendera;
+use App\Models\KeagenanKapal;
 use App\Models\StatusKapal;
 use App\Models\JenisKapal;
 use App\Models\Pelabuhan;
 use App\Models\Terminal;
-use App\Models\Pelnas;
 use App\Models\StatusTrayek;
-use Illuminate\Http\Request;
 
-class PelnasController extends Controller
+class KeagenankapalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class PelnasController extends Controller
      */
     public function index()
     {
-        return view('backend.pelnas.index', [
-            'pelnas' => Pelnas::with('bendera')->get()
+        return view('backend.keagenan_kapal.index', [
+            'keagenan_kapal' => KeagenanKapal::with('bendera')->get()
         ]);
     }
 
@@ -33,7 +33,7 @@ class PelnasController extends Controller
      */
     public function createDatang()
     {
-        return view('backend.pelnas.create-datang', [
+        return view('backend.keagenan_kapal.create-datang', [
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
@@ -51,35 +51,35 @@ class PelnasController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        Pelnas::create($request->all() + ['input_oleh' => auth()->user()->name]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
+        KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pelnas  $pelnas
+     * @param  \App\Models\KeagenanKapal  $keagenan_kapal
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $pelnas = Pelnas::findOrFail($id);
-        return view('backend.pelnas.show', [
-            'pelnas' => $pelnas
+        $keagenan_kapal = KeagenanKapal::findOrFail($id);
+        return view('backend.keagenan_kapal.show', [
+            'keagenan_kapal' => $keagenan_kapal
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pelnas  $pelnas
+     * @param  \App\Models\KeagenanKapal  $keagenan_kapal
      * @return \Illuminate\Http\Response
      */
     public function editDatang($id)
     {
-        $pelnas = Pelnas::findOrFail($id);
-        return view('backend.pelnas.edit-datang', [
-            'pelnas' => $pelnas,
+        $keagenan_kapal = KeagenanKapal::findOrFail($id);
+        return view('backend.keagenan_kapal.edit-datang', [
+            'keagenan_kapal' => $keagenan_kapal,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
@@ -93,13 +93,13 @@ class PelnasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pelnas  $pelnas
+     * @param  \App\Models\KeagenanKapal  $keagenan_kapal
      * @return \Illuminate\Http\Response
      */
     public function updateDatang(Request $request, $id)
     {
-        $pelnas = Pelnas::findOrFail($id);
-        $pelnas->update([
+        $keagenan_kapal = KeagenanKapal::findOrFail($id);
+        $keagenan_kapal->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -113,24 +113,24 @@ class PelnasController extends Controller
             'id_jenis_kapal_datang' => $request->id_jenis_kapal_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pelnas  $pelnas
+     * @param  \App\Models\keagenan_kapal  $keagenan_kapal
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Pelnas::destroy($id);
-        return redirect()->route('pelnas.index')->with('hapus', 'Data berhasil dihapus');
+        KeagenanKapal::destroy($id);
+        return redirect()->route('keagenan_kapal.index')->with('hapus', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()
     {
-        return view('backend.pelnas.create-berangkat', [
+        return view('backend.keagenan_kapal.create-berangkat', [
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
@@ -143,7 +143,7 @@ class PelnasController extends Controller
     public function storeBerangkat(Request $request)
     {
 
-        Pelnas::create([
+        KeagenanKapal::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -157,14 +157,14 @@ class PelnasController extends Controller
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'input_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
     {
-        $pelnas = Pelnas::findOrFail($id);
-        return view('backend.pelnas.edit-berangkat', [
-            'pelnas' => $pelnas,
+        $keagenan_kapal = KeagenanKapal::findOrFail($id);
+        return view('backend.keagenan_kapal.edit-berangkat', [
+            'keagenan_kapal' => $keagenan_kapal,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all(),
@@ -175,13 +175,13 @@ class PelnasController extends Controller
             'jenis_kapal' => JenisKapal::all()
 
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('keagenan.index')->with('sukses', 'Data berhasil diubah');
     }
 
     public function updateBerangkat(Request $request, $id)
     {
-        $pelnas = Pelnas::findOrFail($id);
-        $pelnas->update([
+        $Keagenan_kapal = KeagenanKapal::findOrFail($id);
+        $Keagenan_kapal->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -197,6 +197,6 @@ class PelnasController extends Controller
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
     }
 }
