@@ -41,7 +41,7 @@
                     @method('PUT')
                     <div class="form-group my-4">
                         <label for="avatar">Upload Gambar</label>
-                        <input type="file" class="form-control-file" @error('avatar') is-invalid @enderror name="avatar">
+                        <input type="file" class="form-control" @error('avatar') is-invalid @enderror name="avatar">
                         @error('avatar')
                         <div class="invalid-feedback">
                             {{ $message }}
