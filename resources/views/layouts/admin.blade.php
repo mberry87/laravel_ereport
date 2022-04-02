@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
+    <x-favico />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -33,7 +34,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="{{ route('dashboard.index') }}" class="nav-link">Dashboard</a>
                 </li>
             </ul>
 
@@ -107,9 +108,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/" class="brand-link">
-                <img src="{{ asset('image') }}/perhubungan.png" alt="logo" class="brand-image img-circle "
-                    style="opacity: .8">
-                <span class="brand-text font-weight-light">UPP Tg.Uban</span>
+                    <x-backend.sidemenu-logo />
+                    <x-backend.sidemenu-name />
             </a>
 
             <!-- Sidebar -->
@@ -261,6 +261,14 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('pengaturan.index') }}" class="nav-link {{ (Request::is('admin/pengaturan/index')) ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <p>
+                                        Pengaturan
+                                    </p>
+                                </a>
                             </li>
                         @endif
                     </ul>
