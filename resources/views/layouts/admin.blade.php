@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
+    <x-title />
     <x-favico />
 
     <!-- Google Font: Source Sans Pro -->
