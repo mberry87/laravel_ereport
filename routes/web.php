@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BupController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\JeniskapalController;
 use App\Http\Controllers\Backend\KeagenankapalController;
+use App\Http\Controllers\Backend\PbmController;
 use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
@@ -111,6 +112,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
     Route::delete('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
+
+    // PBM
+    Route::get('/pbm/index', [PbmController::class, 'index'])->name('pbm.index');
+    Route::get('/pbm/create-pbm-muat', [PbmController::class, 'createMuat'])->name('pbm.muat.create');
+    Route::post('/pbm/store-pbm-muat', [PbmController::class, 'storeMuat'])->name('pbm.muat.store');
+    Route::get('/pbm/{id}/edit-pbm-muat/', [PbmController::class, 'editMuat'])->name('pbm.muat.edit');
+    Route::put('/pbm/update-pbm-muat/{id}', [PbmController::class, 'updateMuat'])->name('pbm.muat.update');
+
+    Route::get('/pbm/create-pbm-bongkar', [PbmController::class, 'createBongkar'])->name('pbm.bongkar.create');
+    Route::post('/pbm/create-pbm-bongkar', [PbmController::class, 'storeBongkar'])->name('pbm.bongkar.store');
+    Route::get('/pbm/{id}/edit-pbm-bongkar/', [PbmController::class, 'editBongkar'])->name('pbm.bongkar.edit');
+    Route::put('/pbm/update-pbm-bongkar/{id}', [PbmController::class, 'updateBongkar'])->name('pbm.bongkar.update');
+
+    Route::get('/pbm/show/{id}', [PbmController::class, 'show'])->name('pbm.show');
+    Route::delete('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
+
 
     // user
     Route::resource('/user', UserController::class);

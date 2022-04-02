@@ -179,6 +179,16 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ">
+                                    <a href="{{ route('pbm.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-check-circle"></i>
+                                        <p>
+                                            Data PBM
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         @if (auth()->user()->role == 'admin')
                             <li class="nav-item
