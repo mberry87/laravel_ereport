@@ -107,10 +107,15 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
+
             <a href="/" class="brand-link">
                 <x-backend.sidemenu-logo />
                 <x-backend.sidemenu-name />
             </a>
+
+            <div class="status text-center mt-2 text-primary">
+                <span>&bull; Online</span>
+            </div>
 
             <!-- Sidebar -->
             <div class="sidebar">
