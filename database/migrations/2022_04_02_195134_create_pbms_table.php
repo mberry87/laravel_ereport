@@ -53,7 +53,7 @@ class CreatePbmsTable extends Migration
             $table->string('bongkar_jenis')->nullable();
             $table->string('bongkar_ton')->nullable();
             $table->string('bongkar_unit')->nullable();
-            $table->string('bongkar_mtri')->nullable();
+            $table->string('bongkar_m3')->nullable();
             $table->foreignId('id_terminal_bongkar')
                 ->nullable()
                 ->references('id')

@@ -164,7 +164,7 @@ class PbmController extends Controller
             'bongkar_jenis' => $request->bongkar_jenis,
             'bongkar_ton' => $request->bongkar_ton,
             'bongkar_unit' => $request->bongkar_unit,
-            'bongkar_mtri' => $request->bongkar_mtri,
+            'bongkar_m3' => $request->bongkar_m3,
             'id_terminal_bongkar' => $request->id_terminal_bongkar,
             'id_jenis_kapal_pbm' => $request->id_jenis_kapal_pbm,
             // 'agen_bongkar' => $request->agen_bongkar,
