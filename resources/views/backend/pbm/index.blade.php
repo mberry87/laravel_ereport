@@ -46,6 +46,8 @@
                                 <th>Nama Kapal</th>
                                 <th>Bendera</th>
                                 <th>Jenis Kapal</th>
+                                <th>Muat</th>
+                                <th>Bongkat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -55,9 +57,11 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kapal }}</td>
                                     <td>{{ $data->bendera->nama }}</td>
-                                    <td>{{ $data->jenis_kapal }}</td>
+                                    <td>{{ $data->jenis_kapal->nama }}</td>
+                                    <td>{{ $data->muat }}</td>
+                                    <td>{{ $data->bongkar }}</td>
                                     <td>
-                                        <a href="{{ route('pelnas.show', $data) }}"
+                                        <a href="{{ route('pbm.show', $data) }}"
                                             class="btn btn-success btn-sm mr-2 d-inline" data-toggle="tooltip" title="show">
                                             <i class="fas fa-eye"></i>
 
@@ -67,7 +71,7 @@
                                             title="edit muat">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('pelnas.bongkar.edit', $data->id) }}"
+                                        <a href="{{ route('pbm.bongkar.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2  d-inline" data-toggle="tooltip"
                                             title="edit bongkar">
                                             <i class="fas fa-edit"></i>

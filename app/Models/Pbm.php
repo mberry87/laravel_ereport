@@ -30,6 +30,26 @@ class Pbm extends Model
 
     public function jenis_kapal()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal');
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_pbm');
+    }
+
+    public function getMuatAttribute()
+    {
+        if (!$this->tgl_muat == null) {
+            $date = strtotime($this->tgl_muat);
+            return date('d-M-Y', $date);
+        } else {
+            return "Belum muat";
+        }
+    }
+
+    public function getBongkarAttribute()
+    {
+        if (!$this->tgl_bongkar == null) {
+            $date = strtotime($this->tgl_bongkar);
+            return date('d-M-Y', $date);
+        } else {
+            return "Belum bongkar";
+        }
     }
 }

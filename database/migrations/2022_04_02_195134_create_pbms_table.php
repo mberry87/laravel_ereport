@@ -23,17 +23,19 @@ class CreatePbmsTable extends Migration
                 ->on('bendera')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal')
+            $table->foreignId('id_jenis_kapal_pbm')
                 ->nullable()
                 ->references('id')
                 ->on('jenis_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
+            $table->string('agen_muat')->nullable();
+            $table->string('tgl_muat')->nullable();
             $table->string('ukuran_isi_kotor')->nullable();
             $table->string('ukuran_dwt')->nullable();
             $table->string('ukuran_loa')->nullable();
             $table->string('muat_sistem')->nullable();
-            $table->string('muat_komiditi')->nullable();
+            $table->string('muat_komoditi')->nullable();
             $table->string('muat_jenis')->nullable();
             $table->string('muat_ton')->nullable();
             $table->string('muat_unit')->nullable();
@@ -44,9 +46,10 @@ class CreatePbmsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('agen_muat');
+            $table->string('agen_bongkar')->nullable();
+            $table->string('tgl_bongkar')->nullable();
             $table->string('bongkar_sistem')->nullable();
-            $table->string('bongkar_komiditi')->nullable();
+            $table->string('bongkar_komoditi')->nullable();
             $table->string('bongkar_jenis')->nullable();
             $table->string('bongkar_ton')->nullable();
             $table->string('bongkar_unit')->nullable();
@@ -57,7 +60,6 @@ class CreatePbmsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('agen_bongkar');
             $table->string('input_oleh')->nullable();
             $table->string('update_oleh')->nullable();
         });
