@@ -47,6 +47,8 @@ class PbmController extends Controller
     {
         Pbm::create($request->all() + ['input_oleh' => auth()->user()->name]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
+
+        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     /**
@@ -97,13 +99,13 @@ class PbmController extends Controller
             'ukuran_dwt' => $request->ukuran_dwt,
             'ukuran_loa' => $request->ukuran_loa,
             'muat_sistem' => $request->muat_sistem,
-            'muat_komidit' => $request->muat_komiditi,
+            'muat_komoditi' => $request->muat_komoditi,
             'muat_jenis' => $request->muat_jenis,
             'muat_ton' => $request->muat_ton,
             'muat_unit' => $request->muat_unit,
-            'muat_m3' => $request->muat_m3,
+            'muat_mtri' => $request->muat_mtri,
             'id_terminal_muat' => $request->id_terminal_muat,
-            'id_jenis_kapal' => $request->id_jenis_kapal,
+            'id_jenis_kapal_muat' => $request->id_jenis_kapal_muat,
             'agen_muat' => $request->agen_muat,
             'update_oleh' =>  auth()->user()->name,
         ]);
@@ -131,13 +133,16 @@ class PbmController extends Controller
         ]);
     }
 
-    public function storeBerangkat(Request $request)
+    public function storeBongkar(Request $request)
     {
         Pbm::create($request->all() + ['input_oleh' => auth()->user()->name]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
+
+
+        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
     }
 
-    public function editBerangkat($id)
+    public function editBongkar($id)
     {
         $pbm = Pbm::findOrFail($id);
         return view('backend.pbm.edit-bongkar', [
@@ -148,7 +153,7 @@ class PbmController extends Controller
         ]);
     }
 
-    public function updateBerangkat(Request $request, $id)
+    public function updateBongkar(Request $request, $id)
     {
         $pbm = Pbm::findOrFail($id);
         $pbm->update([
@@ -157,15 +162,15 @@ class PbmController extends Controller
             'ukuran_isi_kotor' => $request->ukuran_isi_kotor,
             'ukuran_dwt' => $request->ukuran_dwt,
             'ukuran_loa' => $request->ukuran_loa,
-            'muat_sistem' => $request->muat_sistem,
-            'muat_komidit' => $request->muat_komiditi,
-            'muat_jenis' => $request->muat_jenis,
-            'muat_ton' => $request->muat_ton,
-            'muat_unit' => $request->muat_unit,
-            'muat_m3' => $request->muat_m3,
-            'id_terminal_muat' => $request->id_terminal_muat,
-            'id_jenis_kapal' => $request->id_jenis_kapal,
-            'agen_muat' => $request->agen_berangkat,
+            'bongkar_sistem' => $request->bongkar_sistem,
+            'bongkar_komoditi' => $request->bongkar_komoditi,
+            'bongkar_jenis' => $request->bongkar_jenis,
+            'bongkar_ton' => $request->bongkar_ton,
+            'bongkar_unit' => $request->bongkar_unit,
+            'bongkar_mtri' => $request->bongkar_mtri,
+            'id_terminal_bongkar' => $request->id_terminal_bongkar,
+            'id_jenis_kapal_bongkar' => $request->id_jenis_kapal_bongkarf,
+            'agen_bongkar' => $request->agen_bongkar,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil diubah');

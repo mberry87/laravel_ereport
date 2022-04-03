@@ -33,11 +33,11 @@ class CreatePbmsTable extends Migration
             $table->string('ukuran_dwt')->nullable();
             $table->string('ukuran_loa')->nullable();
             $table->string('muat_sistem')->nullable();
-            $table->string('muat_komiditi')->nullable();
+            $table->string('muat_komoditi')->nullable();
             $table->string('muat_jenis')->nullable();
             $table->string('muat_ton')->nullable();
             $table->string('muat_unit')->nullable();
-            $table->string('muat_m3')->nullable();
+            $table->string('muat_mtri')->nullable();
             $table->foreignId('id_terminal_muat')
                 ->nullable()
                 ->references('id')
@@ -46,11 +46,11 @@ class CreatePbmsTable extends Migration
                 ->onDelete('SET NULL');
             $table->string('agen_muat');
             $table->string('bongkar_sistem')->nullable();
-            $table->string('bongkar_komiditi')->nullable();
+            $table->string('bongkar_komoditi')->nullable();
             $table->string('bongkar_jenis')->nullable();
             $table->string('bongkar_ton')->nullable();
             $table->string('bongkar_unit')->nullable();
-            $table->string('bongkar_m3')->nullable();
+            $table->string('bongkar_mtri')->nullable();
             $table->foreignId('id_terminal_bongkar')
                 ->nullable()
                 ->references('id')

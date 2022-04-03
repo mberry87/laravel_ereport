@@ -38,19 +38,52 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <label>Ukuran</label>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>GT</label>
-                                        <input type="text" name="ukuran_isi_kotor" class="form-control" required>
+                                <div class="form-group">
+                                    <label>Ukuran</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" name="ukuran_isi_kotor" class="form-control"
+                                                placeholder="input GT" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="ukuran_dwt" class="form-control"
+                                                placeholder="input DWT" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="ukuran_loa" class="form-control"
+                                                placeholder="input LOA" required>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label>DWT</label>
-                                        <input type="text" name="ukuran_dwt" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Muat</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" name="muat_sistem" class="form-control"
+                                                placeholder="input sistem" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="muat_komoditi" class="form-control"
+                                                placeholder="input komoditi" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="muat_jenis" class="form-control"
+                                                placeholder="input jenis" required>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label>LOA</label>
-                                        <input type="text" name="ukuran_loa" class="form-control" required>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <input type="text" name="muat_ton" class="form-control"
+                                                placeholder="input ton" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="muat_unit" class="form-control"
+                                                placeholder="input unit" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="muat _mtri" class="form-control"
+                                                placeholder="input m3" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -60,6 +93,10 @@
                                             <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Agen</label>
+                                    <input type="text" name="agen_muat" class="form-control" required>
                                 </div>
                             </div>
                         </div>
