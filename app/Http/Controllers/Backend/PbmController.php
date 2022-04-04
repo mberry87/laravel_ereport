@@ -72,7 +72,7 @@ class PbmController extends Controller
     public function editMuat($id)
     {
         $pbm = Pbm::findOrFail($id);
-        return view('backend.pbm.edit-bongkar', [
+        return view('backend.pbm.edit-muat', [
             'pbm' => $pbm,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),

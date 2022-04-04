@@ -14,9 +14,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('keagenan_kapal.index') }}" class="btn btn-secondary btn-sm mb-3 mr-3">
-                        <i class="fas fa-arrow-left mr-3"></i>Kembali
-                    </a>
                     <form action="{{ route('keagenan_kapal.berangkat.update', $keagenan_kapal->id) }}" method="POST">
                         @csrf
                         @method('PUT')
