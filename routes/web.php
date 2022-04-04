@@ -100,15 +100,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // keagenan kapal
     Route::get('/keagenan_kapal/index', [KeagenankapalController::class, 'index'])->name('keagenan_kapal.index');
-    Route::get('/keagenan_kapal/create-pelnas-datang', [KeagenankapalController::class, 'createDatang'])->name('keagenan_kapal.datang.create');
-    Route::post('/keagenan_kapal/store-pelnas-datang', [KeagenankapalController::class, 'storeDatang'])->name('keagenan_kapal.datang.store');
-    Route::get('/keagenan_kapal/{id}/edit-pelnas-datang/', [KeagenankapalController::class, 'editDatang'])->name('keagenan_kapal.datang.edit');
-    Route::put('/keagenan_kapal/update-pelnas-datang/{id}', [KeagenankapalController::class, 'updateDatang'])->name('keagenan_kapal.datang.update');
+    Route::get('/keagenan_kapal/create-keagenan_kapal-datang', [KeagenankapalController::class, 'createDatang'])->name('keagenan_kapal.datang.create');
+    Route::post('/keagenan_kapal/store-keagenan_kapal-datang', [KeagenankapalController::class, 'storeDatang'])->name('keagenan_kapal.datang.store');
+    Route::get('/keagenan_kapal/{id}/edit-keagenan_kapal-datang/', [KeagenankapalController::class, 'editDatang'])->name('keagenan_kapal.datang.edit');
+    Route::put('/keagenan_kapal/update-keagenan_kapal-datang/{id}', [KeagenankapalController::class, 'updateDatang'])->name('keagenan_kapal.datang.update');
 
-    Route::get('/keagenan_kapal/create-pelnas-berangkat', [KeagenankapalController::class, 'createBerangkat'])->name('keagenan_kapal.berangkat.create');
-    Route::post('/keagenan_kapal/create-pelnas-berangkat', [KeagenankapalController::class, 'storeBerangkat'])->name('keagenan_kapal.berangkat.store');
-    Route::get('/keagenan_kapal/{id}/edit-pelnas-berangkat/', [KeagenankapalController::class, 'editBerangkat'])->name('keagenan_kapal.berangkat.edit');
-    Route::put('/keagenan_kapal/update-pelnas-berangkat/{id}', [KeagenankapalController::class, 'updateBerangkat'])->name('keagenan_kapal.berangkat.update');
+    Route::get('/keagenan_kapal/create-keagenan_kapal-berangkat', [KeagenankapalController::class, 'createBerangkat'])->name('keagenan_kapal.berangkat.create');
+    Route::post('/keagenan_kapal/create-keagenan_kapal-berangkat', [KeagenankapalController::class, 'storeBerangkat'])->name('keagenan_kapal.berangkat.store');
+    Route::get('/keagenan_kapal/{id}/edit-keagenan_kapal-berangkat/', [KeagenankapalController::class, 'editBerangkat'])->name('keagenan_kapal.berangkat.edit');
+    Route::put('/keagenan_kapal/update-keagenan_kapal-berangkat/{id}', [KeagenankapalController::class, 'updateBerangkat'])->name('keagenan_kapal.berangkat.update');
 
     Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
     Route::delete('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');

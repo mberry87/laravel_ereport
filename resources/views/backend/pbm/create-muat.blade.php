@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tanggal datang</label>
+                                            <label>Tanggal Muat</label>
                                             <input type="date" name="tgl_muat" class="form-control" required>
                                         </div>
                                     </div>
