@@ -45,9 +45,8 @@
                                 <th>No</th>
                                 <th>Nama Kapal</th>
                                 <th>Bendera</th>
-                                <th>Jenis Kapal</th>
                                 <th>Muat</th>
-                                <th>Bongkat</th>
+                                <th>Bongkar</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -57,7 +56,6 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kapal }}</td>
                                     <td>{{ $data->bendera->nama }}</td>
-                                    <td>{{ $data->jenis_kapal->nama }}</td>
                                     <td>{{ $data->muat }}</td>
                                     <td>{{ $data->bongkar }}</td>
                                     <td>

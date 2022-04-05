@@ -36,10 +36,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal_datang" id="id_jenis_kapal_datang" class="form-control">
+                                    <select name="id_jenis_kapal_muat" id="id_jenis_kapal_muat" class="form-control">
                                         @foreach ($jenis_kapal as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $pbm->id_jenis_kapal_datang ? 'selected' : '' }}>
+                                                {{ $data->id == $pbm->id_jenis_kapal_muat ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>
@@ -49,20 +49,20 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="isi_kotor" class="form-control" required
-                                                    value="{{ $pbm->ukuran_isi_kotor }}">
+                                                <input type="text" name="ukuran_isi_kotor_muat" class="form-control" required
+                                                    value="{{ $pbm->ukuran_isi_kotor_muat }}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="kuran_dwt" class="form-control" required
-                                                    value="{{ $pbm->ukuran_dwt }}">
+                                                <input type="text" name="ukuran_dwt_muat" class="form-control" required
+                                                    value="{{ $pbm->ukuran_dwt_muat }}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_loa" class="form-control" required
-                                                    value="{{ $pbm->ukuran_loa }}">
+                                                <input type="text" name="ukuran_loa_muat" class="form-control" required
+                                                    value="{{ $pbm->ukuran_loa_muat }}">
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="muat_ton" class="form-control" required
+                                                <input type="text" name="muat_unit" class="form-control" required
                                                     value="{{ $pbm->muat_unit }}">
                                             </div>
                                         </div>
@@ -124,8 +124,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Tanggal Muat</label>
-                                            <input type="date" name="tgl_datang" class="form-control" required
-                                                value="{{ $pbm->tgl_datang }}">
+                                            <input type="date" name="tgl_muat" class="form-control" required
+                                                value="{{ $pbm->tgl_muat }}">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Agen Muat</label>
