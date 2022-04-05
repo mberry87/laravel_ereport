@@ -21,8 +21,14 @@ class KeagenankapalController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role == 'admin') {
+            return view('backend.keagenan_kapal.index', [
+                'keagenan_kapal' => KeagenanKapal::with('bendera')->get()
+            ]);
+
+        }
         return view('backend.keagenan_kapal.index', [
-            'keagenan_kapal' => KeagenanKapal::with('bendera')->get()
+            'keagenan_kapal' => KeagenanKapal::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -51,7 +57,7 @@ class KeagenankapalController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -63,6 +69,7 @@ class KeagenankapalController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         return view('backend.keagenan_kapal.show', [
             'keagenan_kapal' => $keagenan_kapal
@@ -77,6 +84,7 @@ class KeagenankapalController extends Controller
      */
     public function editDatang($id)
     {
+        $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         return view('backend.keagenan_kapal.edit-datang', [
             'keagenan_kapal' => $keagenan_kapal,
@@ -98,6 +106,7 @@ class KeagenankapalController extends Controller
      */
     public function updateDatang(Request $request, $id)
     {
+        $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         $keagenan_kapal->update([
             'nama_kapal' => $request->nama_kapal,
@@ -112,6 +121,7 @@ class KeagenankapalController extends Controller
             'id_status_kapal_datang' => $request->id_status_kapal_datang,
             'id_jenis_kapal_datang' => $request->id_jenis_kapal_datang,
             'update_oleh' =>  auth()->user()->name,
+            'id_user' => auth()->user()->id,
         ]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
     }
@@ -124,6 +134,7 @@ class KeagenankapalController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('view', KeagenanKapal::findOrFail($id));
         KeagenanKapal::destroy($id);
         return redirect()->route('keagenan_kapal.index')->with('hapus', 'Data berhasil dihapus');
     }
@@ -162,6 +173,7 @@ class KeagenankapalController extends Controller
 
     public function editBerangkat($id)
     {
+        $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         return view('backend.keagenan_kapal.edit-berangkat', [
             'keagenan_kapal' => $keagenan_kapal,
@@ -180,6 +192,7 @@ class KeagenankapalController extends Controller
 
     public function updateBerangkat(Request $request, $id)
     {
+        $this->authorize('view', KeagenanKapal::findOrFail($id));
         $Keagenan_kapal = KeagenanKapal::findOrFail($id);
         $Keagenan_kapal->update([
             'nama_kapal' => $request->nama_kapal,

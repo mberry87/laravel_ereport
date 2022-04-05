@@ -50,7 +50,8 @@ class BupController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        Bup::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        $bup = Bup::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
+        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
         return redirect()->route('bup.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -108,6 +109,7 @@ class BupController extends Controller
             'kegiatan_datang' => $request->kegiatan_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
+        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
         return redirect()->route('bup.index')->with('sukses', 'Data berhasil diubah');
     }
 
@@ -122,7 +124,8 @@ class BupController extends Controller
     public function destroy($id)
     {
         $this->authorize('view', Bup::findOrFail($id));
-        Bup::destroy($id);
+        $bup = Bup::destroy($id);
+        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menghapus data BUP");
         return redirect()->route('bup.index')->with('hapus', 'Data berhasil dihapus');
     }
 
@@ -137,8 +140,7 @@ class BupController extends Controller
 
     public function storeBerangkat(Request $request)
     {
-
-        Bup::create([
+        $bup = Bup::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -147,7 +149,9 @@ class BupController extends Controller
             'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
             'kegiatan_berangkat' => $request->kegiatan_berangkat,
             'input_oleh' =>  auth()->user()->name,
+            'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
         return redirect()->route('bup.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -166,8 +170,8 @@ class BupController extends Controller
     public function updateBerangkat(Request $request, $id)
     {
         $this->authorize('view', Bup::findOrFail($id));
-        $tersus = bup::findOrFail($id);
-        $tersus->update([
+        $bup = bup::findOrFail($id);
+        $bup->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -177,6 +181,7 @@ class BupController extends Controller
             'kegiatan_berangkat' => $request->kegiatan_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
+        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
         return redirect()->route('bup.index')->with('sukses', 'Data berhasil diubah');
     }
 }

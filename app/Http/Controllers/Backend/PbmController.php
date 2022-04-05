@@ -18,8 +18,14 @@ class PbmController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role == 'admin') {
+            return view('backend.pbm.index', [
+                'pbm' => Pbm::with('bendera')->get()
+            ]);
+
+        }
         return view('backend.pbm.index', [
-            'pbm' => Pbm::with('bendera')->get()
+            'pbm' => Pbm::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -45,7 +51,7 @@ class PbmController extends Controller
      */
     public function storeMuat(Request $request)
     {
-        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -57,6 +63,7 @@ class PbmController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         return view('backend.pbm.show', [
             'pbm' => $pbm
@@ -71,6 +78,7 @@ class PbmController extends Controller
      */
     public function editMuat($id)
     {
+        $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         return view('backend.pbm.edit-muat', [
             'pbm' => $pbm,
@@ -89,6 +97,7 @@ class PbmController extends Controller
      */
     public function updateMuat(Request $request, $id)
     {
+        $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         $pbm->update([
             'nama_kapal' => $request->nama_kapal,
@@ -119,6 +128,7 @@ class PbmController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('view', Pbm::findOrFail($id));
         Pbm::destroy($id);
         return redirect()->route('pbm.index')->with('hapus', 'Data berhasil dihapus');
     }
@@ -134,12 +144,13 @@ class PbmController extends Controller
 
     public function storeBongkar(Request $request)
     {
-        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     public function editBongkar($id)
     {
+        $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         return view('backend.pbm.edit-bongkar', [
             'pbm' => $pbm,
@@ -151,6 +162,7 @@ class PbmController extends Controller
 
     public function updateBongkar(Request $request, $id)
     {
+        $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         $pbm->update([
             'nama_kapal' => $request->nama_kapal,

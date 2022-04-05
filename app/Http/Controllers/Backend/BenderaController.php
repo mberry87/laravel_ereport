@@ -15,6 +15,7 @@ class BenderaController extends Controller
      */
     public function index()
     {
+        isAdmin();
         return view('backend.bendera.index', [
             'bendera' => Bendera::all()
         ]);
@@ -27,7 +28,7 @@ class BenderaController extends Controller
      */
     public function create()
     {
-
+        isAdmin();
         return view('backend.bendera.create');
     }
 
