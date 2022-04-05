@@ -49,20 +49,21 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_isi_kotor_muat" class="form-control" required
-                                                    value="{{ $pbm->ukuran_isi_kotor_muat }}">
+                                                <input type="text" name="ukuran_isi_kotor_muat" class="form-control"
+                                                    required value="{{ $pbm->ukuran_isi_kotor_muat }}"
+                                                    placeholder="input gt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="ukuran_dwt_muat" class="form-control" required
-                                                    value="{{ $pbm->ukuran_dwt_muat }}">
+                                                    value="{{ $pbm->ukuran_dwt_muat }}" placeholder="input dwt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="ukuran_loa_muat" class="form-control" required
-                                                    value="{{ $pbm->ukuran_loa_muat }}">
+                                                    value="{{ $pbm->ukuran_loa_muat }}" placeholder="input loa">
                                             </div>
                                         </div>
                                     </div>
@@ -73,19 +74,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="muat_sistem" class="form-control" required
-                                                    value="{{ $pbm->muat_sistem }}">
+                                                    value="{{ $pbm->muat_sistem }}" placeholder="input sistem">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="muat_komoditi" class="form-control" required
-                                                    value="{{ $pbm->muat_komoditi }}">
+                                                    value="{{ $pbm->muat_komoditi }}" placeholder="input komoditi">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="muat_jenis" class="form-control" required
-                                                    value="{{ $pbm->muat_jenis }}">
+                                                    value="{{ $pbm->muat_jenis }}" placeholder="input jenis">
                                             </div>
                                         </div>
                                     </div>
@@ -93,19 +94,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="muat_ton" class="form-control" required
-                                                    value="{{ $pbm->muat_ton }}">
+                                                    value="{{ $pbm->muat_ton }}" placeholder="input ton">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="muat_unit" class="form-control" required
-                                                    value="{{ $pbm->muat_unit }}">
+                                                    value="{{ $pbm->muat_unit }}" placeholder="input unit">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="muat_m3" class="form-control" required
-                                                    value="{{ $pbm->muat_m3 }}">
+                                                    value="{{ $pbm->muat_m3 }}" placeholder="input m3">
                                             </div>
                                         </div>
                                     </div>

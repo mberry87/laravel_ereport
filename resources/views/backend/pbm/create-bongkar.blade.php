@@ -43,15 +43,15 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <input type="text" name="ukuran_isi_kotor_bongkar" class="form-control"
-                                                placeholder="input GT" required>
+                                                placeholder="input gt" required>
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" name="ukuran_dwt_bongkar" class="form-control"
-                                                placeholder="input DWT" required>
+                                                placeholder="input dwt" required>
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" name="ukuran_loa_bongkar" class="form-control"
-                                                placeholder="input LOA" required>
+                                                placeholder="input loa" required>
                                         </div>
                                     </div>
                                 </div>
@@ -97,8 +97,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tanggal bongkar/label>
-                                                <input type="date" name="tgl_bongkar" class="form-control" required>
+                                            <label>Tanggal bongkar</label>
+                                            <input type="date" name="tgl_bongkar" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
