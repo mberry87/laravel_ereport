@@ -9,6 +9,7 @@ use App\Models\Pelnas;
 use App\Models\Tersus;
 use App\Policies\BupPolicy;
 use App\Policies\KeagenanKapalPolicy;
+use App\Policies\PbmPolicy;
 use App\Policies\PelnasPolicy;
 use App\Policies\TersusPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -27,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         Bup::class => BupPolicy::class,
         Pelnas::class => PelnasPolicy::class,
         KeagenanKapal::class => KeagenanKapalPolicy::class,
-        Pbm::class => Pbm::class,
+        Pbm::class => PbmPolicy::class,
     ];
 
     /**
