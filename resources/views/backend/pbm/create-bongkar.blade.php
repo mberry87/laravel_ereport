@@ -97,8 +97,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tanggal datang</label>
-                                            <input type="date" name="tgl_bongkar" class="form-control" required>
+                                            <label>Tanggal bongkar/label>
+                                                <input type="date" name="tgl_bongkar" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
