@@ -58,4 +58,9 @@ class Pbm extends Model
             return "Belum bongkar";
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

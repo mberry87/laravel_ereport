@@ -61,4 +61,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bup::class, 'id_user');
     }
+
+    public function pelnas()
+    {
+        return $this->hasMany(Pelnas::class, 'id_user');
+    }
+
+    public function keagenan_kapal()
+    {
+        return $this->hasMany(KeagenanKapal::class, 'id_user');
+    }
+
+    public function pbm()
+    {
+        return $this->hasMany(Pbm::class, 'id_user');
+    }
 }

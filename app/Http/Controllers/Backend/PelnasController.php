@@ -21,8 +21,13 @@ class PelnasController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role == 'admin') {
+            return view('backend.pelnas.index', [
+                'pelnas' => Pelnas::with('bendera')->get()
+            ]);
+        }
         return view('backend.pelnas.index', [
-            'pelnas' => Pelnas::with('bendera')->get()
+            'pelnas' => Pelnas::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -63,6 +68,7 @@ class PelnasController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         return view('backend.pelnas.show', [
             'pelnas' => $pelnas
@@ -77,6 +83,7 @@ class PelnasController extends Controller
      */
     public function editDatang($id)
     {
+        $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         return view('backend.pelnas.edit-datang', [
             'pelnas' => $pelnas,
@@ -98,6 +105,7 @@ class PelnasController extends Controller
      */
     public function updateDatang(Request $request, $id)
     {
+        $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         $pelnas->update([
             'nama_kapal' => $request->nama_kapal,
@@ -124,6 +132,7 @@ class PelnasController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('view', Pelnas::findOrFail($id));
         Pelnas::destroy($id);
         return redirect()->route('pelnas.index')->with('hapus', 'Data berhasil dihapus');
     }
@@ -162,6 +171,7 @@ class PelnasController extends Controller
 
     public function editBerangkat($id)
     {
+        $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         return view('backend.pelnas.edit-berangkat', [
             'pelnas' => $pelnas,
@@ -180,6 +190,7 @@ class PelnasController extends Controller
 
     public function updateBerangkat(Request $request, $id)
     {
+        $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         $pelnas->update([
             'nama_kapal' => $request->nama_kapal,

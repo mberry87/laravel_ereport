@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class KeagenanKapal extends Model
 {
     use HasFactory;
-    use HasFactory;
     protected $table = 'keagenan_kapal';
 
     protected $guarded = [];
@@ -89,5 +88,11 @@ class KeagenanKapal extends Model
         } else {
             return "Belum berangkat";
         }
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 }
