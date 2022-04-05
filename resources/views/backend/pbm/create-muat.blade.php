@@ -43,15 +43,15 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <input type="text" name="ukuran_isi_kotor_muat" class="form-control"
-                                                placeholder="input GT" required>
+                                                placeholder="input gt" required>
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" name="ukuran_dwt_muat" class="form-control"
-                                                placeholder="input DWT" required>
+                                                placeholder="input dwt" required>
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" name="ukuran_loa_muat" class="form-control"
-                                                placeholder="input LOA" required>
+                                                placeholder="input loa" required>
                                         </div>
                                     </div>
                                 </div>
