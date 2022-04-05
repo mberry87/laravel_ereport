@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal_pbm" id="id_jenis_kapal" class="form-control">
+                                    <select name="id_jenis_kapal_muat" id="id_jenis_muat" class="form-control">
                                         @foreach ($jenis_kapal as $data)
                                             <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
@@ -42,15 +42,15 @@
                                     <label>Ukuran</label>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="text" name="ukuran_isi_kotor" class="form-control"
+                                            <input type="text" name="ukuran_isi_kotor_muat" class="form-control"
                                                 placeholder="input GT" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="ukuran_dwt" class="form-control"
+                                            <input type="text" name="ukuran_dwt_muat" class="form-control"
                                                 placeholder="input DWT" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="ukuran_loa" class="form-control"
+                                            <input type="text" name="ukuran_loa_muat" class="form-control"
                                                 placeholder="input LOA" required>
                                         </div>
                                     </div>

@@ -28,10 +28,16 @@ class Pbm extends Model
         return $this->belongsTo(Terminal::class, 'id_terminal_bongkar');
     }
 
-    public function jenis_kapal()
+    public function jenis_kapal_muat()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_pbm');
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_muat');
     }
+
+    public function jenis_kapal_bongkar()
+    {
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_bongkar');
+    }
+
 
     public function getMuatAttribute()
     {
