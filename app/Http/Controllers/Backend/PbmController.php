@@ -51,7 +51,7 @@ class PbmController extends Controller
      */
     public function storeMuat(Request $request)
     {
-        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -144,7 +144,7 @@ class PbmController extends Controller
 
     public function storeBongkar(Request $request)
     {
-        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
     }
 

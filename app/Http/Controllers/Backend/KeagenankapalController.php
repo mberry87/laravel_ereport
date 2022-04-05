@@ -57,7 +57,7 @@ class KeagenankapalController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -121,6 +121,7 @@ class KeagenankapalController extends Controller
             'id_status_kapal_datang' => $request->id_status_kapal_datang,
             'id_jenis_kapal_datang' => $request->id_jenis_kapal_datang,
             'update_oleh' =>  auth()->user()->name,
+            'id_user' => auth()->user()->id,
         ]);
         return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
     }

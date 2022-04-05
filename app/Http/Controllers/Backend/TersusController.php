@@ -51,10 +51,11 @@ class TersusController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        Tersus::create($request->all() + [
+        $tersus = Tersus::create($request->all() + [
             'input_oleh' => auth()->user()->name,
             'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
         return redirect()->route('tersus.index');
     }
 
@@ -113,6 +114,7 @@ class TersusController extends Controller
             'jenis_muatan_datang' => $request->jenis_muatan_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
+        storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
         return redirect()->route('tersus.index')->with('sukses', 'Data berhasil diubah');
     }
 
@@ -126,6 +128,7 @@ class TersusController extends Controller
     {
         $this->authorize('view', Tersus::findOrFail($id));
         Tersus::destroy($id);
+        storeLog(null, "User " . auth()->user()->name . " menghapus data tersus");
         return redirect()->route('tersus.index')->with('hapus', 'Data berhasil dihapus');
     }
 
@@ -141,7 +144,7 @@ class TersusController extends Controller
 
     public function storeBerangkat(Request $request)
     {
-        Tersus::create([
+        $tersus = Tersus::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -153,6 +156,7 @@ class TersusController extends Controller
             'input_oleh' =>  auth()->user()->name,
             'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
         return redirect()->route('tersus.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -183,6 +187,8 @@ class TersusController extends Controller
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
+
+        storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
         return redirect()->route('tersus.index')->with('sukses', 'Data berhasil diubah');
     }
 }

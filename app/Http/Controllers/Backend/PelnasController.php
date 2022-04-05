@@ -56,7 +56,7 @@ class PelnasController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        Pelnas::create($request->all() + ['input_oleh' => auth()->user()->name]);
+        Pelnas::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
     }
 
@@ -165,6 +165,7 @@ class PelnasController extends Controller
             'id_status_kapal_berangkat' => $request->id_status_kapal_berangkat,
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'input_oleh' =>  auth()->user()->name,
+            'id_user' => auth()->user()->id,
         ]);
         return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
     }

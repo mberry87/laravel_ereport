@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\JeniskapalController;
 use App\Http\Controllers\Backend\KeagenankapalController;
 use App\Http\Controllers\Backend\PbmController;
 use App\Http\Controllers\Backend\PelabuhanController;
+use App\Http\Controllers\Backend\PemberitahuanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
 use App\Http\Controllers\Backend\PengaturanController;
@@ -141,4 +142,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/pengaturan/index', [PengaturanController::class, 'index'])->name('pengaturan.index');
     Route::post('/pengaturan/update_general_data', [PengaturanController::class, 'updateGeneralData'])->name('pengaturan.update.data');
     Route::post('/pengaturan/update_logo', [PengaturanController::class, 'updateLogo'])->name('pengaturan.update.logo');
+
+    Route::get('/pemberitahuan', [PemberitahuanController::class, 'index'])->name('pemberitahuan.index');
+    Route::get('/pemberitahuan/bacasemua', [PemberitahuanController::class, 'readAll'])->name('pemberitahuan.readall');
+    Route::get('/pemberitahuan/baca/{id}', [PemberitahuanController::class, 'read'])->name('pemberitahuan.read');
+    Route::get('/pemberitahuan/hapussemua', [PemberitahuanController::class, 'deleteAll'])->name('pemberitahuan.deleteall');
 });
