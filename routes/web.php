@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\BenderaController;
 use App\Http\Controllers\Backend\BupController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\JeniskapalController;
+use App\Http\Controllers\Backend\JptController;
 use App\Http\Controllers\Backend\KeagenankapalController;
 use App\Http\Controllers\Backend\PbmController;
 use App\Http\Controllers\Backend\PelabuhanController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
+use App\Models\Jpt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -129,6 +131,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/pbm/show/{id}', [PbmController::class, 'show'])->name('pbm.show');
     Route::delete('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
 
+    // JPT
+    Route::get('/jpt/index', [JptController::class, 'index'])->name('jpt.index');
+    Route::get('/jpt/create-jpt-muat', [JptController::class, 'createMuat'])->name('jpt.muat.create');
+    Route::post('/jpt/store-jpt-muat', [JptController::class, 'storeMuat'])->name('jpt.muat.store');
+    Route::get('/jpt/{id}/edit-jpt-muat/', [JptController::class, 'editMuat'])->name('jpt.muat.edit');
+    Route::put('/jpt/update-jpt-muat/{id}', [JptController::class, 'updateMuat'])->name('jpt.muat.update');
+
+    Route::get('/jpt/create-jpt-bongkar', [JptController::class, 'createBongkar'])->name('jpt.bongkar.create');
+    Route::post('/jpt/create-jpt-bongkar', [JptController::class, 'storeBongkar'])->name('jpt.bongkar.store');
+    Route::get('/jpt/{id}/edit-jpt-bongkar/', [JptController::class, 'editBongkar'])->name('jpt.bongkar.edit');
+    Route::put('/jpt/update-jpt-bongkar/{id}', [JptController::class, 'updateBongkar'])->name('jpt.bongkar.update');
+
+    Route::get('/jpt/show/{id}', [JptController::class, 'show'])->name('jpt.show');
+    Route::delete('/jpt/delete/{id}', [JptController::class, 'destroy'])->name('jpt.destroy');
 
     // user
     Route::resource('/user', UserController::class);

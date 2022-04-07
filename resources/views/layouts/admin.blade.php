@@ -128,7 +128,8 @@
                         {{ Request::is('admin/bup/*') ? 'menu-open' : '' }}
                         {{ Request::is('admin/pelnas/*') ? 'menu-open' : '' }}
                         {{ Request::is('admin/keagenan_kapal/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/pbm/*') ? 'menu-open' : '' }}">
+                        {{ Request::is('admin/pbm/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/jpt/*') ? 'menu-open' : '' }}">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
@@ -187,6 +188,17 @@
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>
                                             Data PBM
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ">
+                                    <a href="{{ route('jpt.index') }}"
+                                        class="nav-link {{ Request::is('admin/jpt/*') ? 'active' : '' }}">
+                                        <i class="nav-icon far fa-circle"></i>
+                                        <p>
+                                            Data JPT
                                         </p>
                                     </a>
                                 </li>
