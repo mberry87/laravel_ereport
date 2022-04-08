@@ -36,11 +36,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal_bongkar" id="id_jenis_kapal_bongkar"
+                                    <select name="id_jenis_kapal" id="id_jenis_kapal"
                                         class="form-control">
                                         @foreach ($jenis_kapal as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $pbm->id_jenis_kapal_bongkar ? 'selected' : '' }}>
+                                                {{ $data->id == $pbm->id_jenis_kapal ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>
@@ -50,21 +50,21 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_isi_kotor_bongkar" class="form-control"
-                                                    required value="{{ $pbm->ukuran_isi_kotor_bongkar }}"
+                                                <input type="text" name="ukuran_isi_kotor" class="form-control"
+                                                    required value="{{ $pbm->ukuran_isi_kotor}}"
                                                     placeholder="input gt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_dwt_bongkar" class="form-control" required
-                                                    value="{{ $pbm->ukuran_dwt_bongkar }}" placeholder="input dwt">
+                                                <input type="text" name="ukuran_dwt" class="form-control" required
+                                                    value="{{ $pbm->ukuran_dwt }}" placeholder="input dwt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_loa_bongkar" class="form-control" required
-                                                    value="{{ $pbm->ukuran_loa_bongkar }}" placeholder="input loa">
+                                                <input type="text" name="ukuran_loa" class="form-control" required
+                                                    value="{{ $pbm->ukuran_loa }}" placeholder="input loa">
                                             </div>
                                         </div>
                                     </div>

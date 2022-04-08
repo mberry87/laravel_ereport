@@ -23,7 +23,7 @@ class CreateJptsTable extends Migration
                 ->on('bendera')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal_muat')
+            $table->foreignId('id_jenis_kapal')
                 ->nullable()
                 ->references('id')
                 ->on('jenis_kapal')
@@ -31,9 +31,9 @@ class CreateJptsTable extends Migration
                 ->onDelete('SET NULL');
             $table->string('agen_muat')->nullable();
             $table->string('tgl_muat')->nullable();
-            $table->string('ukuran_isi_kotor_muat')->nullable();
-            $table->string('ukuran_dwt_muat')->nullable();
-            $table->string('ukuran_loa_muat')->nullable();
+            $table->string('ukuran_isi_kotor')->nullable();
+            $table->string('ukuran_dwt')->nullable();
+            $table->string('ukuran_loa')->nullable();
             $table->string('muat_sistem')->nullable();
             $table->string('muat_komoditi')->nullable();
             $table->string('muat_jenis')->nullable();
@@ -52,9 +52,6 @@ class CreateJptsTable extends Migration
             $table->string('perusahaan_muat_penerima')->nullable();
             $table->string('agen_bongkar')->nullable();
             $table->string('tgl_bongkar')->nullable();
-            $table->string('ukuran_isi_kotor_bongkar')->nullable();
-            $table->string('ukuran_dwt_bongkar')->nullable();
-            $table->string('ukuran_loa_bongkar')->nullable();
             $table->string('bongkar_sistem')->nullable();
             $table->string('bongkar_komoditi')->nullable();
             $table->string('bongkar_jenis')->nullable();
@@ -65,12 +62,6 @@ class CreateJptsTable extends Migration
                 ->nullable()
                 ->references('id')
                 ->on('terminal')
-                ->onUpdate('SET NULL')
-                ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal_bongkar')
-                ->nullable()
-                ->references('id')
-                ->on('jenis_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
             $table->string('input_oleh')->nullable();

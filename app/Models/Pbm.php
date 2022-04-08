@@ -17,6 +17,11 @@ class Pbm extends Model
         return $this->belongsTo(Bendera::class, 'id_bendera');
     }
 
+    public function jenis_kapal()
+    {
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal');
+    }
+
     public function terminal_muat()
     {
         return $this->belongsTo(Terminal::class, 'id_terminal_muat');
@@ -26,16 +31,6 @@ class Pbm extends Model
     public function terminal_bongkar()
     {
         return $this->belongsTo(Terminal::class, 'id_terminal_bongkar');
-    }
-
-    public function jenis_kapal_muat()
-    {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_muat');
-    }
-
-    public function jenis_kapal_bongkar()
-    {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_bongkar');
     }
 
 

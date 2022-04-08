@@ -44,6 +44,26 @@
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pbm->bendera->nama }}</td>
                             </tr>
+                            <tr>
+                                <td style="width: 40%">Jenis Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pbm->jenis_kapal->nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Ukuran DWT</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pbm->ukuran_dwt!= null ? $pbm->ukuran_dwt : '-' }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Ukuran GT</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pbm->ukuran_isi_kotor != null ? $pbm->ukuran_isi_kotor : '-' }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Ukuran LOA</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pbm->ukuran_loa != null ? $pbm->ukuran_loa : '-' }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -62,26 +82,6 @@
                                 <td style="width: 40%">Tanggal Muat</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pbm->muat }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Jenis Kapal</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->jenis_kapal_muat != null ? $pbm->jenis_kapal_muat->nama : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ukuran DWT</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_dwt_muat != null ? $pbm->ukuran_dwt_muat : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ukuran GT</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_isi_kotor_muat != null ? $pbm->ukuran_isi_kotor_muat : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ukuran LOA</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_loa_muat != null ? $pbm->ukuran_loa_muat : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Muat Sistem</td>
@@ -138,26 +138,6 @@
                                 <td style="width: 40%">Tanggal bongkar</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pbm->bongkar }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Jenis Kapal</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->jenis_kapal_bongkar != null ? $pbm->jenis_kapal_bongkar->nama : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ukuran DWT</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_dwt_bongkar != null ? $pbm->ukuran_dwt_bongkar : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ukuran GT</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_isi_kotor_bongkar != null ? $pbm->ukuran_isi_kotor_bongkar : '-' }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ukuran LOA</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_loa_bongkar != null ? $pbm->ukuran_loa_bongkar : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">bongkar Sistem</td>
