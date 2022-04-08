@@ -60,11 +60,11 @@ class JptController extends Controller
      * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Http\Response
      */
-    public function show(Jpt $id)
+    public function show($id)
     {
         $this->authorize('view', Jpt::findOrFail($id));
         $jpt = Jpt::findOrFail($id);
-        return view('backend.pbm.show', [
+        return view('backend.jpt.show', [
             'jpt' => $jpt
         ]);
     }
@@ -94,16 +94,16 @@ class JptController extends Controller
      * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jpt $id)
+    public function updateMuat(Request $request, $id)
     {
         $this->authorize('view', Jpt::findOrFail($id));
         $jpt = Jpt::findOrFail($id);
         $jpt->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
-            'ukuran_isi_kotor_muat' => $request->ukuran_isi_kotor_muat,
-            'ukuran_dwt_muat' => $request->ukuran_dwt_muat,
-            'ukuran_loa_muat' => $request->ukuran_loa_muat,
+            'ukuran_isi_kotor' => $request->ukuran_isi_kotor,
+            'ukuran_dwt' => $request->ukuran_dwt,
+            'ukuran_loa' => $request->ukuran_loa,
             'muat_sistem' => $request->muat_sistem,
             'muat_komoditi' => $request->muat_komoditi,
             'muat_jenis' => $request->muat_jenis,
@@ -111,7 +111,7 @@ class JptController extends Controller
             'muat_unit' => $request->muat_unit,
             'muat_m3' => $request->muat_m3,
             'id_terminal_muat' => $request->id_terminal_muat,
-            'id_jenis_kapal_muat' => $request->id_jenis_kapal_muat,
+            'id_jenis_kapal' => $request->id_jenis_kapal,
             'agen_muat' => $request->agen_muat,
             'tgl_mulai_muat' => $request->tgl_mulai_muat,
             'tgl_selesai_muat' => $request->tgl_selesai_muat,
@@ -169,9 +169,9 @@ class JptController extends Controller
         $jpt->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
-            'ukuran_isi_kotor_bongkar' => $request->ukuran_isi_kotor_bongkar,
-            'ukuran_dwt_bongkar' => $request->ukuran_dwt_bongkar,
-            'ukuran_loa_bongkar' => $request->ukuran_loa_bongkar,
+            'ukuran_isi_kotor' => $request->ukuran_isi_kotor,
+            'ukuran_dwt' => $request->ukuran_dwt,
+            'ukuran_loa' => $request->ukuran_loa,
             'bongkar_sistem' => $request->bongkar_sistem,
             'bongkar_komoditi' => $request->bongkar_komoditi,
             'bongkar_jenis' => $request->bongkar_jenis,
@@ -179,7 +179,7 @@ class JptController extends Controller
             'bongkar_unit' => $request->bongkar_unit,
             'bongkar_m3' => $request->bongkar_m3,
             'id_terminal_bongkar' => $request->id_terminal_bongkar,
-            'id_jenis_kapal_bongkar' => $request->id_jenis_kapal_bongkar,
+            'id_jenis_kapal' => $request->id_jenis_kapal,
             'agen_bongkar' => $request->agen_bongkar,
             'tgl_mulai_bongkar' => $request->tgl_mulai_bongkar,
             'tgl_selesai_bongkar' => $request->tgl_selesai_bongkar,
@@ -187,6 +187,6 @@ class JptController extends Controller
             'perusahaan_bongkar_penerima' => $request->perusahaan_bongkar_penerima,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil diubah');
     }
 }

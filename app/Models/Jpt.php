@@ -28,36 +28,30 @@ class Jpt extends Model
         return $this->belongsTo(Terminal::class, 'id_terminal_bongkar');
     }
 
-    public function jenis_kapal_muat()
+    public function jenis_kapal()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_muat');
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal');
     }
 
-    public function jenis_kapal_bongkar()
+    public function getMuatAttribute()
     {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_bongkar');
+        if (!$this->tgl_selesai_muat == null) {
+            $date = strtotime($this->tgl_selesai_muat);
+            return date('d-M-Y', $date);
+        } else {
+            return "Belum Muat";
+        }
     }
 
-
-    // public function getMuatAttribute()
-    // {
-    //     if (!$this->tgl_muat == null) {
-    //         $date = strtotime($this->tgl_muat);
-    //         return date('d-M-Y', $date);
-    //     } else {
-    //         return "Belum muat";
-    //     }
-    // }
-
-    // public function getBongkarAttribute()
-    // {
-    //     if (!$this->tgl_bongkar == null) {
-    //         $date = strtotime($this->tgl_bongkar);
-    //         return date('d-M-Y', $date);
-    //     } else {
-    //         return "Belum bongkar";
-    //     }
-    // }
+    public function getBongkarAttribute()
+    {
+        if (!$this->tgl_selesai_bongkar == null) {
+            $date = strtotime($this->tgl_selesai_bongkar);
+            return date('d-M-Y', $date);
+        } else {
+            return "Belum bongkar";
+        }
+    }
 
     public function user()
     {

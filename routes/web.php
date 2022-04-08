@@ -17,7 +17,7 @@ use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
-use App\Models\Jpt;
+use App\Policies\JptPolicy;
 use Illuminate\Support\Facades\Route;
 
 /*

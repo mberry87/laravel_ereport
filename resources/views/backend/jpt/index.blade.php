@@ -45,6 +45,9 @@
                                 <th>No</th>
                                 <th>Nama Kapal</th>
                                 <th>Bendera</th>
+                                <th>Jenis Kapal</th>
+                                <th>Muat</th>
+                                <th>Bongkar</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -54,6 +57,9 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kapal }}</td>
                                     <td>{{ $data->bendera->nama }}</td>
+                                    <td>{{ $data->jenis_kapal->nama }}</td>
+                                    <td>{{ $data->muat }}</td>
+                                    <td>{{ $data->bongkar }}</td>
                                     <td>
                                         <a href="{{ route('jpt.show', $data) }}"
                                             class="btn btn-success btn-sm mr-2 d-inline" data-toggle="tooltip" title="show">
