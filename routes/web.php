@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\PelabuhanController;
 use App\Http\Controllers\Backend\PemberitahuanController;
 use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
+use App\Http\Controllers\Backend\PelraController;
 use App\Http\Controllers\Backend\PengaturanController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\StatuskapalController;
@@ -145,6 +146,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/jpt/show/{id}', [JptController::class, 'show'])->name('jpt.show');
     Route::delete('/jpt/delete/{id}', [JptController::class, 'destroy'])->name('jpt.destroy');
+
+    // PELRA
+    Route::get('/pelra/index', [PelraController::class, 'index'])->name('pelra.index');
+    Route::get('/pelra/create-pelra-datang', [PelraController::class, 'createdatang'])->name('pelra.datang.create');
+    Route::post('/pelra/store-pelra-datang', [PelraController::class, 'storedatang'])->name('pelra.datang.store');
+    Route::get('/pelra/{id}/edit-pelra-datang/', [PelraController::class, 'editdatang'])->name('pelra.datang.edit');
+    Route::put('/pelra/update-pelra-datang/{id}', [PelraController::class, 'updatedatang'])->name('pelra.datang.update');
+
+    Route::get('/pelra/create-pelra-berangkat', [PelraController::class, 'createberangkat'])->name('pelra.berangkat.create');
+    Route::post('/pelra/create-pelra-berangkat', [PelraController::class, 'storeberangkat'])->name('pelra.berangkat.store');
+    Route::get('/pelra/{id}/edit-pelra-berangkat/', [PelraController::class, 'editberangkat'])->name('pelra.berangkat.edit');
+    Route::put('/pelra/update-pelra-berangkat/{id}', [PelraController::class, 'updateberangkat'])->name('pelra.berangkat.update');
+
+    Route::get('/pelra/show/{id}', [PelraController::class, 'show'])->name('pelra.show');
+    Route::delete('/pelra/delete/{id}', [PelraController::class, 'destroy'])->name('pelra.destroy');
+
+
 
     // user
     Route::resource('/user', UserController::class);

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Muat Data JPT')
+@section('title', 'Tambah JPT Muat')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Muat JPT</li>
+        <li class="breadcrumb-item active">Data JPT</li>
     </ol>
 @endsection
 
@@ -112,13 +112,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Perushaan Pengirim</label>
-                                            <input type="text" name="perusahaan_muat_pengirim" class="form-control" required>
+                                            <input type="text" name="perusahaan_muat_pengirim" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Perushaan Penerima</label>
-                                            <input type="text" name="perusahaan_muat_penerima" class="form-control" required>
+                                            <input type="text" name="perusahaan_muat_penerima" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                 </div>

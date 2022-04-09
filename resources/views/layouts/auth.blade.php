@@ -45,7 +45,7 @@
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ asset('admin') }}/index2.html"><b>e-Report</b></a>
-            <p style="font-size: 18px">Kantor Unit Penyelengaraan Pelabuahan <br> Kelas I Tanjung Uban</p>
+            <p style="font-size: 18px">Kantor Unit Penyelenggaraan Pelabuahan <br> Kelas I Tanjung Uban</p>
         </div>
 
         @yield('content')

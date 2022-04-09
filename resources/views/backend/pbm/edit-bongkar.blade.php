@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Data PBM Bongkar')
+@section('title', 'Edit PBM Bongkar')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
@@ -36,8 +36,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal" id="id_jenis_kapal"
-                                        class="form-control">
+                                    <select name="id_jenis_kapal" id="id_jenis_kapal" class="form-control">
                                         @foreach ($jenis_kapal as $data)
                                             <option value="{{ $data->id }}"
                                                 {{ $data->id == $pbm->id_jenis_kapal ? 'selected' : '' }}>
@@ -50,9 +49,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_isi_kotor" class="form-control"
-                                                    required value="{{ $pbm->ukuran_isi_kotor}}"
-                                                    placeholder="input gt">
+                                                <input type="text" name="ukuran_isi_kotor" class="form-control" required
+                                                    value="{{ $pbm->ukuran_isi_kotor }}" placeholder="input gt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">

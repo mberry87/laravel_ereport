@@ -5,7 +5,7 @@
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Show PELNAS</li>
+        <li class="breadcrumb-item active">Data PELNAS</li>
     </ol>
 @endsection
 

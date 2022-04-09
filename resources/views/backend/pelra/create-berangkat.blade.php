@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Bup Berangkat')
+@section('title', 'Tambah PELRA Berangkat')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data Bup</li>
+        <li class="breadcrumb-item active">Data PELRA</li>
     </ol>
 @endsection
 
@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('bup.berangkat.store') }}" method="POST">
+                    <form action="{{ route('pelra.berangkat.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -31,7 +31,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Isi kotor</label>
+                                    <label>Isi kotor (GT)</label>
                                     <input type="text" name="isi_kotor" class="form-control" required>
                                 </div>
                                 <div class="form-group">
@@ -42,7 +42,7 @@
                             <div class="col-md-6">
 
                                 <div class="form-group">
-                                    <label>Ke Pelabuhan</label>
+                                    <label>Dari Pelabuhan</label>
                                     <select name="id_pelabuhan_berangkat" id="id_pelabuhan_berangkat"
                                         class="form-control">
                                         @foreach ($pelabuhan as $data)
@@ -51,16 +51,38 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Terminal berangkat</label>
-                                    <select name="id_terminal_berangkat" id="id_terminal_berangkat" class="form-control">
-                                        @foreach ($terminal as $data)
-                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Jenis muatan</label>
+                                            <input type="text" name="jenis_muatan_berangkat" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Muat</label>
+                                            <input type="text" name="muat_tonm3" class="form-control" required
+                                                placeholder="">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Kegiatan Berangkat</label>
-                                    <textarea type="text" name="kegiatan_berangkat" class="form-control" required rows="4"></textarea>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Status Trayek</label>
+                                            <select name="id_status_trayek" id="id_status_trayek" class="form-control">
+                                                @foreach ($status_trayek as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Status Kapal</label>
+                                            <select name="id_status_kapal" id="id_status_kapal" class="form-control">
+                                                @foreach ($status_kapal as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +91,7 @@
                                 <i class="fas fa-save mr-3"></i>
                                 Simpan
                             </button>
-                            <a href="{{ route('bup.index') }}" class="btn btn-warning btn-sm ml-2">
+                            <a href="{{ route('pelra.index') }}" class="btn btn-warning btn-sm ml-2">
                                 <i class="fas fa-times mr-3"></i>
                                 Batal
                             </a>

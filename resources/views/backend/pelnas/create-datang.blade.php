@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Data Pelnas Datang')
+@section('title', 'Tambah Pelnas Datang')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data Pelnas Datang</li>
+        <li class="breadcrumb-item active">Data Pelnas</li>
     </ol>
 @endsection
 

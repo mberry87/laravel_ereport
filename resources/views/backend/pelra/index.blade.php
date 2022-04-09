@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Data JPT')
+@section('title', 'Data PELRA')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data JPT</li>
+        <li class="breadcrumb-item active">Data PELRA</li>
     </ol>
 @endsection
 
@@ -29,11 +29,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('jpt.muat.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
-                        <i class="fas fa-download mr-3"></i>Muat
+                    <a href="{{ route('pelra.datang.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
+                        <i class="fas fa-backward mr-3"></i>Datang
                     </a>
-                    <a href="{{ route('jpt.bongkar.create') }}" class="btn btn-danger btn-sm mb-3">
-                        <i class="fas fa-upload mr-3"></i>Bongkar
+                    <a href="{{ route('pelra.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
+                        <i class="fas fa-forward mr-3"></i>Berangkat
                     </a>
                 </div>
             </div>
@@ -45,38 +45,36 @@
                                 <th>No</th>
                                 <th>Nama Kapal</th>
                                 <th>Bendera</th>
-                                <th>Jenis Kapal</th>
-                                <th>Muat</th>
-                                <th>Bongkar</th>
+                                <th>Kedatangan</th>
+                                <th>Berangkat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($jpt as $data)
+                            @foreach ($pelra as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kapal }}</td>
                                     <td>{{ $data->bendera->nama }}</td>
-                                    <td>{{ $data->jenis_kapal->nama }}</td>
-                                    <td>{{ $data->muat }}</td>
-                                    <td>{{ $data->bongkar }}</td>
+                                    <td>{{ $data->datang }}</td>
+                                    <td>{{ $data->berangkat }}</td>
                                     <td>
-                                        <a href="{{ route('jpt.show', $data) }}"
+                                        <a href="{{ route('pelra.show', $data) }}"
                                             class="btn btn-success btn-sm mr-2 d-inline" data-toggle="tooltip" title="show">
                                             <i class="fas fa-eye"></i>
 
                                         </a>
-                                        <a href="{{ route('jpt.muat.edit', $data->id) }}"
+                                        <a href="{{ route('pelra.datang.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2 d-inline" data-toggle="tooltip"
-                                            title="edit muat">
+                                            title="edit datang">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('jpt.bongkar.edit', $data->id) }}"
+                                        <a href="{{ route('pelra.berangkat.edit', $data->id) }}"
                                             class="btn btn-warning btn-sm mr-2  d-inline" data-toggle="tooltip"
-                                            title="edit bongkar">
+                                            title="edit berangkat">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('jpt.destroy', $data->id) }}" method="POST"
+                                        <form action="{{ route('pelra.destroy', $data->id) }}" method="POST"
                                             class="d-inline">
                                             @method('DELETE')
                                             @csrf
