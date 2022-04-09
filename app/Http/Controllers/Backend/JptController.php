@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pbm;
+use App\Models\Jpt;
 use App\Models\Bendera;
 use App\Models\JenisKapal;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
 
-class PbmController extends Controller
+class JptController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +19,12 @@ class PbmController extends Controller
     public function index()
     {
         if (auth()->user()->role == 'admin') {
-            return view('backend.pbm.index', [
-                'pbm' => Pbm::with('bendera')->get()
+            return view('backend.jpt.index', [
+                'jpt' => Jpt::with('bendera')->get()
             ]);
-
         }
-        return view('backend.pbm.index', [
-            'pbm' => Pbm::with('bendera')->where('id_user', auth()->user()->id)->get()
+        return view('backend.jpt.index', [
+            'pbm' => Jpt::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -36,7 +35,7 @@ class PbmController extends Controller
      */
     public function createMuat()
     {
-        return view('backend.pbm.create-muat', [
+        return view('backend.jpt.create-muat', [
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'jenis_kapal' => JenisKapal::all()
@@ -51,37 +50,37 @@ class PbmController extends Controller
      */
     public function storeMuat(Request $request)
     {
-        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
+        Jpt::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
+        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pbm  $pbm
+     * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        $pbm = Pbm::findOrFail($id);
-        return view('backend.pbm.show', [
-            'pbm' => $pbm
+        $this->authorize('view', Jpt::findOrFail($id));
+        $jpt = Jpt::findOrFail($id);
+        return view('backend.jpt.show', [
+            'jpt' => $jpt
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pbm  $pbm
+     * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Http\Response
      */
     public function editMuat($id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        $pbm = Pbm::findOrFail($id);
-        return view('backend.pbm.edit-muat', [
-            'pbm' => $pbm,
+        $this->authorize('view', Jpt::findOrFail($id));
+        $jpt = Jpt::findOrFail($id);
+        return view('backend.jpt.edit-muat', [
+            'jpt' => $jpt,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'jenis_kapal' => JenisKapal::all()
@@ -92,17 +91,16 @@ class PbmController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pbm  $pbm
+     * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Http\Response
      */
     public function updateMuat(Request $request, $id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        $pbm = Pbm::findOrFail($id);
-        $pbm->update([
+        $this->authorize('view', Jpt::findOrFail($id));
+        $jpt = Jpt::findOrFail($id);
+        $jpt->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
-            'tgl_muat' => $request->tgl_muat,
             'ukuran_isi_kotor' => $request->ukuran_isi_kotor,
             'ukuran_dwt' => $request->ukuran_dwt,
             'ukuran_loa' => $request->ukuran_loa,
@@ -115,27 +113,31 @@ class PbmController extends Controller
             'id_terminal_muat' => $request->id_terminal_muat,
             'id_jenis_kapal' => $request->id_jenis_kapal,
             'agen_muat' => $request->agen_muat,
+            'tgl_mulai_muat' => $request->tgl_mulai_muat,
+            'tgl_selesai_muat' => $request->tgl_selesai_muat,
+            'perusahaan_muat_pengirim' => $request->perusahaan_muat_pengirim,
+            'perusahaan_muat_penerima' => $request->perusahaan_muat_penerima,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pbm  $pbm
+     * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        Pbm::destroy($id);
-        return redirect()->route('pbm.index')->with('hapus', 'Data berhasil dihapus');
+        $this->authorize('view', Jpt::findOrFail($id));
+        Jpt::destroy($id);
+        return redirect()->route('jpt.index')->with('hapus', 'Data berhasil dihapus');
     }
 
     public function createBongkar()
     {
-        return view('backend.pbm.create-bongkar', [
+        return view('backend.jpt.create-bongkar', [
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'jenis_kapal' => JenisKapal::all()
@@ -144,16 +146,16 @@ class PbmController extends Controller
 
     public function storeBongkar(Request $request)
     {
-        Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
+        Jpt::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
+        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil disimpan');
     }
 
     public function editBongkar($id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        $pbm = Pbm::findOrFail($id);
-        return view('backend.pbm.edit-bongkar', [
-            'pbm' => $pbm,
+        $this->authorize('view', Jpt::findOrFail($id));
+        $jpt = Jpt::findOrFail($id);
+        return view('backend.jpt.edit-bongkar', [
+            'jpt' => $jpt,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'jenis_kapal' => JenisKapal::all()
@@ -162,12 +164,11 @@ class PbmController extends Controller
 
     public function updateBongkar(Request $request, $id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        $pbm = Pbm::findOrFail($id);
-        $pbm->update([
+        $this->authorize('view', Jpt::findOrFail($id));
+        $jpt = Jpt::findOrFail($id);
+        $jpt->update([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
-            'tgl_bongkar' => $request->tgl_bongkar,
             'ukuran_isi_kotor' => $request->ukuran_isi_kotor,
             'ukuran_dwt' => $request->ukuran_dwt,
             'ukuran_loa' => $request->ukuran_loa,
@@ -180,8 +181,12 @@ class PbmController extends Controller
             'id_terminal_bongkar' => $request->id_terminal_bongkar,
             'id_jenis_kapal' => $request->id_jenis_kapal,
             'agen_bongkar' => $request->agen_bongkar,
+            'tgl_mulai_bongkar' => $request->tgl_mulai_bongkar,
+            'tgl_selesai_bongkar' => $request->tgl_selesai_bongkar,
+            'perusahaan_bongkar_pengirim' => $request->perusahaan_bongkar_pengirim,
+            'perusahaan_bongkar_penerima' => $request->perusahaan_bongkar_penerima,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil diubah');
     }
 }

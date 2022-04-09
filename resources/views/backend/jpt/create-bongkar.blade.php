@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Bongkar Data PBM')
+@section('title', 'Bongkar Data JPT')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Bongkar PBM</li>
+        <li class="breadcrumb-item active">Bongkar JPT</li>
     </ol>
 @endsection
 
@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('pbm.bongkar.store') }}" method="POST">
+                    <form action="{{ route('jpt.bongkar.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -81,8 +81,8 @@
                                                 placeholder="input unit" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_m3" class="form-control"
-                                                placeholder="input m3" required>
+                                            <input type="text" name="bongkar_m3" class="form-control" placeholder="input m3"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -97,16 +97,34 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tanggal bongkar</label>
-                                            <input type="date" name="tgl_bongkar" class="form-control" required>
+                                            <label>Tanggal Mulai</label>
+                                            <input type="date" name="tgl_mulai_bongkar" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Agen</label>
-                                            <input type="text" name="agen_bongkar" class="form-control" required>
+                                            <label>Tanggal Selesai</label>
+                                            <input type="date" name="tgl_selesai_bongkar" class="form-control" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Perushaan Pengirim</label>
+                                            <input type="text" name="perusahaan_bongkar_pengirim" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Perushaan Penerima</label>
+                                            <input type="text" name="perusahaan_bongkar_penerima" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Agen</label>
+                                    <input type="text" name="agen_bongkar" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +133,7 @@
                                 <i class="fas fa-save mr-3"></i>
                                 Simpan
                             </button>
-                            <a href="{{ route('pbm.index') }}" class="btn btn-warning btn-sm ml-2">
+                            <a href="{{ route('jpt.index') }}" class="btn btn-warning btn-sm ml-2">
                                 <i class="fas fa-times mr-3"></i>
                                 Batal
                             </a>

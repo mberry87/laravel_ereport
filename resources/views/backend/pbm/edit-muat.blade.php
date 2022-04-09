@@ -36,10 +36,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal_muat" id="id_jenis_kapal_muat" class="form-control">
+                                    <select name="id_jenis_kapal" id="id_jenis_kapal" class="form-control">
                                         @foreach ($jenis_kapal as $data)
                                             <option value="{{ $data->id }}"
-                                                {{ $data->id == $pbm->id_jenis_kapal_muat ? 'selected' : '' }}>
+                                                {{ $data->id == $pbm->id_jenis_kapal ? 'selected' : '' }}>
                                                 {{ $data->nama }}</option>
                                         @endforeach
                                     </select>
@@ -50,20 +50,20 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="ukuran_isi_kotor_muat" class="form-control"
-                                                    required value="{{ $pbm->ukuran_isi_kotor_muat }}"
+                                                    required value="{{ $pbm->ukuran_isi_kotor }}"
                                                     placeholder="input gt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="ukuran_dwt_muat" class="form-control" required
-                                                    value="{{ $pbm->ukuran_dwt_muat }}" placeholder="input dwt">
+                                                    value="{{ $pbm->ukuran_dwt }}" placeholder="input dwt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="ukuran_loa_muat" class="form-control" required
-                                                    value="{{ $pbm->ukuran_loa_muat }}" placeholder="input loa">
+                                                    value="{{ $pbm->ukuran_loa }}" placeholder="input loa">
                                             </div>
                                         </div>
                                     </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePbmsTable extends Migration
+class CreateJptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePbmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pbm', function (Blueprint $table) {
+        Schema::create('jpt', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('nama_kapal');
@@ -29,11 +29,11 @@ class CreatePbmsTable extends Migration
                 ->on('jenis_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
+            $table->string('agen_muat')->nullable();
+            $table->string('tgl_muat')->nullable();
             $table->string('ukuran_isi_kotor')->nullable();
             $table->string('ukuran_dwt')->nullable();
             $table->string('ukuran_loa')->nullable();
-            $table->string('agen_muat')->nullable();
-            $table->string('tgl_muat')->nullable();
             $table->string('muat_sistem')->nullable();
             $table->string('muat_komoditi')->nullable();
             $table->string('muat_jenis')->nullable();
@@ -46,6 +46,10 @@ class CreatePbmsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
+            $table->string('tgl_mulai_muat')->nullable();
+            $table->string('tgl_selesai_muat')->nullable();
+            $table->string('perusahaan_muat_pengirim')->nullable();
+            $table->string('perusahaan_muat_penerima')->nullable();
             $table->string('agen_bongkar')->nullable();
             $table->string('tgl_bongkar')->nullable();
             $table->string('bongkar_sistem')->nullable();
@@ -68,6 +72,10 @@ class CreatePbmsTable extends Migration
                 ->on('users')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
+            $table->string('tgl_mulai_bongkar')->nullable();
+            $table->string('tgl_selesai_bongkar')->nullable();
+            $table->string('perusahaan_bongkar_pengirim')->nullable();
+            $table->string('perusahaan_bongkar_penerima')->nullable();
         });
     }
 
@@ -78,6 +86,6 @@ class CreatePbmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pbm');
+        Schema::dropIfExists('jpt');
     }
 }

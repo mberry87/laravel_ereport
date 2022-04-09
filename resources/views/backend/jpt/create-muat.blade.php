@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Bongkar Data PBM')
+@section('title', 'Muat Data JPT')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Bongkar PBM</li>
+        <li class="breadcrumb-item active">Muat JPT</li>
     </ol>
 @endsection
 
@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('pbm.bongkar.store') }}" method="POST">
+                    <form action="{{ route('jpt.muat.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kapal</label>
-                                    <select name="id_jenis_kapal" id="id_jenis_kapal" class="form-control">
+                                    <select name="id_jenis_kapal" id="id_jenis" class="form-control">
                                         @foreach ($jenis_kapal as $data)
                                             <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
@@ -56,39 +56,39 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>bongkar</label>
+                                    <label>Muat</label>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_sistem" class="form-control"
+                                            <input type="text" name="muat_sistem" class="form-control"
                                                 placeholder="input sistem" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_komoditi" class="form-control"
+                                            <input type="text" name="muat_komoditi" class="form-control"
                                                 placeholder="input komoditi" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_jenis" class="form-control"
+                                            <input type="text" name="muat_jenis" class="form-control"
                                                 placeholder="input jenis" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_ton" class="form-control"
+                                            <input type="text" name="muat_ton" class="form-control"
                                                 placeholder="input ton" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_unit" class="form-control"
+                                            <input type="text" name="muat_unit" class="form-control"
                                                 placeholder="input unit" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_m3" class="form-control"
-                                                placeholder="input m3" required>
+                                            <input type="text" name="muat_m3" class="form-control" placeholder="input m3"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Terminal bongkar</label>
-                                    <select name="id_terminal_bongkar" id="id_terminal_bongkar" class="form-control">
+                                    <label>Terminal Muat</label>
+                                    <select name="id_terminal_muat" id="id_terminal_muat" class="form-control">
                                         @foreach ($terminal as $data)
                                             <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
@@ -97,16 +97,34 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tanggal bongkar</label>
-                                            <input type="date" name="tgl_bongkar" class="form-control" required>
+                                            <label>Tanggal Mulai</label>
+                                            <input type="date" name="tgl_mulai_muat" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Agen</label>
-                                            <input type="text" name="agen_bongkar" class="form-control" required>
+                                            <label>Tanggal Selesai</label>
+                                            <input type="date" name="tgl_selesai_muat" class="form-control" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Perushaan Pengirim</label>
+                                            <input type="text" name="perusahaan_muat_pengirim" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Perushaan Penerima</label>
+                                            <input type="text" name="perusahaan_muat_penerima" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Agen</label>
+                                    <input type="text" name="agen_muat" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +133,7 @@
                                 <i class="fas fa-save mr-3"></i>
                                 Simpan
                             </button>
-                            <a href="{{ route('pbm.index') }}" class="btn btn-warning btn-sm ml-2">
+                            <a href="{{ route('jpt.index') }}" class="btn btn-warning btn-sm ml-2">
                                 <i class="fas fa-times mr-3"></i>
                                 Batal
                             </a>

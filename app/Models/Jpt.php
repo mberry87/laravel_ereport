@@ -5,21 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pbm extends Model
+class Jpt extends Model
 {
     use HasFactory;
-    protected $table = 'pbm';
+    protected $table = 'jpt';
 
     protected $guarded = [];
 
     public function bendera()
     {
         return $this->belongsTo(Bendera::class, 'id_bendera');
-    }
-
-    public function jenis_kapal()
-    {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal');
     }
 
     public function terminal_muat()
@@ -33,21 +28,25 @@ class Pbm extends Model
         return $this->belongsTo(Terminal::class, 'id_terminal_bongkar');
     }
 
+    public function jenis_kapal()
+    {
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal');
+    }
 
     public function getMuatAttribute()
     {
-        if (!$this->tgl_muat == null) {
-            $date = strtotime($this->tgl_muat);
+        if (!$this->tgl_selesai_muat == null) {
+            $date = strtotime($this->tgl_selesai_muat);
             return date('d-M-Y', $date);
         } else {
-            return "Belum muat";
+            return "Belum Muat";
         }
     }
 
     public function getBongkarAttribute()
     {
-        if (!$this->tgl_bongkar == null) {
-            $date = strtotime($this->tgl_bongkar);
+        if (!$this->tgl_selesai_bongkar == null) {
+            $date = strtotime($this->tgl_selesai_bongkar);
             return date('d-M-Y', $date);
         } else {
             return "Belum bongkar";
