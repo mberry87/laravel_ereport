@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Data JPT Bonkgar')
+@section('title', 'Edit JPT Bonkgar')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
@@ -49,9 +49,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" name="ukuran_isi_kotor" class="form-control"
-                                                    required value="{{ $jpt->ukuran_isi_kotor }}"
-                                                    placeholder="input gt">
+                                                <input type="text" name="ukuran_isi_kotor" class="form-control" required
+                                                    value="{{ $jpt->ukuran_isi_kotor }}" placeholder="input gt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -139,13 +138,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Perusahaan Pengirim</label>
-                                            <input type="text" name="perusahaan_bongkar_pengirim" class="form-control" required
-                                                value="{{ $jpt->perusahaan_bongkar_pengirim }}">
+                                            <input type="text" name="perusahaan_bongkar_pengirim" class="form-control"
+                                                required value="{{ $jpt->perusahaan_bongkar_pengirim }}">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Perusahaan Penerima</label>
-                                            <input type="text" name="perusahaan_bongkar_penerima" class="form-control" required
-                                                value="{{ $jpt->perusahaan_bongkar_penerima }}">
+                                            <input type="text" name="perusahaan_bongkar_penerima" class="form-control"
+                                                required value="{{ $jpt->perusahaan_bongkar_penerima }}">
                                         </div>
                                     </div>
                                 </div>

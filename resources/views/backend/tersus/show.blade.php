@@ -94,7 +94,7 @@
                     <table class="table table-striped table-sm">
                         <tbody>
                             <tr>
-                                <td style="width: 40%">Tanggal Berangakt</td>
+                                <td style="width: 40%">Tanggal Berangakat</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $tersus->berangkat }}</td>
                             </tr>

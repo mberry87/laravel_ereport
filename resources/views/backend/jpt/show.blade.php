@@ -5,7 +5,7 @@
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Show JPT</li>
+        <li class="breadcrumb-item active">Data JPT</li>
     </ol>
 @endsection
 
@@ -17,13 +17,11 @@
                     <a href="{{ route('jpt.index') }}" class="btn btn-secondary btn-sm d-inline">
                         <i class="fas fa-arrow-left mr-2"></i>Kembali
                     </a>
-                    <a href="{{ route('jpt.muat.edit', $jpt->id) }}"
-                        class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
+                    <a href="{{ route('jpt.muat.edit', $jpt->id) }}" class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
                         <i class="fas fa-edit mr-2"></i>
                         Edit muat
                     </a>
-                    <a href="{{ route('jpt.bongkar.edit', $jpt->id) }}"
-                        class="btn btn-warning btn-sm d-inline">
+                    <a href="{{ route('jpt.bongkar.edit', $jpt->id) }}" class="btn btn-warning btn-sm d-inline">
                         <i class="fas fa-edit mr-2"></i>
                         Edit bongkar
                     </a>
@@ -47,12 +45,12 @@
                             <tr>
                                 <td style="width: 40%">Jenis Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->jenis_kapal->nama}}</td>
+                                <td>{{ $jpt->jenis_kapal->nama }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Ukuran DWT</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->ukuran_dwt!= null ? $jpt->ukuran_dwt : '-' }}</td>
+                                <td>{{ $jpt->ukuran_dwt != null ? $jpt->ukuran_dwt : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Ukuran GT</td>
@@ -81,7 +79,7 @@
                             <tr>
                                 <td style="width: 40%">Tanggal Mulai</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->tgl_mulai_muat != null ? $jpt->tgl_mulai_muat : '-'  }}</td>
+                                <td>{{ $jpt->tgl_mulai_muat != null ? $jpt->tgl_mulai_muat : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Tanggal Selesai</td>
@@ -91,12 +89,14 @@
                             <tr>
                                 <td style="width: 40%">Perusahaan Pengirim</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->perusahaan_muat_pengirim != null ? $jpt->perusahaan_muat_pengirim : '-' }}</td>
+                                <td>{{ $jpt->perusahaan_muat_pengirim != null ? $jpt->perusahaan_muat_pengirim : '-' }}
+                                </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Perusahaan Penerima</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->perusahaan_muat_penerima != null ? $jpt->perusahaan_muat_penerima : '-' }}</td>
+                                <td>{{ $jpt->perusahaan_muat_penerima != null ? $jpt->perusahaan_muat_penerima : '-' }}
+                                </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Muat Sistem</td>
@@ -152,22 +152,24 @@
                             <tr>
                                 <td style="width: 40%">Tanggal Mulai</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->tgl_mulai_bongkar !=null ? $jpt->tgl_mulai_bongkar : '-' }}</td>
+                                <td>{{ $jpt->tgl_mulai_bongkar != null ? $jpt->tgl_mulai_bongkar : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Tanggal Selesai</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->tgl_selesai_bongkar !=null ? $jpt->tgl_selesai_bongkar : '-' }}</td>
+                                <td>{{ $jpt->tgl_selesai_bongkar != null ? $jpt->tgl_selesai_bongkar : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Perusahaan Pengirim</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->perusahaan_bongkar_pengirim !=null ? $jpt->perusahaan_bongkar_pengirim : '-'  }}</td>
+                                <td>{{ $jpt->perusahaan_bongkar_pengirim != null ? $jpt->perusahaan_bongkar_pengirim : '-' }}
+                                </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Perusahaan Penerima</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->perusahaan_bongkar_penerima !=null ? $jpt->perusahaan_bongkar_penerima : '-'  }}</td>
+                                <td>{{ $jpt->perusahaan_bongkar_penerima != null ? $jpt->perusahaan_bongkar_penerima : '-' }}
+                                </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">bongkar Sistem</td>

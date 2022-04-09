@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Bongkar Data JPT')
+@section('title', 'Tambah JPT Bongkar')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Bongkar JPT</li>
+        <li class="breadcrumb-item active">Data JPT</li>
     </ol>
 @endsection
 
@@ -81,8 +81,8 @@
                                                 placeholder="input unit" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="bongkar_m3" class="form-control" placeholder="input m3"
-                                                required>
+                                            <input type="text" name="bongkar_m3" class="form-control"
+                                                placeholder="input m3" required>
                                         </div>
                                     </div>
                                 </div>
@@ -112,13 +112,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Perushaan Pengirim</label>
-                                            <input type="text" name="perusahaan_bongkar_pengirim" class="form-control" required>
+                                            <input type="text" name="perusahaan_bongkar_pengirim" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Perushaan Penerima</label>
-                                            <input type="text" name="perusahaan_bongkar_penerima" class="form-control" required>
+                                            <input type="text" name="perusahaan_bongkar_penerima" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                 </div>

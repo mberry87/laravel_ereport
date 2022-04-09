@@ -41,7 +41,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
 
-                @if(auth()->user()->role == 'admin')
+                @if (auth()->user()->role == 'admin')
                     <x-backend.notification />
                 @endif
 
@@ -129,7 +129,8 @@
                         {{ Request::is('admin/pelnas/*') ? 'menu-open' : '' }}
                         {{ Request::is('admin/keagenan_kapal/*') ? 'menu-open' : '' }}
                         {{ Request::is('admin/pbm/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/jpt/*') ? 'menu-open' : '' }}">
+                        {{ Request::is('admin/jpt/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/pelra/*') ? 'menu-open' : '' }}">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
@@ -199,6 +200,17 @@
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>
                                             Data JPT
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ">
+                                    <a href="{{ route('pelra.index') }}"
+                                        class="nav-link {{ Request::is('admin/pelra/*') ? 'active' : '' }}">
+                                        <i class="nav-icon far fa-circle"></i>
+                                        <p>
+                                            Data PELRA
                                         </p>
                                     </a>
                                 </li>
@@ -305,7 +317,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('pemberitahuan.index') }}"
-                                   class="nav-link {{ Request::is('admin/pemberitahuan') ? 'active' : '' }}">
+                                    class="nav-link {{ Request::is('admin/pemberitahuan') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-bell"></i>
                                     <p>
                                         Pemberitahuan

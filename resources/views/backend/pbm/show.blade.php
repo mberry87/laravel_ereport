@@ -5,7 +5,7 @@
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Show PBM</li>
+        <li class="breadcrumb-item active">Data PBM</li>
     </ol>
 @endsection
 
@@ -17,13 +17,11 @@
                     <a href="{{ route('pbm.index') }}" class="btn btn-secondary btn-sm d-inline">
                         <i class="fas fa-arrow-left mr-2"></i>Kembali
                     </a>
-                    <a href="{{ route('pbm.muat.edit', $pbm->id) }}"
-                        class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
+                    <a href="{{ route('pbm.muat.edit', $pbm->id) }}" class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
                         <i class="fas fa-edit mr-2"></i>
                         Edit muat
                     </a>
-                    <a href="{{ route('pbm.bongkar.edit', $pbm->id) }}"
-                        class="btn btn-warning btn-sm d-inline">
+                    <a href="{{ route('pbm.bongkar.edit', $pbm->id) }}" class="btn btn-warning btn-sm d-inline">
                         <i class="fas fa-edit mr-2"></i>
                         Edit bongkar
                     </a>
@@ -47,12 +45,12 @@
                             <tr>
                                 <td style="width: 40%">Jenis Kapal</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->jenis_kapal->nama}}</td>
+                                <td>{{ $pbm->jenis_kapal->nama }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Ukuran DWT</td>
                                 <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->ukuran_dwt!= null ? $pbm->ukuran_dwt : '-' }}</td>
+                                <td>{{ $pbm->ukuran_dwt != null ? $pbm->ukuran_dwt : '-' }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Ukuran GT</td>
