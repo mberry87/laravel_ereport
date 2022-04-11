@@ -8,6 +8,7 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Tersus;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TersusController extends Controller
 {
@@ -56,7 +57,7 @@ class TersusController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
-        return redirect()->route('tersus.index');
+        return redirect()->route('tersus.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -115,7 +116,7 @@ class TersusController extends Controller
             'update_oleh' =>  auth()->user()->name,
         ]);
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
-        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('tersus.index')->with('info', 'Data berhasil diubah');
     }
 
     /**
@@ -129,7 +130,7 @@ class TersusController extends Controller
         $this->authorize('view', Tersus::findOrFail($id));
         Tersus::destroy($id);
         storeLog(null, "User " . auth()->user()->name . " menghapus data tersus");
-        return redirect()->route('tersus.index')->with('hapus', 'Data berhasil dihapus');
+        return redirect()->route('tersus.index');
     }
 
     public function createBerangkat()
@@ -157,7 +158,7 @@ class TersusController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
-        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('tersus.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
@@ -189,6 +190,6 @@ class TersusController extends Controller
         ]);
 
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
-        return redirect()->route('tersus.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('tersus.index')->with('info', 'Data berhasil diubah');
     }
 }

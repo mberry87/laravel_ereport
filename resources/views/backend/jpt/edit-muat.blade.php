@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
+        <div class="col-md- 12">
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('jpt.muat.update', $jpt->id) }}" method="POST">
@@ -110,6 +110,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Terminal Muat</label>
                                     <select name="id_terminal_muat" id="id_terminal_muat" class="form-control">

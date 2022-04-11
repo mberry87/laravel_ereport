@@ -53,7 +53,7 @@ class PelraController extends Controller
     public function storeDatang(Request $request)
     {
         Pelra::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pelra.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('pelra.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -114,7 +114,7 @@ class PelraController extends Controller
             'update_oleh' =>  auth()->user()->name,
             'id_user' => auth()->user()->id,
         ]);
-        return redirect()->route('pelra.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pelra.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -127,7 +127,7 @@ class PelraController extends Controller
     {
         $this->authorize('view', Pelra::findOrFail($id));
         Pelra::destroy($id);
-        return redirect()->route('pelra.index')->with('hapus', 'Data berhasil dihapus');
+        return redirect()->route('pelra.index');
     }
 
     public function createBerangkat()
@@ -143,7 +143,7 @@ class PelraController extends Controller
     public function storeBerangkat(Request $request)
     {
         Pelra::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pelra.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('pelra.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
@@ -176,6 +176,6 @@ class PelraController extends Controller
             'update_oleh' =>  auth()->user()->name,
             'id_user' => auth()->user()->id,
         ]);
-        return redirect()->route('pelra.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pelra.index')->with('success', 'Data berhasil diubah');
     }
 }

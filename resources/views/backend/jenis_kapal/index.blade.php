@@ -58,16 +58,11 @@
                                                 <i class="fas fa-edit mr-2"></i>
                                                 edit
                                             </a>
-                                            <form action="{{ route('jenis_kapal.destroy', $data) }}" method="POST"
-                                                class="d-inline">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Hapus Jenisn Kapal ini?')" type="submit">
-                                                    <i class="fas fa-trash mr-2"></i>hapus
-                                                </button>
-
-                                            </form>
+                                            <a href="{{ route('jenis_kapal.destroy', $data) }}"
+                                                class="btn btn-danger btn-sm d-inline" id="btn-hapus">
+                                                <i class="fas fa-trash mr-2"></i>
+                                                Hapus
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

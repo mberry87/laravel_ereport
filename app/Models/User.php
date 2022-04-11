@@ -76,4 +76,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pbm::class, 'id_user');
     }
+
+    public function jpt()
+    {
+        return $this->hasMany(Jpt::class, 'id_user');
+    }
+
+    public function pelra()
+    {
+        return $this->hasMany(Pelra::class, 'id_user');
+    }
 }

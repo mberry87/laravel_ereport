@@ -41,7 +41,7 @@ class BenderaController extends Controller
     public function store(Request $request)
     {
         Bendera::create($request->only('nama', 'keterangan'));
-        return redirect()->route('bendera.index')->with('sukses', 'Data bendera berhasil disimpan');
+        return redirect()->route('bendera.index')->with('success', 'Data bendera berhasil disimpan');
     }
 
 
@@ -68,7 +68,7 @@ class BenderaController extends Controller
     public function update(Request $request, Bendera $bendera)
     {
         $bendera->update($request->only('nama', 'keterangan'));
-        return redirect()->route('bendera.index')->with('sukses', 'Data bendera berhasil diubah');
+        return redirect()->route('bendera.index')->with('success', 'Data bendera berhasil diubah');
     }
 
     /**
@@ -77,9 +77,9 @@ class BenderaController extends Controller
      * @param  \App\Models\Bendera  $bendera
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bendera $bendera)
+    public function destroy($id)
     {
-        $bendera->delete();
-        return redirect()->route('bendera.index')->with('hapus', 'Data bendera berhasil dihapus');
+        Bendera::destroy($id);
+        return redirect()->route('bendera.index');
     }
 }

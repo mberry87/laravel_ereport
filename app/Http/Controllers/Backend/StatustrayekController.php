@@ -27,7 +27,7 @@ class StatustrayekController extends Controller
      */
     public function create()
     {
-        return view('backend.status_trayek.create')->with('sukses', 'Data status trayek berhasil disimpan');
+        return view('backend.status_trayek.create')->with('success', 'Data status trayek berhasil disimpan');
     }
 
     /**
@@ -39,7 +39,7 @@ class StatustrayekController extends Controller
     public function store(Request $request)
     {
         StatusTrayek::create($request->only('nama', 'keterangan'));
-        return redirect()->route('status_trayek.index')->with('sukses', 'Data status trayek bershasil disimpan');
+        return redirect()->route('status_trayek.index')->with('success', 'Data status trayek bershasil disimpan');
     }
 
     /**
@@ -76,7 +76,7 @@ class StatustrayekController extends Controller
     public function update(Request $request, StatusTrayek $status_trayek)
     {
         $status_trayek->update($request->only('nama', 'keterangan'));
-        return redirect()->route('status_trayek.index')->with('sukses', 'Data status trayek berhasil diubah');
+        return redirect()->route('status_trayek.index')->with('success', 'Data status trayek berhasil diubah');
     }
 
     /**
@@ -85,9 +85,9 @@ class StatustrayekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StatusTrayek $status_trayek)
+    public function destroy($id)
     {
-        $status_trayek->delete();
-        return redirect()->route('status_trayek.index')->with('hapus', 'Data status trayek berhasil dihapus');
+        StatusTrayek::destroy($id);
+        return redirect()->route('status_trayek.index');
     }
 }

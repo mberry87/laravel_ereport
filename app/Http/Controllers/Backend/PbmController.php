@@ -22,7 +22,6 @@ class PbmController extends Controller
             return view('backend.pbm.index', [
                 'pbm' => Pbm::with('bendera')->get()
             ]);
-
         }
         return view('backend.pbm.index', [
             'pbm' => Pbm::with('bendera')->where('id_user', auth()->user()->id)->get()
@@ -52,7 +51,7 @@ class PbmController extends Controller
     public function storeMuat(Request $request)
     {
         Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('pbm.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -117,7 +116,7 @@ class PbmController extends Controller
             'agen_muat' => $request->agen_muat,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pbm.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -130,7 +129,7 @@ class PbmController extends Controller
     {
         $this->authorize('view', Pbm::findOrFail($id));
         Pbm::destroy($id);
-        return redirect()->route('pbm.index')->with('hapus', 'Data berhasil dihapus');
+        return redirect()->route('pbm.index');
     }
 
     public function createBongkar()
@@ -145,7 +144,7 @@ class PbmController extends Controller
     public function storeBongkar(Request $request)
     {
         Pbm::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('pbm.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBongkar($id)
@@ -182,6 +181,6 @@ class PbmController extends Controller
             'agen_bongkar' => $request->agen_bongkar,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pbm.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pbm.index')->with('success', 'Data berhasil diubah');
     }
 }
