@@ -49,7 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('/bendera', BenderaController::class);
-    // Route::get('/bendera/delete/{id}', [BenderaController::class, 'destroy'])->name('bendera.destroy');
+    Route::get('/bendera/delete/{id}', [BenderaController::class, 'destroy'])->name('bendera.destroy');
 
     Route::resource('/pelabuhan', PelabuhanController::class);
     Route::get('/pelabuhan/delete/{id}', [PelabuhanController::class, 'destroy'])->name('pelabuhan.destroy');
