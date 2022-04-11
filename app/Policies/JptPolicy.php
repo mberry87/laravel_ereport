@@ -14,7 +14,7 @@ class JptPolicy
      * Create a new policy instance.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Bup  $bup
+     * @param  \App\Models\Jpt  $jpt
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, Jpt $jpt)

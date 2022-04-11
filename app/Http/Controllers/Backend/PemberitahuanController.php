@@ -22,7 +22,7 @@ class PemberitahuanController extends Controller
         $notif = Notification::findOrFail($id)->update([
             'is_read' => 1
         ]);
-        return back()->with('sukses', 'Berhasil menandai sudah dibaca');
+        return back()->with('success', 'Berhasil menandai sudah dibaca');
     }
 
 
@@ -34,12 +34,18 @@ class PemberitahuanController extends Controller
                 'is_read' => 1
             ]);
         }
-        return back()->with('sukses', 'Berhasil menandai sudah dibaca');
+        return back()->with('success', 'Berhasil menandai sudah dibaca');
     }
+
+    // public function deleteAll()
+    // {
+    //     DB::table('notifications')->truncate();
+    //     return back()->with('success', 'Data pemberitahuan berhasil direset');
+    // }
 
     public function deleteAll()
     {
         DB::table('notifications')->truncate();
-        return back()->with('sukses', 'Data pemberitahuan berhasil direset');
+        return back();
     }
 }

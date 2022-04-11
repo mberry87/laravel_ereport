@@ -110,6 +110,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Terminal bongkar</label>
                                     <select name="id_terminal_bongkar" id="id_terminal_bongkar" class="form-control">

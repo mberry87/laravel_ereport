@@ -39,7 +39,7 @@ class JeniskapalController extends Controller
     public function store(Request $request)
     {
         JenisKapal::create($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('jenis_kapal.index')->with('sukses', 'Data jenis kapal berhasil disimpan');
+        return redirect()->route('jenis_kapal.index')->with('success', 'Data jenis kapal berhasil disimpan');
     }
 
     /**
@@ -76,7 +76,7 @@ class JeniskapalController extends Controller
     public function update(Request $request, JenisKapal $jenis_kapal)
     {
         $jenis_kapal->update($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('jenis_kapal.index')->with('sukses', 'Data jensi kapal berhasil diubah');
+        return redirect()->route('jenis_kapal.index')->with('success', 'Data jensi kapal berhasil diubah');
     }
 
     /**
@@ -85,9 +85,9 @@ class JeniskapalController extends Controller
      * @param  \App\Models\JenisKapal  $jenisKapal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JenisKapal $jenis_kapal)
+    public function destroy($id)
     {
-        $jenis_kapal->delete();
-        return redirect()->route('jenis_kapal.index')->with('hapus', 'Data jenis kapal berhasil dihapus');
+        JenisKapal::destroy($id);
+        return redirect()->route('jenis_kapal.index');
     }
 }

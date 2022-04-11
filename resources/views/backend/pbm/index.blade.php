@@ -10,21 +10,6 @@
 @endsection
 
 @section('content')
-    @if ($pesan = Session::get('sukses'))
-        <div class="alert alert-warning alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
-            {{ $pesan }}
-        </div>
-    @endif
-
-    @if ($pesan = Session::get('hapus'))
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
-            {{ $pesan }}
-        </div>
-    @endif
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -74,16 +59,11 @@
                                             title="edit bongkar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('pbm.destroy', $data->id) }}" method="POST"
-                                            class="d-inline">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm d-inline"
-                                                onclick="return confirm('Hapus data ini?')" type="submit"
-                                                data-toggle="tooltip" title="hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <a href="{{ route('pbm.destroy', $data->id) }}"
+                                            class="btn btn-danger btn-sm mr-2  d-inline" data-toggle="tooltip" title="hapus"
+                                            id="btn-hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

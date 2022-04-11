@@ -25,7 +25,6 @@ class KeagenankapalController extends Controller
             return view('backend.keagenan_kapal.index', [
                 'keagenan_kapal' => KeagenanKapal::with('bendera')->get()
             ]);
-
         }
         return view('backend.keagenan_kapal.index', [
             'keagenan_kapal' => KeagenanKapal::with('bendera')->where('id_user', auth()->user()->id)->get()
@@ -58,7 +57,7 @@ class KeagenankapalController extends Controller
     public function storeDatang(Request $request)
     {
         KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -123,7 +122,7 @@ class KeagenankapalController extends Controller
             'update_oleh' =>  auth()->user()->name,
             'id_user' => auth()->user()->id,
         ]);
-        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -136,7 +135,7 @@ class KeagenankapalController extends Controller
     {
         $this->authorize('view', KeagenanKapal::findOrFail($id));
         KeagenanKapal::destroy($id);
-        return redirect()->route('keagenan_kapal.index')->with('hapus', 'Data berhasil dihapus');
+        return redirect()->route('keagenan_kapal.index');
     }
 
     public function createBerangkat()
@@ -168,7 +167,7 @@ class KeagenankapalController extends Controller
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'input_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
@@ -187,7 +186,7 @@ class KeagenankapalController extends Controller
             'jenis_kapal' => JenisKapal::all()
 
         ]);
-        return redirect()->route('keagenan.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('keagenan.index')->with('success', 'Data berhasil diubah');
     }
 
     public function updateBerangkat(Request $request, $id)
@@ -210,6 +209,6 @@ class KeagenankapalController extends Controller
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('keagenan_kapal.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil diubah');
     }
 }

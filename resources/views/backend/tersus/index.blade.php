@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    @if ($pesan = Session::get('sukses'))
+    {{-- @if ($pesan = Session::get('success'))
         <div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
@@ -24,7 +24,7 @@
             <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
             {{ $pesan }}
         </div>
-    @endif
+    @endif --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -74,16 +74,20 @@
                                             title="edit berangkat">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('tersus.destroy', $data->id) }}" method="POST"
+                                        {{-- <form action="{{ route('tersus.destroy', $data->id) }}" method="POST"
                                             class="d-inline">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger btn-sm d-inline"
-                                                onclick="return confirm('Hapus data ini?')" type="submit"
-                                                data-toggle="tooltip" title="hapus">
+                                            <button class="btn btn-danger btn-sm d-inline" type="submit"
+                                                data-toggle="tooltip" id="btn-hapus">
                                                 <i class="fas fa-trash"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
+                                        <a href="{{ route('tersus.destroy', $data->id) }}"
+                                            class="btn btn-danger btn-sm mr-2  d-inline" data-toggle="tooltip" title="hapus"
+                                            id="btn-hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -24,7 +24,7 @@ class JptController extends Controller
             ]);
         }
         return view('backend.jpt.index', [
-            'pbm' => Jpt::with('bendera')->where('id_user', auth()->user()->id)->get()
+            'jpt' => Jpt::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
     }
 
@@ -51,7 +51,7 @@ class JptController extends Controller
     public function storeMuat(Request $request)
     {
         Jpt::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('jpt.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -119,7 +119,7 @@ class JptController extends Controller
             'perusahaan_muat_penerima' => $request->perusahaan_muat_penerima,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('jpt.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -132,7 +132,7 @@ class JptController extends Controller
     {
         $this->authorize('view', Jpt::findOrFail($id));
         Jpt::destroy($id);
-        return redirect()->route('jpt.index')->with('hapus', 'Data berhasil dihapus');
+        return redirect()->route('jpt.index');
     }
 
     public function createBongkar()
@@ -147,7 +147,7 @@ class JptController extends Controller
     public function storeBongkar(Request $request)
     {
         Jpt::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('jpt.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBongkar($id)
@@ -187,6 +187,6 @@ class JptController extends Controller
             'perusahaan_bongkar_penerima' => $request->perusahaan_bongkar_penerima,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('jpt.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('jpt.index')->with('success', 'Data berhasil diubah');
     }
 }

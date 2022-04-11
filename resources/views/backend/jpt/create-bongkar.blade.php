@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('jpt.bongkar.store') }}" method="POST">
@@ -86,6 +86,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Terminal bongkar</label>
                                     <select name="id_terminal_bongkar" id="id_terminal_bongkar" class="form-control">

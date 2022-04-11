@@ -18,7 +18,7 @@ use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
 use App\Http\Controllers\Backend\TersusController;
 use App\Http\Controllers\Backend\UserController;
-use App\Policies\JptPolicy;
+use App\Models\StatusTrayek;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,11 +49,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('/bendera', BenderaController::class);
+    // Route::get('/bendera/delete/{id}', [BenderaController::class, 'destroy'])->name('bendera.destroy');
+
     Route::resource('/pelabuhan', PelabuhanController::class);
+    Route::get('/pelabuhan/delete/{id}', [PelabuhanController::class, 'destroy'])->name('pelabuhan.destroy');
+
     Route::resource('/terminal', TerminalController::class);
-    Route::resource('/status_kapal', StatuskapalController::class);
+    Route::get('/terminal/delete/{id}', [TerminalController::class, 'destroy'])->name('terminal.destroy');
+
     Route::resource('/jenis_kapal', JeniskapalController::class);
+    Route::get('/jenis_kapal/delete/{id}', [JeniskapalController::class, 'destroy'])->name('jenis_kapal.destroy');
+
+    Route::resource('/status_kapal', StatuskapalController::class);
+    Route::get('/status_kapal/delete/{id}', [StatuskapalController::class, 'destroy'])->name('status_kapal.destroy');
+
     Route::resource('/status_trayek', StatustrayekController::class);
+    Route::get('/status_trayek/delete/{id}', [StatustrayekController::class, 'destroy'])->name('status_trayek.destroy');
 
     // Tersus
     Route::get('/tersus/index', [TersusController::class, 'index'])->name('tersus.index');
@@ -68,7 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/tersus/update-tersus-berangkat/{id}', [TersusController::class, 'updateBerangkat'])->name('tersus.berangkat.update');
 
     Route::get('/tersus/show/{id}', [TersusController::class, 'show'])->name('tersus.show');
-    Route::delete('/tersus/delete/{id}', [TersusController::class, 'destroy'])->name('tersus.destroy');
+    Route::get('/tersus/delete/{id}', [TersusController::class, 'destroy'])->name('tersus.destroy');
 
     // bup
 
@@ -84,7 +95,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/bup/update-bup-berangkat/{id}', [BupController::class, 'updateBerangkat'])->name('bup.berangkat.update');
 
     Route::get('/bup/show/{id}', [BupController::class, 'show'])->name('bup.show');
-    Route::delete('/bup/delete/{id}', [BupController::class, 'destroy'])->name('bup.destroy');
+    Route::get('/bup/delete/{id}', [BupController::class, 'destroy'])->name('bup.destroy');
 
 
     // pelnas
@@ -100,7 +111,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/pelnas/update-pelnas-berangkat/{id}', [PelnasController::class, 'updateBerangkat'])->name('pelnas.berangkat.update');
 
     Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
-    Route::delete('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
+    Route::get('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
 
     // keagenan kapal
     Route::get('/keagenan_kapal/index', [KeagenankapalController::class, 'index'])->name('keagenan_kapal.index');
@@ -115,7 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/keagenan_kapal/update-keagenan_kapal-berangkat/{id}', [KeagenankapalController::class, 'updateBerangkat'])->name('keagenan_kapal.berangkat.update');
 
     Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
-    Route::delete('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
+    Route::get('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
 
     // PBM
     Route::get('/pbm/index', [PbmController::class, 'index'])->name('pbm.index');
@@ -130,7 +141,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/pbm/update-pbm-bongkar/{id}', [PbmController::class, 'updateBongkar'])->name('pbm.bongkar.update');
 
     Route::get('/pbm/show/{id}', [PbmController::class, 'show'])->name('pbm.show');
-    Route::delete('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
+    Route::get('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
 
     // JPT
     Route::get('/jpt/index', [JptController::class, 'index'])->name('jpt.index');
@@ -145,7 +156,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/jpt/update-jpt-bongkar/{id}', [JptController::class, 'updateBongkar'])->name('jpt.bongkar.update');
 
     Route::get('/jpt/show/{id}', [JptController::class, 'show'])->name('jpt.show');
-    Route::delete('/jpt/delete/{id}', [JptController::class, 'destroy'])->name('jpt.destroy');
+    Route::get('/jpt/delete/{id}', [JptController::class, 'destroy'])->name('jpt.destroy');
 
     // PELRA
     Route::get('/pelra/index', [PelraController::class, 'index'])->name('pelra.index');
@@ -160,7 +171,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/pelra/update-pelra-berangkat/{id}', [PelraController::class, 'updateberangkat'])->name('pelra.berangkat.update');
 
     Route::get('/pelra/show/{id}', [PelraController::class, 'show'])->name('pelra.show');
-    Route::delete('/pelra/delete/{id}', [PelraController::class, 'destroy'])->name('pelra.destroy');
+    Route::get('/pelra/delete/{id}', [PelraController::class, 'destroy'])->name('pelra.destroy');
 
 
 
@@ -168,6 +179,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/user', UserController::class);
     Route::get('/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
     Route::get('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.reset.status');
+    Route::get('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile/updateGeneralData/{id}', [ProfileController::class, 'updateGeneralData'])->name('profile.update.data');

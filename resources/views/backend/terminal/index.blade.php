@@ -12,21 +12,6 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @if ($pesan = Session::get('sukses'))
-                <div class="alert alert-warning alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
-                    {{ $pesan }}
-                </div>
-            @endif
-
-            @if ($pesan = Session::get('hapus'))
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
-                    {{ $pesan }}
-                </div>
-            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="card-body">
@@ -58,15 +43,11 @@
                                                 <i class="fas fa-edit mr-2"></i>
                                                 edit
                                             </a>
-                                            <form action="{{ route('terminal.destroy', $data) }}" method="POST"
-                                                class="d-inline">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Hapus Terminal ini?')" type="submit">
-                                                    <i class="fas fa-trash mr-2"></i>hapus
-                                                </button>
-                                            </form>
+                                            <a href="{{ route('terminal.destroy', $data) }}"
+                                                class="btn btn-danger btn-sm d-inline" id="btn-hapus">
+                                                <i class="fas fa-trash mr-2"></i>
+                                                Hapus
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

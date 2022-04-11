@@ -12,7 +12,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @if ($pesan = Session::get('sukses'))
+            {{-- @if ($pesan = Session::get('sukses'))
                 <div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
@@ -26,7 +26,7 @@
                     <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
                     {{ $pesan }}
                 </div>
-            @endif
+            @endif --}}
             <div class="card">
                 <div class="card-header">
                     <div class="card-body">
@@ -57,26 +57,21 @@
                                         <td>
                                             @if (auth()->user()->id == $data->id)
                                             @else
-                                            <a href="{{ route('user.show', $data) }}"
-                                                class="btn btn-warning btn-sm mr-2 d-inline">
-                                                <i class="fas fa-eye mr-2"></i>
-                                                show
-                                            </a>
+                                                <a href="{{ route('user.show', $data) }}"
+                                                    class="btn btn-warning btn-sm mr-2 d-inline">
+                                                    <i class="fas fa-eye mr-2"></i>
+                                                    show
+                                                </a>
                                                 <a href="{{ route('user.edit', $data) }}"
                                                     class="btn btn-warning btn-sm mr-2 d-inline">
                                                     <i class="fas fa-edit mr-2"></i>
                                                     edit
                                                 </a>
-                                                <form action="{{ route('user.destroy', $data) }}" method="POST"
-                                                    class="d-inline">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Hapus User ini?')" type="submit">
-                                                        <i class="fas fa-trash mr-2"></i>hapus
-                                                    </button>
-
-                                                </form>
+                                                <a href="{{ route('user.destroy', $data) }}"
+                                                    class="btn btn-danger btn-sm d-inline" id="btn-hapus">
+                                                    <i class="fas fa-trash mr-2"></i>
+                                                    Hapus
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>

@@ -24,6 +24,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -386,6 +387,8 @@
     <script src="{{ asset('admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin') }}/dist/js/adminlte.js"></script>
+    {{-- Sweetalert2 --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('admin') }}/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('admin') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -427,7 +430,32 @@
         })
     </script>
 
+    {{-- confirm deleted --}}
+    <script>
+        $(document).on('click', '#btn-hapus', function(e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
 
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data akan dihapus",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya,Hapus !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = link;
+                    Swal.fire(
+                        'Hapus!',
+                        'Data berhasil dihapus',
+                        'success'
+                    )
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>

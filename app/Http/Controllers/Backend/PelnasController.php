@@ -57,7 +57,7 @@ class PelnasController extends Controller
     public function storeDatang(Request $request)
     {
         Pelnas::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('pelnas.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -121,7 +121,7 @@ class PelnasController extends Controller
             'id_jenis_kapal_datang' => $request->id_jenis_kapal_datang,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pelnas.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -134,7 +134,7 @@ class PelnasController extends Controller
     {
         $this->authorize('view', Pelnas::findOrFail($id));
         Pelnas::destroy($id);
-        return redirect()->route('pelnas.index')->with('hapus', 'Data berhasil dihapus');
+        return redirect()->route('pelnas.index');
     }
 
     public function createBerangkat()
@@ -167,7 +167,7 @@ class PelnasController extends Controller
             'input_oleh' =>  auth()->user()->name,
             'id_user' => auth()->user()->id,
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('pelnas.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
@@ -186,7 +186,7 @@ class PelnasController extends Controller
             'jenis_kapal' => JenisKapal::all()
 
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pelnas.index')->with('success', 'Data berhasil diubah');
     }
 
     public function updateBerangkat(Request $request, $id)
@@ -209,6 +209,6 @@ class PelnasController extends Controller
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_berangkat,
             'update_oleh' =>  auth()->user()->name,
         ]);
-        return redirect()->route('pelnas.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('pelnas.index')->with('success', 'Data berhasil diubah');
     }
 }

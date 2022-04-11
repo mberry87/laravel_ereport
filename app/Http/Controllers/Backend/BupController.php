@@ -52,7 +52,7 @@ class BupController extends Controller
     {
         $bup = Bup::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
-        return redirect()->route('bup.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('bup.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -110,7 +110,7 @@ class BupController extends Controller
             'update_oleh' =>  auth()->user()->name,
         ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
-        return redirect()->route('bup.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('bup.index')->with('success', 'Data berhasil diubah');
     }
 
 
@@ -124,9 +124,9 @@ class BupController extends Controller
     public function destroy($id)
     {
         $this->authorize('view', Bup::findOrFail($id));
-        $bup = Bup::destroy($id);
-        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menghapus data BUP");
-        return redirect()->route('bup.index')->with('hapus', 'Data berhasil dihapus');
+        Bup::destroy($id);
+        storeLog(null, "User " . auth()->user()->name . " menghapus data BUP");
+        return redirect()->route('bup.index');
     }
 
     public function createBerangkat()
@@ -152,7 +152,7 @@ class BupController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
-        return redirect()->route('bup.index')->with('sukses', 'Data berhasil disimpan');
+        return redirect()->route('bup.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function editBerangkat($id)
@@ -182,6 +182,6 @@ class BupController extends Controller
             'update_oleh' =>  auth()->user()->name,
         ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
-        return redirect()->route('bup.index')->with('sukses', 'Data berhasil diubah');
+        return redirect()->route('bup.index')->with('success', 'Data berhasil diubah');
     }
 }

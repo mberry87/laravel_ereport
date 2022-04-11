@@ -53,7 +53,7 @@ class UserController extends Controller
             'avatar' => null,
             'nama_perusahaan' => $request->nama_perusahaan,
         ]);
-        return redirect()->route('user.index')->with('sukses', 'Data user berhasil disimpan');
+        return redirect()->route('user.index')->with('success', 'Data User berhasil disimpan');
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->only('name', 'email', 'role', 'alamat', 'no_hp', 'status', 'nama_perusahaan'));
-        return redirect()->route('user.index')->with('sukses', 'Data user berhasil diubah');
+        return redirect()->route('user.index')->with('success', 'Data user berhasil diubah');
     }
 
     /**
@@ -101,10 +101,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('user.index')->with('hapus', 'Data user berhasil dihapus');
+        User::destroy($id);
+        return redirect()->route('user.index');
     }
 
     public function resetPassword($id)
@@ -113,7 +113,7 @@ class UserController extends Controller
         $user->update([
             'password' => Hash::make($user->email)
         ]);
-        return back()->with('sukses', 'Password user berhasil direset');
+        return back()->with('success', 'Password user berhasil direset');
     }
 
     public function updateStatus($id)
@@ -131,6 +131,6 @@ class UserController extends Controller
         $user->update([
             'password' => Hash::make($user->email)
         ]);
-        return back()->with('sukses', 'Status user berhasil diubah');
+        return back()->with('success', 'Status user berhasil diubah');
     }
 }

@@ -39,7 +39,7 @@ class StatuskapalController extends Controller
     public function store(Request $request)
     {
         StatusKapal::create($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('status_kapal.index')->with('sukses', 'Data Status Kapal berhasil disimpan');
+        return redirect()->route('status_kapal.index')->with('success', 'Data Status Kapal berhasil disimpan');
     }
 
     /**
@@ -76,7 +76,7 @@ class StatuskapalController extends Controller
     public function update(Request $request, StatusKapal $status_kapal)
     {
         $status_kapal->update($request->only('nama', 'keterangan', 'kode'));
-        return redirect()->route('status_kapal.index')->with('sukses', 'Data Status Kapal berhasil diubah');
+        return redirect()->route('status_kapal.index')->with('success', 'Data Status Kapal berhasil diubah');
     }
 
     /**
@@ -85,9 +85,9 @@ class StatuskapalController extends Controller
      * @param  \App\Models\StatusKapal  $statusKapal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StatusKapal $status_kapal)
+    public function destroy($id)
     {
-        $status_kapal->delete();
-        return redirect()->route('status_kapal.index')->with('hapus', 'Data Status Kapal berhasil dihapus');
+        StatusKapal::destroy($id);
+        return redirect()->route('status_kapal.index');
     }
 }
