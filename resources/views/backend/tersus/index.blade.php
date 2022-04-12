@@ -55,7 +55,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kapal }}</td>
-                                    <td>{{ $data->bender->nama }}</td>
+                                    <td>{{ $data->bendera->nama }}</td>
                                     <td>{{ $data->datang }}</td>
                                     <td>{{ $data->berangkat }}</td>
                                     <td>
