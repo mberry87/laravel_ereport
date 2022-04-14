@@ -16,8 +16,25 @@ class TersusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
+            if (auth()->user()->role == 'admin') {
+                return view('backend.tersus.index', [
+                    'tersus' => Tersus::with('bendera')
+                        ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->get()
+                ]);
+            }
+            return view('backend.tersus.index', [
+                'tersus' => Tersus::with('bendera')
+                    ->where('id_user', auth()->user()->id)
+                    ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->get()
+            ]);
+        }
         if (auth()->user()->role == 'admin') {
             return view('backend.tersus.index', [
                 'tersus' => Tersus::with('bendera')->get()
