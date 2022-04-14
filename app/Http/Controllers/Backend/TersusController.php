@@ -16,8 +16,25 @@ class TersusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
+            if (auth()->user()->role == 'admin') {
+                return view('backend.tersus.index', [
+                    'tersus' => Tersus::with('bendera')
+                        ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->get()
+                ]);
+            }
+            return view('backend.tersus.index', [
+                'tersus' => Tersus::with('bendera')
+                    ->where('id_user', auth()->user()->id)
+                    ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->get()
+            ]);
+        }
         if (auth()->user()->role == 'admin') {
             return view('backend.tersus.index', [
                 'tersus' => Tersus::with('bendera')->get()
@@ -123,12 +140,16 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $this->authorize('view', Tersus::findOrFail($id));
-        Tersus::destroy($id);
-        storeLog(null, "User " . auth()->user()->name . " menghapus data tersus");
-        return redirect()->route('tersus.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            $this->authorize('view', Tersus::findOrFail($id));
+            Tersus::destroy($id);
+            storeLog(null, "User " . auth()->user()->name . " menghapus data tersus");
+            return redirect()->route('tersus.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('tersus.index');
     }
 
     public function createBerangkat()

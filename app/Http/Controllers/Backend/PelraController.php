@@ -123,11 +123,15 @@ class PelraController extends Controller
      * @param  \App\Models\Pelra  $pelra
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $this->authorize('view', Pelra::findOrFail($id));
-        Pelra::destroy($id);
-        return redirect()->route('pelra.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            $this->authorize('view', Pelra::findOrFail($id));
+            Pelra::destroy($id);
+            return redirect()->route('pelra.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('pelra.index');
     }
 
     public function createBerangkat()

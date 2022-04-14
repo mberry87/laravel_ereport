@@ -125,11 +125,15 @@ class PbmController extends Controller
      * @param  \App\Models\Pbm  $pbm
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $this->authorize('view', Pbm::findOrFail($id));
-        Pbm::destroy($id);
-        return redirect()->route('pbm.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            $this->authorize('view', Pbm::findOrFail($id));
+            Pbm::destroy($id);
+            return redirect()->route('pbm.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('pbm.index');
     }
 
     public function createBongkar()

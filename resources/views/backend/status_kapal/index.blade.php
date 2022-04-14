@@ -43,7 +43,7 @@
                                                 <i class="fas fa-edit mr-2"></i>
                                                 edit
                                             </a>
-                                            <a href="{{ route('status_kapal.destroy', $data) }}"
+                                            <a href="{{ route('status_kapal.destroy', $data) }}?delete=true"
                                                 class="btn btn-danger btn-sm d-inline" id="btn-hapus">
                                                 <i class="fas fa-trash mr-2"></i>
                                                 Hapus

@@ -121,12 +121,16 @@ class BupController extends Controller
      * @param  \App\Models\Bup  $bup
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $this->authorize('view', Bup::findOrFail($id));
-        Bup::destroy($id);
-        storeLog(null, "User " . auth()->user()->name . " menghapus data BUP");
-        return redirect()->route('bup.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            $this->authorize('view', Bup::findOrFail($id));
+            Bup::destroy($id);
+            storeLog(null, "User " . auth()->user()->name . " menghapus data BUP");
+            return redirect()->route('bup.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('bup.index');
     }
 
     public function createBerangkat()

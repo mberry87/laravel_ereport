@@ -85,9 +85,13 @@ class StatuskapalController extends Controller
      * @param  \App\Models\StatusKapal  $statusKapal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        StatusKapal::destroy($id);
-        return redirect()->route('status_kapal.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            StatusKapal::destroy($id);
+            return redirect()->route('status_kapal.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->errro('Gagal', 'Data gagal dihapus');
+        return redirect()->route('status_kapal.index');
     }
 }

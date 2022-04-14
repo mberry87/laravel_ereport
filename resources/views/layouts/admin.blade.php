@@ -308,20 +308,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('pengaturan.index') }}"
-                                    class="nav-link {{ Request::is('admin/pengaturan/index') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-cogs"></i>
-                                    <p>
-                                        Pengaturan
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="{{ route('pemberitahuan.index') }}"
                                     class="nav-link {{ Request::is('admin/pemberitahuan') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-bell"></i>
                                     <p>
                                         Pemberitahuan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('pengaturan.index') }}"
+                                    class="nav-link {{ Request::is('admin/pengaturan/index') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <p>
+                                        Pengaturan
                                     </p>
                                 </a>
                             </li>

@@ -85,9 +85,13 @@ class TerminalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        Terminal::destroy($id);
-        return redirect()->route('terminal.index')->with('hapus', 'Data terminal berhasil dihapus')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            Terminal::destroy($id);
+            return redirect()->route('terminal.index')->with('hapus', 'Data terminal berhasil dihapus')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('terminal.index');
     }
 }

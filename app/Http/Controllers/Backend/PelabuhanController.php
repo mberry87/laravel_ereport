@@ -85,9 +85,13 @@ class PelabuhanController extends Controller
      * @param  \App\Models\Pelabuhan  $pelabuhan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        Pelabuhan::destroy($id);
-        return redirect()->route('pelabuhan.index')->with('hapus', 'Data bendera berhasil dihapus') > with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            Pelabuhan::destroy($id);
+            return redirect()->route('pelabuhan.index')->with('hapus', 'Data bendera berhasil dihapus') > with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('pelabuhan.index');
     }
 }

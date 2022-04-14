@@ -59,7 +59,7 @@
                                             title="edit bongkar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('pbm.destroy', $data->id) }}"
+                                        <a href="{{ route('pbm.destroy', $data->id) }}?delete=true"
                                             class="btn btn-danger btn-sm mr-2  d-inline" data-toggle="tooltip" title="hapus"
                                             id="btn-hapus">
                                             <i class="fas fa-trash"></i>
