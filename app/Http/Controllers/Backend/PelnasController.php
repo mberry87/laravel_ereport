@@ -134,7 +134,7 @@ class PelnasController extends Controller
     {
         $this->authorize('view', Pelnas::findOrFail($id));
         Pelnas::destroy($id);
-        return redirect()->route('pelnas.index');
+        return redirect()->route('pelnas.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()

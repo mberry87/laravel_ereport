@@ -88,6 +88,6 @@ class StatuskapalController extends Controller
     public function destroy($id)
     {
         StatusKapal::destroy($id);
-        return redirect()->route('status_kapal.index');
+        return redirect()->route('status_kapal.index')->with('success', 'Data berhasil dihapus');
     }
 }

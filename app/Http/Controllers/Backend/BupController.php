@@ -126,7 +126,7 @@ class BupController extends Controller
         $this->authorize('view', Bup::findOrFail($id));
         Bup::destroy($id);
         storeLog(null, "User " . auth()->user()->name . " menghapus data BUP");
-        return redirect()->route('bup.index');
+        return redirect()->route('bup.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()

@@ -88,6 +88,6 @@ class TerminalController extends Controller
     public function destroy($id)
     {
         Terminal::destroy($id);
-        return redirect()->route('terminal.index')->with('hapus', 'Data terminal berhasil dihapus');
+        return redirect()->route('terminal.index')->with('hapus', 'Data terminal berhasil dihapus')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -80,6 +80,6 @@ class BenderaController extends Controller
     public function destroy($id)
     {
         Bendera::destroy($id);
-        return redirect()->route('bendera.index');
+        return redirect()->route('bendera.index')->with('success', 'Data berhasil dihapus');
     }
 }

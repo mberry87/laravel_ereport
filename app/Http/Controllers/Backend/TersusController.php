@@ -8,7 +8,6 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Tersus;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class TersusController extends Controller
 {
@@ -24,7 +23,6 @@ class TersusController extends Controller
                 'tersus' => Tersus::with('bendera')->get()
             ]);
         }
-
         return view('backend.tersus.index', [
             'tersus' => Tersus::with('bendera')->where('id_user', auth()->user()->id)->get()
         ]);
@@ -130,7 +128,7 @@ class TersusController extends Controller
         $this->authorize('view', Tersus::findOrFail($id));
         Tersus::destroy($id);
         storeLog(null, "User " . auth()->user()->name . " menghapus data tersus");
-        return redirect()->route('tersus.index');
+        return redirect()->route('tersus.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()

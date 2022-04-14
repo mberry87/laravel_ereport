@@ -88,6 +88,6 @@ class JeniskapalController extends Controller
     public function destroy($id)
     {
         JenisKapal::destroy($id);
-        return redirect()->route('jenis_kapal.index');
+        return redirect()->route('jenis_kapal.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -46,6 +46,6 @@ class PemberitahuanController extends Controller
     public function deleteAll()
     {
         DB::table('notifications')->truncate();
-        return back();
+        return back()->with('success', 'Semua pemberitahuan berhasil dihapus');
     }
 }
