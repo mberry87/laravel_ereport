@@ -88,6 +88,6 @@ class PelabuhanController extends Controller
     public function destroy($id)
     {
         Pelabuhan::destroy($id);
-        return redirect()->route('pelabuhan.index')->with('hapus', 'Data bendera berhasil dihapus');
+        return redirect()->route('pelabuhan.index')->with('hapus', 'Data bendera berhasil dihapus') > with('success', 'Data berhasil dihapus');
     }
 }

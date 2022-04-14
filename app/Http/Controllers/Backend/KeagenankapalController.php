@@ -135,7 +135,7 @@ class KeagenankapalController extends Controller
     {
         $this->authorize('view', KeagenanKapal::findOrFail($id));
         KeagenanKapal::destroy($id);
-        return redirect()->route('keagenan_kapal.index');
+        return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()

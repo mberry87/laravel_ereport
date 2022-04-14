@@ -447,11 +447,6 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location = link;
-                    Swal.fire(
-                        'Hapus!',
-                        'Data berhasil dihapus',
-                        'success'
-                    )
                 }
             })
         });

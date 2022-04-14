@@ -132,7 +132,7 @@ class JptController extends Controller
     {
         $this->authorize('view', Jpt::findOrFail($id));
         Jpt::destroy($id);
-        return redirect()->route('jpt.index');
+        return redirect()->route('jpt.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBongkar()

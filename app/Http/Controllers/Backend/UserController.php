@@ -104,7 +104,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function resetPassword($id)

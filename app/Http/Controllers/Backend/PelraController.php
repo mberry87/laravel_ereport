@@ -127,7 +127,7 @@ class PelraController extends Controller
     {
         $this->authorize('view', Pelra::findOrFail($id));
         Pelra::destroy($id);
-        return redirect()->route('pelra.index');
+        return redirect()->route('pelra.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBerangkat()

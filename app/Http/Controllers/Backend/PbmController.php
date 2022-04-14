@@ -129,7 +129,7 @@ class PbmController extends Controller
     {
         $this->authorize('view', Pbm::findOrFail($id));
         Pbm::destroy($id);
-        return redirect()->route('pbm.index');
+        return redirect()->route('pbm.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function createBongkar()

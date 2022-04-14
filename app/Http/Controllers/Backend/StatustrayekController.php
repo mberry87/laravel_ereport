@@ -88,6 +88,6 @@ class StatustrayekController extends Controller
     public function destroy($id)
     {
         StatusTrayek::destroy($id);
-        return redirect()->route('status_trayek.index');
+        return redirect()->route('status_trayek.index')->with('success', 'Data berhasil dihapus');
     }
 }
