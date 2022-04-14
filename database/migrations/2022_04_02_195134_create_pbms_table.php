@@ -29,10 +29,10 @@ class CreatePbmsTable extends Migration
                 ->on('jenis_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
+            $table->string('agen')->nullable();
             $table->string('ukuran_isi_kotor')->nullable();
             $table->string('ukuran_dwt')->nullable();
             $table->string('ukuran_loa')->nullable();
-            $table->string('agen_muat')->nullable();
             $table->string('tgl_muat')->nullable();
             $table->string('muat_sistem')->nullable();
             $table->string('muat_komoditi')->nullable();
@@ -46,7 +46,6 @@ class CreatePbmsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('agen_bongkar')->nullable();
             $table->string('tgl_bongkar')->nullable();
             $table->string('bongkar_sistem')->nullable();
             $table->string('bongkar_komoditi')->nullable();

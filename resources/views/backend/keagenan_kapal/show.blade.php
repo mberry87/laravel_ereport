@@ -49,6 +49,24 @@
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $keagenan_kapal->isi_kotor != null ? $keagenan_kapal->isi_kotor : '-' }}</td>
                             </tr>
+                            <tr>
+                                <td style="width: 40%">Status Trayek</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $keagenan_kapal->status_trayek != null ? $keagenan_kapal->status_trayek->nama : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Status Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $keagenan_kapal->status_kapal != null ? $keagenan_kapal->status_kapal->nama : '-' }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%">Jenis Kapal</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $keagenan_kapal->jenis_kapal != null ? $keagenan_kapal->jenis_kapal->nama : '-' }}
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -62,12 +80,6 @@
                                 <td style="width: 40%">Tanggal Kedatangan</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $keagenan_kapal->datang }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Dari Pelabuhan</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->pelabuhan_datang != null ? $keagenan_kapal->pelabuhan_datang->nama : '-' }}
-                                </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Terminal Kedatangan</td>
@@ -87,24 +99,6 @@
                                 <td>{{ $keagenan_kapal->jumlah_bongkar_datang != null ? $keagenan_kapal->jumlah_bongkar_datang : '-' }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="width: 40%">Status Trayek</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->status_trayek_datang != null ? $keagenan_kapal->status_trayek_datang->nama : '-' }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Status Kapal</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->status_kapal_datang != null ? $keagenan_kapal->status_kapal_datang->nama : '-' }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Jenis Kapal</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->jenis_kapal_datang != null ? $keagenan_kapal->jenis_kapal_datang->nama : '-' }}
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -115,15 +109,9 @@
                     <table class="table table-striped table-sm">
                         <tbody>
                             <tr>
-                                <td style="width: 40%">Tanggal Berangakt</td>
+                                <td style="width: 40%">Tanggal Berangkat</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $keagenan_kapal->berangkat }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Ke Pelabuhan</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->pelabuhan_berangkat != null ? $keagenan_kapal->pelabuhan_berangkat->nama : '-' }}
-                                </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">Terminal Berangkat</td>
@@ -141,24 +129,6 @@
                                 <td style="width: 40%">Jumlah Muatan</td>
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $keagenan_kapal->jumlah_muatan_berangkat != null ? $keagenan_kapal->jumlah_muatan_berangkat : '-' }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Status Trayek</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->status_trayek_berangkat != null ? $keagenan_kapal->status_trayek_berangkat->nama : '-' }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Status Kapal</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->status_kapal_berangkat != null ? $keagenan_kapal->status_kapal_berangkat->nama : '-' }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 40%">Jenis Kapal</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $keagenan_kapal->jenis_kapal_berangkat != null ? $keagenan_kapal->jenis_kapal_berangkat->nama : '-' }}
                                 </td>
                             </tr>
                         </tbody>

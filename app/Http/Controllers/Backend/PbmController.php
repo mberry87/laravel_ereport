@@ -113,7 +113,7 @@ class PbmController extends Controller
             'muat_m3' => $request->muat_m3,
             'id_terminal_muat' => $request->id_terminal_muat,
             'id_jenis_kapal' => $request->id_jenis_kapal,
-            'agen_muat' => $request->agen_muat,
+            'agen' => $request->agen,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pbm.index')->with('success', 'Data berhasil diubah');
@@ -178,7 +178,6 @@ class PbmController extends Controller
             'bongkar_m3' => $request->bongkar_m3,
             'id_terminal_bongkar' => $request->id_terminal_bongkar,
             'id_jenis_kapal' => $request->id_jenis_kapal,
-            'agen_bongkar' => $request->agen_bongkar,
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pbm.index')->with('success', 'Data berhasil diubah');

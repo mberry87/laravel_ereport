@@ -29,7 +29,7 @@ class CreateJptsTable extends Migration
                 ->on('jenis_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('agen_muat')->nullable();
+            $table->string('agen')->nullable();
             $table->string('tgl_muat')->nullable();
             $table->string('ukuran_isi_kotor')->nullable();
             $table->string('ukuran_dwt')->nullable();
@@ -50,7 +50,6 @@ class CreateJptsTable extends Migration
             $table->string('tgl_selesai_muat')->nullable();
             $table->string('perusahaan_muat_pengirim')->nullable();
             $table->string('perusahaan_muat_penerima')->nullable();
-            $table->string('agen_bongkar')->nullable();
             $table->string('tgl_bongkar')->nullable();
             $table->string('bongkar_sistem')->nullable();
             $table->string('bongkar_komoditi')->nullable();

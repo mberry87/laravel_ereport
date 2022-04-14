@@ -30,12 +30,6 @@ class CreateKeagenanKapalsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_pelabuhan_datang')
-                ->nullable()
-                ->references('id')
-                ->on('pelabuhan')
-                ->onUpdate('SET NULL')
-                ->onDelete('SET NULL');
             $table->string('jumlah_bongkar_datang')->nullable();
             $table->string('jenis_muatan_datang')->nullable();
             $table->string('tgl_berangkat')->nullable();
@@ -45,45 +39,21 @@ class CreateKeagenanKapalsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_pelabuhan_berangkat')
-                ->nullable()
-                ->references('id')
-                ->on('pelabuhan')
-                ->onUpdate('SET NULL')
-                ->onDelete('SET NULL');
             $table->string('jumlah_muatan_berangkat')->nullable();
             $table->string('jenis_muatan_berangkat')->nullable();
-            $table->foreignId('id_status_trayek_datang')
+            $table->foreignId('id_status_trayek')
                 ->nullable()
                 ->references('id')
                 ->on('status_trayek')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_status_trayek_berangkat')
-                ->nullable()
-                ->references('id')
-                ->on('status_trayek')
-                ->onUpdate('SET NULL')
-                ->onDelete('SET NULL');
-            $table->foreignId('id_status_kapal_datang')
+            $table->foreignId('id_status_kapal')
                 ->nullable()
                 ->references('id')
                 ->on('status_kapal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->foreignId('id_status_kapal_berangkat')
-                ->nullable()
-                ->references('id')
-                ->on('status_kapal')
-                ->onUpdate('SET NULL')
-                ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal_datang')
-                ->nullable()
-                ->references('id')
-                ->on('jenis_kapal')
-                ->onUpdate('SET NULL')
-                ->onDelete('SET NULL');
-            $table->foreignId('id_jenis_kapal_berangkat')
+            $table->foreignId('id_jenis_kapal')
                 ->nullable()
                 ->references('id')
                 ->on('jenis_kapal')

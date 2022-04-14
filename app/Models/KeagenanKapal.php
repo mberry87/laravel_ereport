@@ -28,47 +28,20 @@ class KeagenanKapal extends Model
         return $this->belongsTo(Terminal::class, 'id_terminal_berangkat');
     }
 
-    public function pelabuhan_datang()
+    public function status_trayek()
     {
-        return $this->belongsTo(Terminal::class, 'id_pelabuhan_datang');
+        return $this->belongsTo(StatusTrayek::class, 'id_status_trayek');
     }
 
-
-    public function pelabuhan_berangkat()
+    public function status_kapal()
     {
-        return $this->belongsTo(Terminal::class, 'id_pelabuhan_berangkat');
+        return $this->belongsTo(StatusKapal::class, 'id_status_kapal');
     }
 
-    public function status_trayek_datang()
+    public function jenis_kapal()
     {
-        return $this->belongsTo(StatusTrayek::class, 'id_status_trayek_datang');
+        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal');
     }
-
-    public function status_kapal_datang()
-    {
-        return $this->belongsTo(StatusKapal::class, 'id_status_kapal_datang');
-    }
-
-    public function status_trayek_berangkat()
-    {
-        return $this->belongsTo(StatusTrayek::class, 'id_status_trayek_berangkat');
-    }
-
-    public function status_kapal_berangkat()
-    {
-        return $this->belongsTo(StatusKapal::class, 'id_status_kapal_berangkat');
-    }
-
-    public function jenis_kapal_datang()
-    {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_datang');
-    }
-
-    public function jenis_kapal_berangkat()
-    {
-        return $this->belongsTo(JenisKapal::class, 'id_jenis_kapal_berangkat');
-    }
-
 
     public function getDatangAttribute()
     {
