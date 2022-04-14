@@ -85,9 +85,13 @@ class StatustrayekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        StatusTrayek::destroy($id);
-        return redirect()->route('status_trayek.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            StatusTrayek::destroy($id);
+            return redirect()->route('status_trayek.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('status_trayek.index');
     }
 }

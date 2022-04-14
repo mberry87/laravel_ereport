@@ -83,7 +83,7 @@
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form> --}}
-                                        <a href="{{ route('tersus.destroy', $data->id) }}"
+                                        <a href="{{ route('tersus.destroy', $data->id) }}?delete=true"
                                             class="btn btn-danger btn-sm mr-2  d-inline" data-toggle="tooltip" title="hapus"
                                             id="btn-hapus">
                                             <i class="fas fa-trash"></i>

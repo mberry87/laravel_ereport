@@ -77,9 +77,13 @@ class BenderaController extends Controller
      * @param  \App\Models\Bendera  $bendera
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        Bendera::destroy($id);
-        return redirect()->route('bendera.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            Bendera::destroy($id);
+            return redirect()->route('bendera.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('bendera.index');
     }
 }

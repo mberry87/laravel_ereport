@@ -85,9 +85,13 @@ class JeniskapalController extends Controller
      * @param  \App\Models\JenisKapal  $jenisKapal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        JenisKapal::destroy($id);
-        return redirect()->route('jenis_kapal.index')->with('success', 'Data berhasil dihapus');
+        if ($request->delete == 'true') {
+            JenisKapal::destroy($id);
+            return redirect()->route('jenis_kapal.index')->with('success', 'Data berhasil dihapus');
+        }
+        alert()->error('Gagal', 'Data gagal dihapus');
+        return redirect()->route('jenis_kapal.index');
     }
 }
