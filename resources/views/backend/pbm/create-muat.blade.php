@@ -104,7 +104,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Agen</label>
-                                            <input type="text" name="agen_muat" class="form-control" required>
+                                            <input type="text" name="agen" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

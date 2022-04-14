@@ -151,10 +151,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Agen Muat</label>
+                                    <label>Agen</label>
                                     <div class="form-group">
-                                        <input type="text" name="agen_muat" class="form-control" required
-                                            value="{{ $jpt->agen_muat }}">
+                                        <input type="text" name="agen" class="form-control" required
+                                            value="{{ $jpt->agen }}">
                                     </div>
                                 </div>
                             </div>

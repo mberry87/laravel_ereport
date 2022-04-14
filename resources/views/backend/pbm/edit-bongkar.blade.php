@@ -128,10 +128,10 @@
                                                 value="{{ $pbm->tgl_bongkar }}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Agen Bongkar</label>
+                                            <label>Agen</label>
                                             <div class="form-group">
-                                                <input type="text" name="agen_bongkar" class="form-control" required
-                                                    value="{{ $pbm->agen_bongkar }}">
+                                                <input type="text" name="agen" class="form-control" required
+                                                    value="{{ $pbm->agen }}">
                                             </div>
                                         </div>
                                     </div>

@@ -62,6 +62,11 @@
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $jpt->ukuran_loa != null ? $jpt->ukuran_loa : '-' }}</td>
                             </tr>
+                            <tr>
+                                <td style="width: 40%">Agen</td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $jpt->agen != null ? $jpt->agen : '-' }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -71,11 +76,6 @@
                     <h5 class="font-weight-bold mb-4">Laporan Muat</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
-                            <tr>
-                                <td style="width: 40%">Agen Muat</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->agen_muat != null ? $jpt->agen_muat : '-' }}</td>
-                            </tr>
                             <tr>
                                 <td style="width: 40%">Tanggal Mulai</td>
                                 <td class="text-center" style="width: 5%">:</td>
@@ -144,11 +144,6 @@
                     <h5 class="font-weight-bold mb-4">Laporan Bongkar</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
-                            <tr>
-                                <td style="width: 40%">Agen bongkar</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $jpt->agen_bongkar != null ? $jpt->agen_bongkar : '-' }}</td>
-                            </tr>
                             <tr>
                                 <td style="width: 40%">Tanggal Mulai</td>
                                 <td class="text-center" style="width: 5%">:</td>

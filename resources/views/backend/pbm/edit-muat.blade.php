@@ -50,8 +50,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="ukuran_isi_kotor_muat" class="form-control"
-                                                    required value="{{ $pbm->ukuran_isi_kotor }}"
-                                                    placeholder="input gt">
+                                                    required value="{{ $pbm->ukuran_isi_kotor }}" placeholder="input gt">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -129,10 +128,10 @@
                                                 value="{{ $pbm->tgl_muat }}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Agen Muat</label>
+                                            <label>Agen</label>
                                             <div class="form-group">
-                                                <input type="text" name="agen_muat" class="form-control" required
-                                                    value="{{ $pbm->agen_muat }}">
+                                                <input type="text" name="agen" class="form-control" required
+                                                    value="{{ $pbm->agen }}">
                                             </div>
                                         </div>
                                     </div>

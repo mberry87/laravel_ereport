@@ -62,6 +62,11 @@
                                 <td class="text-center" style="width: 5%">:</td>
                                 <td>{{ $pbm->ukuran_loa != null ? $pbm->ukuran_loa : '-' }}</td>
                             </tr>
+                            <tr>
+                                <td style="width: 40%">Agen </td>
+                                <td class="text-center" style="width: 5%">:</td>
+                                <td>{{ $pbm->agen != null ? $pbm->agen : '-' }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -71,11 +76,6 @@
                     <h5 class="font-weight-bold mb-4">Laporan Muat</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
-                            <tr>
-                                <td style="width: 40%">Agen Muat</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->agen_muat != null ? $pbm->agen_muat : '-' }}</td>
-                            </tr>
                             <tr>
                                 <td style="width: 40%">Tanggal Muat</td>
                                 <td class="text-center" style="width: 5%">:</td>
@@ -127,11 +127,6 @@
                     <h5 class="font-weight-bold mb-4">Laporan Bongkar</h5>
                     <table class="table table-striped table-sm">
                         <tbody>
-                            <tr>
-                                <td style="width: 40%">Agen bongkar</td>
-                                <td class="text-center" style="width: 5%">:</td>
-                                <td>{{ $pbm->agen_bongkar != null ? $pbm->agen_bongkar : '-' }}</td>
-                            </tr>
                             <tr>
                                 <td style="width: 40%">Tanggal bongkar</td>
                                 <td class="text-center" style="width: 5%">:</td>
