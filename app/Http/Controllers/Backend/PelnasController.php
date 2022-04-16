@@ -11,6 +11,7 @@ use App\Models\Terminal;
 use App\Models\Pelnas;
 use App\Models\StatusTrayek;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PelnasController extends Controller
 {
@@ -232,5 +233,25 @@ class PelnasController extends Controller
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pelnas.index')->with('success', 'Data berhasil diubah');
+    }
+
+    public function cetakLaporan(Request $request)
+    {
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Pelnas::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $data = Pelnas::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        }
+        $pdf = PDF::loadView('backend.pelnas.laporan', [
+            'data' => $data
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Pelnas-' . time() . ".pdf");
     }
 }

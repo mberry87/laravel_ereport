@@ -10,6 +10,7 @@ use App\Models\StatusKapal;
 use App\Models\JenisKapal;
 use App\Models\Terminal;
 use App\Models\StatusTrayek;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KeagenankapalController extends Controller
 {
@@ -71,7 +72,6 @@ class KeagenankapalController extends Controller
      */
     public function storeDatang(Request $request)
     {
-        dd($request->all());
         KeagenanKapal::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
         return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil disimpan');
     }
@@ -220,5 +220,25 @@ class KeagenankapalController extends Controller
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil diubah');
+    }
+
+    public function cetakLaporan(Request $request)
+    {
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = KeagenanKapal::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $data = KeagenanKapal::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        }
+        $pdf = PDF::loadView('backend.keagenan_kapal.laporan', [
+            'data' => $data
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Keagenan Kapal-' . time() . ".pdf");
     }
 }

@@ -62,6 +62,45 @@
             <div class="card">
                 <div class="card-header">Data JPT</div>
                 <div class="card-body">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cetakLaporan">
+                        <i class="fas fa-file-pdf mr-2"></i>
+                        Cetak Laporan
+                    </button>
+
+                    <div class="modal fade" id="cetakLaporan" tabindex="-1" aria-labelledby="cetakLaporanLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="cetakLaporanLabel">Cetak Laporan Jpt</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('jpt.laporan') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="tgl_awal">Tanggal Awal</label>
+                                            <input type="date" name="tgl_awal" id="tgl_awal" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tgl_akhir">Tanggal Akhir</label>
+                                            <input type="date" name="tgl_akhir" id="tgl_akhir" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                                            <i class="fas fa-times mr-2"></i>
+                                            Batal</button>
+                                        <button type="submit" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-file-pdf mr-2"></i>
+                                            Cetak</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <table id="example1" class="table table-bordered table-striped table-sm">
                         <thead>
                             <tr>

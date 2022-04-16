@@ -1,7 +1,7 @@
 <li class="nav-item dropdown">
 <a class="nav-link" data-toggle="dropdown" href="#">
     <i class="far fa-bell"></i>
-    <span class="badge badge-warning navbar-badge">{{ $count }}</span>
+    <span class="badge badge-warning navbar-badge">{{ ($count == 0) ? '' : $count }}</span>
 </a>
 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
     <span class="dropdown-item dropdown-header">{{ $count }} Pemberitahuan</span>

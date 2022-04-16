@@ -8,6 +8,7 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Tersus;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TersusController extends Controller
 {
@@ -210,5 +211,25 @@ class TersusController extends Controller
 
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
         return redirect()->route('tersus.index')->with('info', 'Data berhasil diubah');
+    }
+
+    public function cetakLaporan(Request $request)
+    {
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Tersus::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $data = Tersus::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        }
+        $pdf = PDF::loadView('backend.tersus.laporan', [
+            'data' => $data
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Tersus-' . time() . ".pdf");
     }
 }
