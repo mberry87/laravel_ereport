@@ -49,12 +49,12 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $d->nama_kapal }}</td>
-            <td>{{ $d->bendera->nama }}</td>
+            <td>{{ ($d->bendera != null) ? $d->bendera->nama : 'Belum datang' }}</td>
             <td>{{ $d->isi_kotor }}</td>
             <td>{{ $d->tgl_datang }}</td>
-            <td>{{ $d->pelabuhan_datang->nama }}</td>
+            <td>{{ ($d->pelabuhan_datang != null) ? $d->pelabuhan_datang->nama : 'Belum datang' }}</td>
             <td>{{ $d->kegiatan_datang }}</td>
-            <td>{{ $d->terminal_datang->nama }}</td>
+            <td>{{ ($d->terminal_datang != null) ? $d->terminal_datang->nama : 'Belum datang' }}</td>
             <td>{{ $d->tgl_berangkat }}</td>
             <td>{{ ($d->pelabuhan_berangkat != null) ? $d->pelabuhan_berangkat->nama : 'Belum berangkat' }}</td>
             <td>{{ $d->kegiatan_berangkat }}</td>

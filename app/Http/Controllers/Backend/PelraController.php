@@ -9,6 +9,7 @@ use App\Models\StatusKapal;
 use App\Models\Pelabuhan;
 use App\Models\StatusTrayek;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PelraController extends Controller
 {
@@ -198,5 +199,31 @@ class PelraController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         return redirect()->route('pelra.index')->with('success', 'Data berhasil diubah');
+    }
+
+    public function cetakLaporan(Request $request)
+    {
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Pelra::whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $rawData = Pelra::where('id_user', auth()->user()->id)
+                ->whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
+        }
+        $pdf = PDF::loadView('backend.pelra.laporan', [
+            'data' => $data
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Pelra-' . time() . ".pdf");
     }
 }

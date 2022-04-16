@@ -51,18 +51,18 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $tersus->nama_kapal }}</td>
-                <td>{{ $tersus->bendera->nama }}</td>
+                <td>{{ ($tersus->bendera != null) ? $tersus->bendera->nama : 'Belum datang' }}</td>
                 <td>{{ $tersus->isi_kotor }}</td>
                 <td>{{ $tersus->tgl_datang }}</td>
-                <td>{{ $tersus->pelabuhan_datang->nama }}</td>
+                <td>{{ ($tersus->pelabuhan_datang != null) ? $tersus->pelabuhan_datang->nama : 'Belum datang' }}</td>
                 <td>{{ $tersus->jumlah_bongkar_datang }}</td>
                 <td>{{ $tersus->jenis_muatan_datang }}</td>
-                <td>{{ $tersus->terminal_datang->nama }}</td>
+                <td>{{ ($tersus->terminal_datang != null) ? $tersus->terminal_datang->nama : 'Belum datang' }}</td>
                 <td>{{ $tersus->tgl_berangkat }}</td>
-                <td>{{ $tersus->pelabuhan_berangkat->nama }}</td>
+                <td>{{ ($tersus->pelabuhan_berangkat != null) ? $tersus->pelabuhan_berangkat->nama : 'Belum berangkat' }}</td>
                 <td>{{ $tersus->jumlah_muatan_berangkat }}</td>
                 <td>{{ $tersus->jenis_muatan_berangkat }}</td>
-                <td>{{ $tersus->terminal_berangkat->nama }}</td>
+                <td>{{ ($tersus->terminal_berangkat) ? $tersus->terminal_berangkat->nama : 'Belum berangkat' }}</td>
             </tr>
             @endforeach
             <tr>

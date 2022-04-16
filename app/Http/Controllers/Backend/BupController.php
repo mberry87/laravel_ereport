@@ -216,10 +216,15 @@ class BupController extends Controller
                 ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
         } else {
-            $data = Bup::where('id_user', auth()->user()->id)
+            $rawData = Bup::where('id_user', auth()->user()->id)
                 ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
         }
         $pdf = PDF::loadView('backend.bup.laporan', [
             'data' => $data
