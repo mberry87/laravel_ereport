@@ -360,11 +360,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="#">strawBerry | Tg.pinang</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.1 Beta
-            </div>
+            <small>Copyright &copy; 2022 strawBerry | Tg.pinang <a href="#"></a>.</small>
         </footer>
 
         <!-- Control Sidebar -->

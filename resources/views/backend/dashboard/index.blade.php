@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
                     <h3>{{ $users }}</h3>
@@ -23,7 +23,7 @@
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-primary">
                 <div class="inner">
                     <h3>{{ $jenis_kapal }}</h3>
@@ -36,7 +36,7 @@
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-success">
                 <div class="inner">
                     <h3>{{ $pelabuhan }}</h3>
@@ -49,7 +49,7 @@
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3>{{ $terminal }}</h3>

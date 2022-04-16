@@ -11,18 +11,58 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <a href="{{ route('pelra.datang.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
-                        <i class="fas fa-backward mr-3"></i>Datang
-                    </a>
-                    <a href="{{ route('pelra.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
-                        <i class="fas fa-forward mr-3"></i>Berangkat
-                    </a>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">Tambah PELRA</div>
+                        <div class="card-body">
+                            <a href="{{ route('pelra.datang.create') }}" class="btn btn-primary btn-sm mb-3 mr-3">
+                                <i class="fas fa-backward mr-3"></i>Datang
+                            </a>
+                            <a href="{{ route('pelra.berangkat.create') }}" class="btn btn-danger btn-sm mb-3">
+                                <i class="fas fa-forward mr-3"></i>Berangkat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">Filter</div>
+                        <div class="card-body">
+                            <form action="{{ route('tersus.index') }}" method="GET">
+                                <input type="hidden" name="filter" value="yes" required>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Tanggal awal:</label>
+                                            <input type="date" name="tanggal_awal" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Tanggal akhir:</label>
+                                            <input type="date" name="tanggal_akhir" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-info btn-sm mb-md-2" type="submit">
+                                            <i class="fas fa-table mr-2"></i>
+                                            Tampilkan
+                                        </button>
+                                        <a class="btn btn-secondary btn-sm" href="{{ route('tersus.index') }}">
+                                            <i class="fas fa-undo mr-2"></i>
+                                            Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card">
+                <div class="card-header">Data PELRA</div>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped table-sm">
                         <thead>
