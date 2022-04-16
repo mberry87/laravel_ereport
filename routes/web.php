@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/tersus/show/{id}', [TersusController::class, 'show'])->name('tersus.show');
     Route::get('/tersus/delete/{id}', [TersusController::class, 'destroy'])->name('tersus.destroy');
+    Route::post('/tersus/laporan', [TersusController::class, 'cetakLaporan'])->name('tersus.laporan');
 
     // bup
 
@@ -95,6 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/bup/show/{id}', [BupController::class, 'show'])->name('bup.show');
     Route::get('/bup/delete/{id}', [BupController::class, 'destroy'])->name('bup.destroy');
+    Route::post('/bup/laporan', [BupController::class, 'cetakLaporan'])->name('bup.laporan');
 
 
     // pelnas
@@ -111,6 +113,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
     Route::get('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
+    Route::post('/pelnas/laporan', [PelnasController::class, 'cetakLaporan'])->name('pelnas.laporan');
 
     // keagenan kapal
     Route::get('/keagenan_kapal/index', [KeagenankapalController::class, 'index'])->name('keagenan_kapal.index');
@@ -126,6 +129,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
     Route::get('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
+    Route::post('/keagenan_kapal/laporan', [KeagenankapalController::class, 'cetakLaporan'])->name('keagenan_kapal.laporan');
 
     // PBM
     Route::get('/pbm/index', [PbmController::class, 'index'])->name('pbm.index');
@@ -141,6 +145,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/pbm/show/{id}', [PbmController::class, 'show'])->name('pbm.show');
     Route::get('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
+    Route::post('/pbm/laporan', [PbmController::class, 'cetakLaporan'])->name('pbm.laporan');
 
     // JPT
     Route::get('/jpt/index', [JptController::class, 'index'])->name('jpt.index');
@@ -156,6 +161,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/jpt/show/{id}', [JptController::class, 'show'])->name('jpt.show');
     Route::get('/jpt/delete/{id}', [JptController::class, 'destroy'])->name('jpt.destroy');
+    Route::post('/jpt/laporan', [JptController::class, 'cetakLaporan'])->name('jpt.laporan');
 
     // PELRA
     Route::get('/pelra/index', [PelraController::class, 'index'])->name('pelra.index');
@@ -171,6 +177,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/pelra/show/{id}', [PelraController::class, 'show'])->name('pelra.show');
     Route::get('/pelra/delete/{id}', [PelraController::class, 'destroy'])->name('pelra.destroy');
+    Route::post('/pelra/laporan', [PelraController::class, 'cetakLaporan'])->name('pelra.laporan');
 
 
 
