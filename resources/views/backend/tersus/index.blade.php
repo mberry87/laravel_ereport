@@ -119,7 +119,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('tersus.laporan') }}" method="POST">
+                <form action="{{ route('tersus.laporan') }}" method="POST" formtarget="_blank" target="_blank">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
