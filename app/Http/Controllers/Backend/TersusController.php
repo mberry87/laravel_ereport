@@ -197,6 +197,6 @@ class TersusController extends Controller
             'data' => $data
         ]);
         $pdf->setPaper('a4', 'landscape');
-        return $pdf->stream('Tersus-' . time() . ".pdf");
+        return $pdf->stream('Tersus-' . time() . ".pdf", array('Attachment' => false));
     }
 }
