@@ -16,8 +16,25 @@ class PbmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
+            if (auth()->user()->role == 'admin') {
+                return view('backend.pbm.index', [
+                    'pbm' => PBM::with('bendera')
+                        ->whereBetween('tgl_muat', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->orWhereBetween('tgl_bongkar', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->get()
+                ]);
+            }
+            return view('backend.pbm.index', [
+                'pbm' => PBM::with('bendera')
+                    ->where('id_user', auth()->user()->id)
+                    ->whereBetween('tgl_muat', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->orWhereBetween('tgl_bongkar', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->get()
+            ]);
+        }
         if (auth()->user()->role == 'admin') {
             return view('backend.pbm.index', [
                 'pbm' => Pbm::with('bendera')->get()

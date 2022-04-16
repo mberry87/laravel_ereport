@@ -26,11 +26,11 @@
 </div>
 @endif --}}
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="card">
-                        <div class="card-header">Tambah Tersus</div>
+                        <div class="card-header">Tambah TERSUS</div>
                         <div class="card-body">
                             <a href="{{ route('tersus.datang.create') }}" class="btn btn-primary btn-sm mr-3">
                                 <i class="fas fa-backward mr-3"></i>Datang
@@ -48,28 +48,28 @@
                             <form action="{{ route('tersus.index') }}" method="GET">
                                 <input type="hidden" name="filter" value="yes" required>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="d-block form-group">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Tanggal awal:</label>
                                             <input type="date" name="tanggal_awal" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="d-block form-group">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Tanggal akhir:</label>
                                             <input type="date" name="tanggal_akhir" required>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group text-center">
-                                    <button class="btn btn-info btn-sm" type="submit">
-                                        <i class="fas fa-table mr-2"></i>
-                                        Tampilkan
-                                    </button>
-                                    <a class="btn btn-secondary btn-sm" href="{{ route('tersus.index') }}">
-                                        <i class="fas fa-undo mr-2"></i>
-                                        Reset
-                                    </a>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-info btn-sm mb-md-2" type="submit">
+                                            <i class="fas fa-table mr-2"></i>
+                                            Tampilkan
+                                        </button>
+                                        <a class="btn btn-secondary btn-sm" href="{{ route('tersus.index') }}">
+                                            <i class="fas fa-undo mr-2"></i>
+                                            Reset
+                                        </a>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    Data Tersus
+                    Data TERSUS
                 </div>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped table-sm">

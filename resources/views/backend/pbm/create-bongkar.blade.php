@@ -55,6 +55,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>bongkar</label>
                                     <div class="row">
