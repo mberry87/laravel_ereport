@@ -10,7 +10,22 @@ class Tersus extends Model
     use HasFactory;
     protected $table = 'tersus';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama_kapal',
+        'id_bendera',
+        'isi_kotor',
+        'tgl_datang',
+        'id_terminal_datang',
+        'id_pelabuhan_datang',
+        'jumlah_bongkar_datang',
+        'jenis_muatan_datang',
+        'tgl_berangkat',
+        'id_terminal_berangkat',
+        'id_pelabuhan_berangkat',
+        'jumlah_muatan_berangkat',
+        'jenis_muatan_berangkat',
+        'id_user'
+    ];
 
     public function bendera()
     {
@@ -30,13 +45,13 @@ class Tersus extends Model
 
     public function pelabuhan_datang()
     {
-        return $this->belongsTo(Terminal::class, 'id_pelabuhan_datang');
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_datang');
     }
 
 
     public function pelabuhan_berangkat()
     {
-        return $this->belongsTo(Terminal::class, 'id_pelabuhan_berangkat');
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_berangkat');
     }
 
     public function getDatangAttribute()

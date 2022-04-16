@@ -67,17 +67,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Tersus
     Route::get('/tersus/index', [TersusController::class, 'index'])->name('tersus.index');
-    Route::get('/tersus/create-tersus-datang', [TersusController::class, 'createDatang'])->name('tersus.datang.create');
-    Route::post('/tersus/store-tersus-datang', [TersusController::class, 'storeDatang'])->name('tersus.datang.store');
-    Route::get('/tersus/{id}/edit-tersus-datang/', [TersusController::class, 'editDatang'])->name('tersus.datang.edit');
-    Route::put('/tersus/update-tersus-datang/{id}', [TersusController::class, 'updateDatang'])->name('tersus.datang.update');
-
-    Route::get('/tersus/create-tersus-berangkat', [TersusController::class, 'createBerangkat'])->name('tersus.berangkat.create');
-    Route::post('/tersus/create-tersus-berangkat', [TersusController::class, 'storeBerangkat'])->name('tersus.berangkat.store');
-    Route::get('/tersus/{id}/edit-tersus-berangkat/', [TersusController::class, 'editBerangkat'])->name('tersus.berangkat.edit');
-    Route::put('/tersus/update-tersus-berangkat/{id}', [TersusController::class, 'updateBerangkat'])->name('tersus.berangkat.update');
-
-    Route::get('/tersus/show/{id}', [TersusController::class, 'show'])->name('tersus.show');
+    Route::get('/tersus/create', [TersusController::class, 'create'])->name('tersus.create');
+    Route::post('/tersus/store', [TersusController::class, 'store'])->name('tersus.store');
+    Route::get('/tersus/{id}/edit', [TersusController::class, 'edit'])->name('tersus.edit');
+    Route::put('/tersus/{id}', [TersusController::class, 'update'])->name('tersus.update');
+    Route::get('/tersus/{id}/show', [TersusController::class, 'show'])->name('tersus.show');
     Route::get('/tersus/delete/{id}', [TersusController::class, 'destroy'])->name('tersus.destroy');
     Route::post('/tersus/laporan', [TersusController::class, 'cetakLaporan'])->name('tersus.laporan');
 
