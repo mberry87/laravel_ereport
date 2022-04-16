@@ -8,6 +8,7 @@ use App\Models\Bendera;
 use App\Models\JenisKapal;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PbmController extends Controller
 {
@@ -185,5 +186,25 @@ class PbmController extends Controller
             'update_oleh' =>  auth()->user()->name,
         ]);
         return redirect()->route('pbm.index')->with('success', 'Data berhasil diubah');
+    }
+
+    public function cetakLaporan(Request $request)
+    {
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Pbm::whereBetween('tgl_bongkar', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_muat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $data = Pbm::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_bongkar', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_muat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        }
+        $pdf = PDF::loadView('backend.pbm.laporan', [
+            'data' => $data
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Pbm-' . time() . ".pdf");
     }
 }

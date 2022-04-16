@@ -8,6 +8,7 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Bup;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BupController extends Controller
 {
@@ -187,5 +188,25 @@ class BupController extends Controller
         ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
         return redirect()->route('bup.index')->with('success', 'Data berhasil diubah');
+    }
+
+    public function cetakLaporan(Request $request)
+    {
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Bup::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $data = Bup::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        }
+        $pdf = PDF::loadView('backend.bup.laporan', [
+            'data' => $data
+        ]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Bup-' . time() . ".pdf");
     }
 }
