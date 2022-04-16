@@ -56,10 +56,10 @@
             <td>{{ $d->bendera->nama }}</td>
             <td>{{ $d->jenis_kapal->nama }}</td>
             <td>{{ $d->tgl_datang }}</td>
-            <td>{{ $d->terminal_datang->nama }}</td>
+            <td>{{($d->terminal_datang != null) ? $d->terminal_datang->nama : '' }}</td>
             <td>{{ $d->jumlah_bongkar_datang }}</td>
             <td>{{ $d->jenis_muatan_datang }}</td>
-            <td>{{ $d->terminal_datang->nama }}</td>
+            <td>{{ ($d->terminal_datang != null) ? $d->terminal_datang->nama : '' }}</td>
             <td>{{ $d->tgl_berangkat }}</td>
             <td>{{ ($d->terminal_berangkat != null) ? $d->terminal_berangkat->nama : 'Belum berangkat' }}</td>
             <td>{{ ($d->jumlah_bongkar_berangkat != null) ? $d->jumlah_bongkar_berangkat : 'Belum berangkat' }}</td>

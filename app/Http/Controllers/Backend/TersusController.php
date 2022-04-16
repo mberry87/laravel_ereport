@@ -215,16 +215,22 @@ class TersusController extends Controller
 
     public function cetakLaporan(Request $request)
     {
-        $data = null;
+        $data = array();
         if (auth()->user()->role == 'admin') {
             $data = Tersus::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
         } else {
-            $data = Tersus::where('id_user', auth()->user()->id)
+            $rawData = Tersus::where('id_user', auth()->user()->id)
                 ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
+
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
         }
         $pdf = PDF::loadView('backend.tersus.laporan', [
             'data' => $data

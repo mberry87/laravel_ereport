@@ -214,21 +214,27 @@ class JptController extends Controller
 
     public function cetakLaporan(Request $request)
     {
-        $data = null;
+        $data = array();
         if (auth()->user()->role == 'admin') {
-            $data = Jpt::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
-                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+            $data = Jpt::whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
         } else {
-            $data = Jpt::where('id_user', auth()->user()->id)
-                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
-                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+            $rawData = Jpt::where('id_user', auth()->user()->id)
+                ->whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
+
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
         }
-        $pdf = PDF::loadView('backend.keagenan_kapal.laporan', [
+        $pdf = PDF::loadView('backend.jpt.laporan', [
             'data' => $data
         ]);
         $pdf->setPaper('a4', 'landscape');
-        return $pdf->stream('Keagenan Kapal-' . time() . ".pdf");
+        return $pdf->stream('Jpt-' . time() . ".pdf");
     }
 }

@@ -207,16 +207,22 @@ class PbmController extends Controller
 
     public function cetakLaporan(Request $request)
     {
-        $data = null;
+        $data = array();
         if (auth()->user()->role == 'admin') {
             $data = Pbm::whereBetween('tgl_bongkar', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_muat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
         } else {
-            $data = Pbm::where('id_user', auth()->user()->id)
+            $rawData = Pbm::where('id_user', auth()->user()->id)
                 ->whereBetween('tgl_bongkar', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_muat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
+
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
         }
         $pdf = PDF::loadView('backend.pbm.laporan', [
             'data' => $data

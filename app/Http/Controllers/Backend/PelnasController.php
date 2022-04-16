@@ -239,14 +239,25 @@ class PelnasController extends Controller
     {
         $data = null;
         if (auth()->user()->role == 'admin') {
-            $data = Pelnas::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+            $rawData = Pelnas::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
         } else {
-            $data = Pelnas::where('id_user', auth()->user()->id)
+            $rawData = Pelnas::where('id_user', auth()->user()->id)
                 ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
                 ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
                 ->get();
+
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
         }
         $pdf = PDF::loadView('backend.pelnas.laporan', [
             'data' => $data

@@ -443,12 +443,11 @@
         </script>
         <script>
             $(document).ready(function () {
-                $('select').addClass('select2bs');
+                $('select.form-control').addClass('select2bs');
                 $('.select2bs').select2({
                     theme: 'bootstrap4'
                 });
             });
-
         </script>
     </body>
 

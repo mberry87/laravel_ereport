@@ -71,14 +71,14 @@
             <td>{{ $d->bongkar_ton }}</td>
             <td>{{ $d->bongkar_unit }}</td>
             <td>{{ $d->bongkar_m3 }}</td>
-            <td>{{ $d->terminal_bongkar->nama }}</td>
+            <td>{{ ($d->terminal_bongkar != null) ? $d->terminal_bongkar->nama : '' }}</td>
             <td>{{ $d->muat_sistem }}</td>
             <td>{{ $d->muat_komoditi }}</td>
             <td>{{ $d->muat_jenis }}</td>
             <td>{{ $d->muat_ton }}</td>
             <td>{{ $d->muat_unit }}</td>
             <td>{{ $d->muat_m3 }}</td>
-            <td>{{ $d->terminal_muat->nama }}</td>
+            <td>{{ ($d->terminal_muat != null) ? $d->terminal_muat->nama : '' }}</td>
             <td>{{ $d->agen }}</td>
         </tr>
     @endforeach
