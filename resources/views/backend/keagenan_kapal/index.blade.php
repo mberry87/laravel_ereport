@@ -46,17 +46,15 @@
                                             <input type="date" name="tanggal_akhir" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-info btn-sm mb-md-2" type="submit">
-                                            <i class="fas fa-table mr-2"></i>
-                                            Tampilkan
-                                        </button>
-                                        <a class="btn btn-secondary btn-sm" href="{{ route('tersus.index') }}">
-                                            <i class="fas fa-undo mr-2"></i>
-                                            Reset
-                                        </a>
-                                    </div>
                                 </div>
+                                <button class="btn btn-info btn-sm d-inline" type="submit">
+                                    <i class="fas fa-table mr-2"></i>
+                                    Tampilkan
+                                </button>
+                                <a class="btn btn-secondary btn-sm d-inline" href="{{ route('tersus.index') }}">
+                                    <i class="fas fa-undo mr-2"></i>
+                                    Reset
+                                </a>
                             </form>
                         </div>
                     </div>
