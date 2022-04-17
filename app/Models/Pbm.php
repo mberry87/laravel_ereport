@@ -10,7 +10,32 @@ class Pbm extends Model
     use HasFactory;
     protected $table = 'pbm';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama_kapal',
+        'id_bendera',
+        'id_jenis_kapal',
+        'agen',
+        'ukuran_isi_kotor',
+        'ukuran_dwt',
+        'ukuran_loa',
+        'tgl_muat',
+        'muat_sistem',
+        'muat_komoditi',
+        'muat_jenis',
+        'muat_ton',
+        'muat_unit',
+        'muat_m3',
+        'id_terminal_muat',
+        'tgl_bongkar',
+        'bongkar_sistem',
+        'bongkar_komoditi',
+        'bongkar_jenis',
+        'bongkar_ton',
+        'bongkar_unit',
+        'bongkar_m3',
+        'id_terminal_bongkar',
+        'id_user',
+    ];
 
     public function bendera()
     {

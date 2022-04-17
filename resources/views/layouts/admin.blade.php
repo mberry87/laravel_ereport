@@ -52,10 +52,10 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                             @if (auth()->user()->avatar == null)
                             <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
-                                class="user-image img-circle elevation-2" alt="img">
+                                class="user-image img-circle" alt="img">
                             @else
                             <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
-                                class="user-image img-circle elevation-2" width="128" alt="img">
+                                class="user-image img-circle" width="128" alt="img">
                             @endif
                             <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                         </a>
@@ -63,10 +63,10 @@
                             <li class="user-header bg-primary">
                                 @if (auth()->user()->avatar == null)
                                 <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
-                                    class="img-circle elevation-2" alt="img">
+                                    class="img-circle" alt="img">
                                 @else
                                 <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
-                                    class="img-circle elevation-2" width="128" alt="img">
+                                    class="img-circle" width="128" alt="img">
                                 @endif
                                 <p>
                                     {{ auth()->user()->name }}
@@ -96,7 +96,7 @@
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
-            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <aside class="main-sidebar sidebar-dark-primary">
                 <!-- Brand Logo -->
 
                 <a href="/" class="brand-link">

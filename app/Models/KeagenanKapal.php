@@ -10,7 +10,25 @@ class KeagenanKapal extends Model
     use HasFactory;
     protected $table = 'keagenan_kapal';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama_kapal',
+        'id_bendera',
+        'isi_kotor',
+        'tgl_datang',
+        'id_terminal_datang',
+        'jumlah_bongkar_datang',
+        'jenis_muatan_datang',
+        'tgl_berangkat',
+        'id_terminal_berangkat',
+        'jumlah_muatan_berangkat',
+        'jenis_muatan_berangkat',
+        'id_status_trayek',
+        'id_status_kapal',
+        'id_jenis_kapal',
+        'id_user',
+        'id_pelabuhan_datang',
+        'id_pelabuhan_berangkat',
+    ];
 
     public function bendera()
     {
@@ -22,6 +40,15 @@ class KeagenanKapal extends Model
         return $this->belongsTo(Terminal::class, 'id_terminal_datang');
     }
 
+    public function pelabuhan_datang()
+    {
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_datang');
+    }
+
+    public function pelabuhan_berangkat()
+    {
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_berangkat');
+    }
 
     public function terminal_berangkat()
     {
