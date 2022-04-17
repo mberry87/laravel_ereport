@@ -10,7 +10,38 @@ class Jpt extends Model
     use HasFactory;
     protected $table = 'jpt';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama_kapal',
+        'id_bendera',
+        'id_jenis_kapal',
+        'agen',
+        'ukuran_isi_kotor',
+        'ukuran_dwt',
+        'ukuran_loa',
+        'muat_sistem',
+        'muat_komoditi',
+        'muat_jenis',
+        'muat_ton',
+        'muat_unit',
+        'muat_m3',
+        'id_terminal_muat',
+        'bongkar_sistem',
+        'bongkar_komoditi',
+        'bongkar_jenis',
+        'bongkar_ton',
+        'bongkar_unit',
+        'bongkar_m3',
+        'id_terminal_bongkar',
+        'id_user',
+        'tgl_mulai_muat',
+        'tgl_selesai_muat',
+        'tgl_mulai_bongkar',
+        'tgl_selesai_bongkar',
+        'perusahaan_muat_pengirim',
+        'perusahaan_muat_penerima',
+        'perusahaan_bongkar_pengirim',
+        'perusahaan_bongkar_penerima',
+    ];
 
     public function bendera()
     {
@@ -21,7 +52,6 @@ class Jpt extends Model
     {
         return $this->belongsTo(Terminal::class, 'id_terminal_muat');
     }
-
 
     public function terminal_bongkar()
     {
