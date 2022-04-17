@@ -128,21 +128,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // PELRA
     Route::get('/pelra/index', [PelraController::class, 'index'])->name('pelra.index');
-    Route::get('/pelra/create-pelra-datang', [PelraController::class, 'createdatang'])->name('pelra.datang.create');
-    Route::post('/pelra/store-pelra-datang', [PelraController::class, 'storedatang'])->name('pelra.datang.store');
-    Route::get('/pelra/{id}/edit-pelra-datang/', [PelraController::class, 'editdatang'])->name('pelra.datang.edit');
-    Route::put('/pelra/update-pelra-datang/{id}', [PelraController::class, 'updatedatang'])->name('pelra.datang.update');
-
-    Route::get('/pelra/create-pelra-berangkat', [PelraController::class, 'createberangkat'])->name('pelra.berangkat.create');
-    Route::post('/pelra/create-pelra-berangkat', [PelraController::class, 'storeberangkat'])->name('pelra.berangkat.store');
-    Route::get('/pelra/{id}/edit-pelra-berangkat/', [PelraController::class, 'editberangkat'])->name('pelra.berangkat.edit');
-    Route::put('/pelra/update-pelra-berangkat/{id}', [PelraController::class, 'updateberangkat'])->name('pelra.berangkat.update');
-
+    Route::get('/pelra/create', [PelraController::class, 'create'])->name('pelra.create');
+    Route::post('/pelra/store', [PelraController::class, 'store'])->name('pelra.store');
+    Route::get('/pelra/{id}/edit', [PelraController::class, 'edit'])->name('pelra.edit');
+    Route::put('/pelra/update/{id}', [PelraController::class, 'update'])->name('pelra.update');
     Route::get('/pelra/show/{id}', [PelraController::class, 'show'])->name('pelra.show');
     Route::get('/pelra/delete/{id}', [PelraController::class, 'destroy'])->name('pelra.destroy');
     Route::post('/pelra/laporan', [PelraController::class, 'cetakLaporan'])->name('pelra.laporan');
-
-
 
     // user
     Route::resource('/user', UserController::class);
