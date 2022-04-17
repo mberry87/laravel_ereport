@@ -63,10 +63,10 @@
                             <li class="user-header bg-primary">
                                 @if (auth()->user()->avatar == null)
                                 <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
-                                    class="img-circle elevation-2" alt="img">
+                                    class="img-circle" alt="img">
                                 @else
                                 <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
-                                    class="img-circle elevation-2" width="128" alt="img">
+                                    class="img-circle" width="128" alt="img">
                                 @endif
                                 <p>
                                     {{ auth()->user()->name }}
