@@ -76,18 +76,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/tersus/laporan', [TersusController::class, 'cetakLaporan'])->name('tersus.laporan');
 
     // bup
-
     Route::get('/bup/index', [BupController::class, 'index'])->name('bup.index');
-    Route::get('/bup/create-bup-datang', [BupController::class, 'createDatang'])->name('bup.datang.create');
-    Route::post('/bup/store-bup-datang', [BupController::class, 'storeDatang'])->name('bup.datang.store');
-    Route::get('/bup/{id}/edit-bup-datang/', [BupController::class, 'editDatang'])->name('bup.datang.edit');
-    Route::put('/bup/update-bup-datang/{id}', [BupController::class, 'updateDatang'])->name('bup.datang.update');
-
-    Route::get('/bup/create-bup-berangkat', [BupController::class, 'createBerangkat'])->name('bup.berangkat.create');
-    Route::post('/bup/create-bup-berangkat', [BupController::class, 'storeBerangkat'])->name('bup.berangkat.store');
-    Route::get('/bup/{id}/edit-bup-berangkat/', [BupController::class, 'editBerangkat'])->name('bup.berangkat.edit');
-    Route::put('/bup/update-bup-berangkat/{id}', [BupController::class, 'updateBerangkat'])->name('bup.berangkat.update');
-
+    Route::get('/bup/create', [BupController::class, 'create'])->name('bup.create');
+    Route::post('/bup/store', [BupController::class, 'store'])->name('bup.store');
+    Route::get('/bup/{id}/edit', [BupController::class, 'edit'])->name('bup.edit');
+    Route::put('/bup/update/{id}', [BupController::class, 'update'])->name('bup.update');
     Route::get('/bup/show/{id}', [BupController::class, 'show'])->name('bup.show');
     Route::get('/bup/delete/{id}', [BupController::class, 'destroy'])->name('bup.destroy');
     Route::post('/bup/laporan', [BupController::class, 'cetakLaporan'])->name('bup.laporan');

@@ -1,11 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Show Bup')
+@section('title', 'Detail Data BUP')
 
 @section('breadcump')
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data Bup</li>
+        <li class="breadcrumb-item">Dashboard</li>
+        <li class="breadcrumb-item">Data BUP</li>
+        <li class="breadcrumb-item active">Detail</li>
     </ol>
 @endsection
 
@@ -17,20 +18,16 @@
                     <a href="{{ route('bup.index') }}" class="btn btn-secondary btn-sm d-inline">
                         <i class="fas fa-arrow-left mr-2"></i>Kembali
                     </a>
-                    <a href="{{ route('bup.datang.edit', $bup->id) }}" class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
+                    <a href="{{ route('bup.edit', $bup->id) }}" class="btn btn-warning btn-sm mr-2 d-inline mx-3 ">
                         <i class="fas fa-edit mr-2"></i>
-                        Edit kedatangan
-                    </a>
-                    <a href="{{ route('bup.berangkat.edit', $bup->id) }}" class="btn btn-warning btn-sm d-inline">
-                        <i class="fas fa-edit mr-2"></i>
-                        Edit keberangkatan
+                        Edit
                     </a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
                     <h5 class="font-weight-bold mb-4">Info Kapal</h5>
-                    <table class="table table-striped table-sm">
+                    <table class="table table-bordered table-striped table-sm">
                         <tbody>
                             <tr>
                                 <td style="width: 40%">Nama Kapal</td>
@@ -54,7 +51,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="font-weight-bold mb-4">Laporan Kedatangan</h5>
-                    <table class="table table-striped table-sm">
+                    <table class="table table-bordered table-striped table-sm">
                         <tbody>
                             <tr>
                                 <td style="width: 40%">Tanggal Kedatangan</td>
@@ -84,7 +81,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="font-weight-bold mb-4">Laporan Keberangkatan</h5>
-                    <table class="table table-striped table-sm">
+                    <table class="table table-bordered table-striped table-sm">
                         <tbody>
                             <tr>
                                 <td style="width: 40%">Tanggal Berangakt</td>

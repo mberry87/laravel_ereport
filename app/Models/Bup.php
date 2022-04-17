@@ -10,7 +10,20 @@ class Bup extends Model
     use HasFactory;
     protected $table = 'bup';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama_kapal',
+        'id_bendera',
+        'isi_kotor',
+        'tgl_datang',
+        'id_terminal_datang',
+        'id_pelabuhan_datang',
+        'kegiatan_datang',
+        'tgl_berangkat',
+        'id_terminal_berangkat',
+        'id_pelabuhan_berangkat',
+        'kegiatan_berangkat',
+        'id_user',
+    ];
 
     public function bendera()
     {
@@ -22,7 +35,6 @@ class Bup extends Model
         return $this->belongsTo(Terminal::class, 'id_terminal_datang');
     }
 
-
     public function terminal_berangkat()
     {
         return $this->belongsTo(Terminal::class, 'id_terminal_berangkat');
@@ -30,13 +42,13 @@ class Bup extends Model
 
     public function pelabuhan_datang()
     {
-        return $this->belongsTo(Terminal::class, 'id_pelabuhan_datang');
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_datang');
     }
 
 
     public function pelabuhan_berangkat()
     {
-        return $this->belongsTo(Terminal::class, 'id_pelabuhan_berangkat');
+        return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_berangkat');
     }
 
     public function getDatangAttribute()
