@@ -10,19 +10,32 @@ class Pelra extends Model
     use HasFactory;
     protected $table = 'pelra';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama_kapal',
+        'id_bendera',
+        'isi_kotor',
+        'id_status_trayek',
+        'id_status_kapal',
+        'tgl_datang',
+        'id_pelabuhan_datang',
+        'jenis_muatan_datang',
+        'bongkar_tonm3',
+        'tgl_berangkat',
+        'id_pelabuhan_berangkat',
+        'jenis_muatan_berangkat',
+        'muat_tonm3',
+        'id_user'
+    ];
 
     public function bendera()
     {
         return $this->belongsTo(Bendera::class, 'id_bendera');
     }
 
-
     public function pelabuhan_datang()
     {
         return $this->belongsTo(Terminal::class, 'id_pelabuhan_datang');
     }
-
 
     public function pelabuhan_berangkat()
     {

@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/pelnas/store', [PelnasController::class, 'store'])->name('pelnas.store');
     Route::get('/pelnas/{id}/edit', [PelnasController::class, 'edit'])->name('pelnas.edit');
     Route::put('/pelnas/update/{id}', [PelnasController::class, 'update'])->name('pelnas.update');
-    Route::get('/pelnas/show/{id}', [PelnasController::class, 'show'])->name('pelnas.show');
+    Route::get('/pelnas/{id}/show', [PelnasController::class, 'show'])->name('pelnas.show');
     Route::get('/pelnas/delete/{id}', [PelnasController::class, 'destroy'])->name('pelnas.destroy');
     Route::post('/pelnas/laporan', [PelnasController::class, 'cetakLaporan'])->name('pelnas.laporan');
 
@@ -102,7 +102,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/keagenan_kapal/store', [KeagenankapalController::class, 'store'])->name('keagenan_kapal.store');
     Route::get('/keagenan_kapal/{id}/edit', [KeagenankapalController::class, 'edit'])->name('keagenan_kapal.edit');
     Route::put('/keagenan_kapal/update/{id}', [KeagenankapalController::class, 'update'])->name('keagenan_kapal.update');
-    Route::get('/keagenan_kapal/show/{id}', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
+    Route::get('/keagenan_kapal/{id}/show', [KeagenankapalController::class, 'show'])->name('keagenan_kapal.show');
     Route::get('/keagenan_kapal/delete/{id}', [KeagenankapalController::class, 'destroy'])->name('keagenan_kapal.destroy');
     Route::post('/keagenan_kapal/laporan', [KeagenankapalController::class, 'cetakLaporan'])->name('keagenan_kapal.laporan');
 
@@ -112,43 +112,29 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/pbm/store', [PbmController::class, 'store'])->name('pbm.store');
     Route::get('/pbm/{id}/edit', [PbmController::class, 'edit'])->name('pbm.edit');
     Route::put('/pbm/update/{id}', [PbmController::class, 'update'])->name('pbm.update');
-    Route::get('/pbm/show/{id}', [PbmController::class, 'show'])->name('pbm.show');
+    Route::get('/pbm/{id}/show', [PbmController::class, 'show'])->name('pbm.show');
     Route::get('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
     Route::post('/pbm/laporan', [PbmController::class, 'cetakLaporan'])->name('pbm.laporan');
 
     // JPT
     Route::get('/jpt/index', [JptController::class, 'index'])->name('jpt.index');
-    Route::get('/jpt/create-jpt-muat', [JptController::class, 'createMuat'])->name('jpt.muat.create');
-    Route::post('/jpt/store-jpt-muat', [JptController::class, 'storeMuat'])->name('jpt.muat.store');
-    Route::get('/jpt/{id}/edit-jpt-muat/', [JptController::class, 'editMuat'])->name('jpt.muat.edit');
-    Route::put('/jpt/update-jpt-muat/{id}', [JptController::class, 'updateMuat'])->name('jpt.muat.update');
-
-    Route::get('/jpt/create-jpt-bongkar', [JptController::class, 'createBongkar'])->name('jpt.bongkar.create');
-    Route::post('/jpt/create-jpt-bongkar', [JptController::class, 'storeBongkar'])->name('jpt.bongkar.store');
-    Route::get('/jpt/{id}/edit-jpt-bongkar/', [JptController::class, 'editBongkar'])->name('jpt.bongkar.edit');
-    Route::put('/jpt/update-jpt-bongkar/{id}', [JptController::class, 'updateBongkar'])->name('jpt.bongkar.update');
-
+    Route::get('/jpt/create', [JptController::class, 'create'])->name('jpt.create');
+    Route::post('/jpt/store', [JptController::class, 'store'])->name('jpt.store');
+    Route::get('/jpt/{id}/edit', [JptController::class, 'edit'])->name('jpt.edit');
+    Route::put('/jpt/update/{id}', [JptController::class, 'update'])->name('jpt.update');
     Route::get('/jpt/show/{id}', [JptController::class, 'show'])->name('jpt.show');
     Route::get('/jpt/delete/{id}', [JptController::class, 'destroy'])->name('jpt.destroy');
     Route::post('/jpt/laporan', [JptController::class, 'cetakLaporan'])->name('jpt.laporan');
 
     // PELRA
     Route::get('/pelra/index', [PelraController::class, 'index'])->name('pelra.index');
-    Route::get('/pelra/create-pelra-datang', [PelraController::class, 'createdatang'])->name('pelra.datang.create');
-    Route::post('/pelra/store-pelra-datang', [PelraController::class, 'storedatang'])->name('pelra.datang.store');
-    Route::get('/pelra/{id}/edit-pelra-datang/', [PelraController::class, 'editdatang'])->name('pelra.datang.edit');
-    Route::put('/pelra/update-pelra-datang/{id}', [PelraController::class, 'updatedatang'])->name('pelra.datang.update');
-
-    Route::get('/pelra/create-pelra-berangkat', [PelraController::class, 'createberangkat'])->name('pelra.berangkat.create');
-    Route::post('/pelra/create-pelra-berangkat', [PelraController::class, 'storeberangkat'])->name('pelra.berangkat.store');
-    Route::get('/pelra/{id}/edit-pelra-berangkat/', [PelraController::class, 'editberangkat'])->name('pelra.berangkat.edit');
-    Route::put('/pelra/update-pelra-berangkat/{id}', [PelraController::class, 'updateberangkat'])->name('pelra.berangkat.update');
-
+    Route::get('/pelra/create', [PelraController::class, 'create'])->name('pelra.create');
+    Route::post('/pelra/store', [PelraController::class, 'store'])->name('pelra.store');
+    Route::get('/pelra/{id}/edit', [PelraController::class, 'edit'])->name('pelra.edit');
+    Route::put('/pelra/update/{id}', [PelraController::class, 'update'])->name('pelra.update');
     Route::get('/pelra/show/{id}', [PelraController::class, 'show'])->name('pelra.show');
     Route::get('/pelra/delete/{id}', [PelraController::class, 'destroy'])->name('pelra.destroy');
     Route::post('/pelra/laporan', [PelraController::class, 'cetakLaporan'])->name('pelra.laporan');
-
-
 
     // user
     Route::resource('/user', UserController::class);
