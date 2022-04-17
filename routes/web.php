@@ -108,16 +108,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // PBM
     Route::get('/pbm/index', [PbmController::class, 'index'])->name('pbm.index');
-    Route::get('/pbm/create-pbm-muat', [PbmController::class, 'createMuat'])->name('pbm.muat.create');
-    Route::post('/pbm/store-pbm-muat', [PbmController::class, 'storeMuat'])->name('pbm.muat.store');
-    Route::get('/pbm/{id}/edit-pbm-muat/', [PbmController::class, 'editMuat'])->name('pbm.muat.edit');
-    Route::put('/pbm/update-pbm-muat/{id}', [PbmController::class, 'updateMuat'])->name('pbm.muat.update');
-
-    Route::get('/pbm/create-pbm-bongkar', [PbmController::class, 'createBongkar'])->name('pbm.bongkar.create');
-    Route::post('/pbm/create-pbm-bongkar', [PbmController::class, 'storeBongkar'])->name('pbm.bongkar.store');
-    Route::get('/pbm/{id}/edit-pbm-bongkar/', [PbmController::class, 'editBongkar'])->name('pbm.bongkar.edit');
-    Route::put('/pbm/update-pbm-bongkar/{id}', [PbmController::class, 'updateBongkar'])->name('pbm.bongkar.update');
-
+    Route::get('/pbm/create', [PbmController::class, 'create'])->name('pbm.create');
+    Route::post('/pbm/store', [PbmController::class, 'store'])->name('pbm.store');
+    Route::get('/pbm/{id}/edit', [PbmController::class, 'edit'])->name('pbm.edit');
+    Route::put('/pbm/update/{id}', [PbmController::class, 'update'])->name('pbm.update');
     Route::get('/pbm/show/{id}', [PbmController::class, 'show'])->name('pbm.show');
     Route::get('/pbm/delete/{id}', [PbmController::class, 'destroy'])->name('pbm.destroy');
     Route::post('/pbm/laporan', [PbmController::class, 'cetakLaporan'])->name('pbm.laporan');
