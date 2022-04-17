@@ -54,7 +54,6 @@ class Pelnas extends Model
         return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_datang');
     }
 
-
     public function pelabuhan_berangkat()
     {
         return $this->belongsTo(Pelabuhan::class, 'id_pelabuhan_berangkat');

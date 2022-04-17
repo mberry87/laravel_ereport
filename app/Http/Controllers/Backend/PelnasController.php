@@ -100,7 +100,7 @@ class PelnasController extends Controller
             'id_status_trayek_berangkat' => $request->id_status_trayek_datang,
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_datang,
             'id_status_kapal_berangkat' => $request->id_status_kapal_datang,
-            'id_user' => $request->id_user,
+            'id_user' => auth()->user()->id,
         ]);
         return redirect()->route('pelnas.index')->with('success', 'Data berhasil disimpan');
     }
