@@ -21,6 +21,18 @@
                     <i class="fas fa-edit mr-2"></i>
                     Edit
                 </a>
+                <table class="table table-sm table-bordered table-hover mt-3">
+                    <tr>
+                        <th>Diinput Oleh</th>
+                        <th>Nama Perusahaan</th>
+                        <th>Tanggal diinput</th>
+                    </tr>
+                    <tr>
+                        <td>{{ $jpt->user->name }}</td>
+                        <td>{{ $jpt->user->nama_perusahaan }}</td>
+                        <td>{{ $jpt->created_at->format('d M Y, H:i:s') }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="card">
