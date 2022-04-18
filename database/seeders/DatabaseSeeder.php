@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\StatusKapal;
+use App\Models\StatusTrayek;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,10 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        // \App\Models\Terminal::factory(10)->create();
-        // \App\Models\Bendera::factory(10)->create();
-        // \App\Models\Pelabuhan::factory(10)->create();
+        $this->call(BenderaSeeder::class);
+        $this->call(TerminalSeeder::class);
+        $this->call(PelabuhanSeeder::class);
+        $this->call(JenisKapalSeeder::class);
+        $this->call(StatusKapalSeeder::class);
+        $this->call(StatusTrayekSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PengaturanSeeder::class);
     }
