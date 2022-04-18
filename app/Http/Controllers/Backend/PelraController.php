@@ -92,6 +92,9 @@ class PelraController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('pelra.show', $pelra->id), "User " . auth()->user()->name . " menambahkan data Pelra");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('pelra.index')->with('success', 'Data berhasil disimpan');
     }
 

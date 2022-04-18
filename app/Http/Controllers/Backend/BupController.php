@@ -87,6 +87,9 @@ class BupController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('bup.index')->with('success', 'Data berhasil disimpan');
     }
 

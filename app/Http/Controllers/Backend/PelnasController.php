@@ -103,6 +103,9 @@ class PelnasController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('pelnas.show', $pelnas->id), "User " . auth()->user()->name . " menambahkan data pelnas");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('pelnas.index')->with('success', 'Data berhasil disimpan');
     }
 

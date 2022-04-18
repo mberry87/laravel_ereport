@@ -90,6 +90,9 @@ class TersusController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('tersus.index')->with('success', 'Data berhasil disimpan');
     }
 

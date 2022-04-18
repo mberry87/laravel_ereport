@@ -99,6 +99,9 @@ class KeagenankapalController extends Controller
             'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
         ]);
         storeLog(route('keagenan_kapal.show', $keagenan_kapal->id), "User " . auth()->user()->name . " menambahkan data keagenan kapal");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil disimpan');
     }
 
