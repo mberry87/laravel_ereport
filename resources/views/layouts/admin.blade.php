@@ -124,6 +124,7 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-header">MENU UTAMA</li>
                             <li class="nav-item
                         {{ Request::is('admin/tersus/*') ? 'menu-open' : '' }}
                         {{ Request::is('admin/bup/*') ? 'menu-open' : '' }}
@@ -218,6 +219,7 @@
                                 </ul>
                             </li>
                             @if (auth()->user()->role == 'admin')
+                            <li class="nav-header">MENU SISTEM</li>
                             <li class="nav-item
                             {{ Request::is('admin/user') ? 'menu-open' : '' }}
                             {{ Request::is('admin/user/*') ? 'menu-open' : '' }}

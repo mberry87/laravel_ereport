@@ -28,6 +28,7 @@
                 </div>
             @endif --}}
             <div class="card">
+                <div class="card-header">Data Pengguna</div>
                 <div class="card-header">
                     <div class="card-body">
                         <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mb-3">
