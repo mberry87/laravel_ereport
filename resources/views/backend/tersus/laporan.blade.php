@@ -23,7 +23,7 @@
     <body>
         <div style="width: 100%; text-align: center;margin-bottom: 4rem;">
             <div style="margin-bottom: 5px;">LAPORAN BULANAN KEGIATAN OPERASIONAL</div>
-            <div style="margin-bottom: 5px;">DI TERSUS/TUKS PT .............................</div>
+            <div style="margin-bottom: 5px;">DI TERSUS/TUKS {{ strtoupper(auth()->user()->nama_perusahaan) }}</div>
             <div>PELABUHAN TANJUNG UBAN</div>
         </div>
         <table id="data" style="width: 100%; border-collapse: collapse; text-align: center;">
@@ -90,7 +90,7 @@
                         TANJUNG UBAN,
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2022
                         <br><br>
-                        PT......................
+                        {{ strtoupper(auth()->user()->nama_perusahaan) }}
                     </div>
                     <div style="text-align: center;">(..................................................)</div>
                 </td>

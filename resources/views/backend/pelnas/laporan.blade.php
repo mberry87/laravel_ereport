@@ -24,7 +24,7 @@
 <div style="width: 100%; text-align: center;margin-bottom: 4rem;">
     <div style="margin-bottom: 5px;">LAPORAN BULANAN KEGIATAN KUNJUNGAN KAPAL PERUSAHAAN NASIONAL ANGKUTAN LAUT</div>
     <div style="margin-bottom: 5px;">DI PELABUHAN TANJUNG UBAN</div>
-    <div style="margin-bottom: 5px;">PT. ..................................</div>
+    <div style="margin-bottom: 5px;"> {{ strtoupper(auth()->user()->nama_perusahaan) }}</div>
 </div>
 <table id="data" style="width: 100%; border-collapse: collapse; text-align: center;">
     <tr style="background-color: #e8e5e5;">
@@ -96,7 +96,7 @@
                 TANJUNG UBAN,
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ date('Y') }}
                 <br><br>
-                PT......................
+                {{ strtoupper(auth()->user()->nama_perusahaan) }}
             </div>
             <div style="text-align: center;">(..................................................)</div>
         </td>
