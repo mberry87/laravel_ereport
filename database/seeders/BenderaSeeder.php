@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Bendera;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class BenderaSeeder extends Seeder
 {
@@ -15,11 +16,11 @@ class BenderaSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['nama' => 'Indonesia', 'keterangan' => '-'],
-            ['nama' => 'Malaysia', 'keterangan' => '-'],
-            ['nama' => 'Singapura', 'keterangan' => '-'],
-            ['nama' => 'Thailand', 'keterangan' => '-'],
-            ['nama' => 'Filiphina', 'keterangan' => '-'],
+            ['nama' => 'Indonesia', 'keterangan' => '-', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['nama' => 'Malaysia', 'keterangan' => '-', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['nama' => 'Singapura', 'keterangan' => '-', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['nama' => 'Thailand', 'keterangan' => '-', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['nama' => 'Filiphina', 'keterangan' => '-', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ];
         Bendera::insert($data);
     }

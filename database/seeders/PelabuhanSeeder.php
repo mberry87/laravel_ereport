@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pelabuhan;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class PelabuhanSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class PelabuhanSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['kode' => 'PL001', 'nama' => 'Sri Bintan Pura', 'keterangan' => '-'],
+            ['kode' => 'PL001', 'nama' => 'Sri Bintan Pura', 'keterangan' => '-', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ];
         Pelabuhan::insert($data);
     }
