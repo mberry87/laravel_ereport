@@ -71,7 +71,7 @@ class JptController extends Controller
      */
     public function store(Request $request)
     {
-        Jpt::create([
+        $jpt = Jpt::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'id_jenis_kapal' => $request->id_jenis_kapal,
@@ -105,6 +105,7 @@ class JptController extends Controller
             'perusahaan_bongkar_penerima' => $request->perusahaan_bongkar_penerima,
             'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('jpt.show', $jpt->id), "User " . auth()->user()->name . " menambahkan data JPT");
         return redirect()->route('jpt.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -172,6 +173,7 @@ class JptController extends Controller
             'perusahaan_bongkar_pengirim' => $request->perusahaan_bongkar_pengirim,
             'perusahaan_bongkar_penerima' => $request->perusahaan_bongkar_penerima,
         ]);
+        storeLog(route('jpt.show', $jpt->id), "User " . auth()->user()->name . " mengubah data JPT");
         return redirect()->route('jpt.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -185,7 +187,8 @@ class JptController extends Controller
     {
         if ($request->delete == 'true') {
             $this->authorize('view', Jpt::findOrFail($id));
-            Jpt::destroy($id);
+            $jpt = Jpt::destroy($id);
+            storeLog('', "User " . auth()->user()->name . " menghapus data JPT");
             return redirect()->route('jpt.index')->with('success', 'Data berhasil dihapus');
         }
         alert()->error('Gagal', 'Data gagal dihapus');

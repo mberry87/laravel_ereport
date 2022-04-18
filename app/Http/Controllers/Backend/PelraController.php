@@ -75,7 +75,7 @@ class PelraController extends Controller
      */
     public function store(Request $request)
     {
-        Pelra::create([
+        $pelra = Pelra::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -91,6 +91,7 @@ class PelraController extends Controller
             'muat_tonm3' => $request->muat_tonm3,
             'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('pelra.show', $pelra->id), "User " . auth()->user()->name . " menambahkan data Pelra");
         return redirect()->route('pelra.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -154,6 +155,7 @@ class PelraController extends Controller
             'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'muat_tonm3' => $request->muat_tonm3,
         ]);
+        storeLog(route('pelra.show', $pelra->id), "User " . auth()->user()->name . " mengubah data pelra");
         return redirect()->route('pelra.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -168,6 +170,7 @@ class PelraController extends Controller
         if ($request->delete == 'true') {
             $this->authorize('view', Pelra::findOrFail($id));
             Pelra::destroy($id);
+            storeLog('', "User " . auth()->user()->name . " menghapus data pelra");
             return redirect()->route('pelra.index')->with('success', 'Data berhasil dihapus');
         }
         alert()->error('Gagal', 'Data gagal dihapus');
