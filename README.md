@@ -1,9 +1,10 @@
 # Laravel Ereport
 ## Todos
-- [ ] Refactoring PBM
-- [ ] Refactoring JPT
-- [ ] Refactoring PELRA
-- [ ] Remove unused columns in tables
+- [x] Refactoring PBM
+- [x] Refactoring JPT
+- [x] Refactoring PELRA
+- [x] Remove unused columns in tables
+- [ ] Add the company and who inserted the data in detail of each form data section
 - [ ] Template and code cleaning
 - [ ] Dashboard
 - [ ] Twek Report
