@@ -13,6 +13,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">Data Pelabuhan</div>
                 <div class="card-header">
                     <div class="card-body">
                         <a href="{{ route('pelabuhan.create') }}" class="btn btn-primary btn-sm mb-3">

@@ -79,7 +79,7 @@ class KeagenankapalController extends Controller
      */
     public function store(Request $request)
     {
-        KeagenanKapal::create([
+        $keagenan_kapal = KeagenanKapal::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -98,6 +98,7 @@ class KeagenankapalController extends Controller
             'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
             'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
         ]);
+        storeLog(route('keagenan_kapal.show', $keagenan_kapal->id), "User " . auth()->user()->name . " menambahkan data keagenan kapal");
         return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -166,6 +167,7 @@ class KeagenankapalController extends Controller
             'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
             'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
         ]);
+        storeLog(route('keagenan_kapal.show', $keagenan_kapal->id), "User " . auth()->user()->name . " mengubah data keagenan kapal");
         return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -179,7 +181,8 @@ class KeagenankapalController extends Controller
     {
         if ($request->delete == 'true') {
             $this->authorize('view', KeagenanKapal::findOrFail($id));
-            KeagenanKapal::destroy($id);
+            $data = KeagenanKapal::destroy($id);
+            storeLog('', "User " . auth()->user()->name . " menghapus data Keagenan Kapal");
             return redirect()->route('keagenan_kapal.index')->with('success', 'Data berhasil dihapus');
         }
         alert()->error('Gagal', 'Data gagal dihapus');
