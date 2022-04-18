@@ -43,6 +43,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Pesan</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -51,6 +52,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->message }}</td>
+                                        <td>{{ $data->created_at->format('d M Y, H:i:s') }}</td>
                                         <td>
                                             @if ($data->is_read != 1)
                                                 <a href="{{ route('pemberitahuan.read', $data->id) }}"
