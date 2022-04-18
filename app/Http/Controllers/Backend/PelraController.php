@@ -9,6 +9,7 @@ use App\Models\StatusKapal;
 use App\Models\Pelabuhan;
 use App\Models\StatusTrayek;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PelraController extends Controller
 {
@@ -25,6 +26,7 @@ class PelraController extends Controller
                     'pelra' => Pelra::with('bendera')
                         ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                         ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->latest()
                         ->get()
                 ]);
             }
@@ -33,16 +35,19 @@ class PelraController extends Controller
                     ->where('id_user', auth()->user()->id)
                     ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                     ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->latest()
                     ->get()
             ]);
         }
         if (auth()->user()->role == 'admin') {
             return view('backend.pelra.index', [
-                'pelra' => Pelra::with('bendera')->get()
+                'pelra' => Pelra::with('bendera')
+                    ->latest()->get()
             ]);
         }
         return view('backend.pelra.index', [
-            'pelra' => Pelra::with('bendera')->where('id_user', auth()->user()->id)->get()
+            'pelra' => Pelra::with('bendera')->where('id_user', auth()->user()->id)
+                ->latest()->get()
         ]);
     }
 
@@ -51,9 +56,10 @@ class PelraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createDatang()
+    public function create()
     {
-        return view('backend.pelra.create-datang', [
+        return view('backend.pelra.create', [
+            'pelra' => new Pelra(),
             'bendera' => Bendera::all(),
             'pelabuhan' => Pelabuhan::all(),
             'status_trayek' => StatusTrayek::all(),
@@ -67,9 +73,25 @@ class PelraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeDatang(Request $request)
+    public function store(Request $request)
     {
-        Pelra::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
+        $pelra = Pelra::create([
+            'nama_kapal' => $request->nama_kapal,
+            'id_bendera' => $request->id_bendera,
+            'isi_kotor' => $request->isi_kotor,
+            'id_status_trayek' => $request->id_status_trayek,
+            'id_status_kapal' => $request->id_status_kapal,
+            'tgl_datang' => $request->tgl_datang,
+            'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
+            'jenis_muatan_datang' => $request->jenis_muatan_datang,
+            'bongkar_tonm3' => $request->bongkar_tonm3,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
+            'muat_tonm3' => $request->muat_tonm3,
+            'id_user' => auth()->user()->id,
+        ]);
+        storeLog(route('pelra.show', $pelra->id), "User " . auth()->user()->name . " menambahkan data Pelra");
         return redirect()->route('pelra.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -94,11 +116,11 @@ class PelraController extends Controller
      * @param  \App\Models\Pelra  $pelra
      * @return \Illuminate\Http\Response
      */
-    public function editDatang($id)
+    public function edit($id)
     {
         $this->authorize('view', Pelra::findOrFail($id));
         $pelra = Pelra::findOrFail($id);
-        return view('backend.pelra.edit-datang', [
+        return view('backend.pelra.edit', [
             'pelra' => $pelra,
             'bendera' => Bendera::all(),
             'pelabuhan' => Pelabuhan::all(),
@@ -114,7 +136,7 @@ class PelraController extends Controller
      * @param  \App\Models\Pelra  $pelra
      * @return \Illuminate\Http\Response
      */
-    public function updateDatang(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $this->authorize('view', Pelra::findOrFail($id));
         $pelra = Pelra::findOrFail($id);
@@ -122,15 +144,18 @@ class PelraController extends Controller
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
+            'id_status_trayek' => $request->id_status_trayek,
+            'id_status_kapal' => $request->id_status_kapal,
             'tgl_datang' => $request->tgl_datang,
             'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
             'jenis_muatan_datang' => $request->jenis_muatan_datang,
-            'id_status_trayek' => $request->id_status_trayek,
-            'id_status_kapal' => $request->id_status_kapal,
             'bongkar_tonm3' => $request->bongkar_tonm3,
-            'update_oleh' =>  auth()->user()->name,
-            'id_user' => auth()->user()->id,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
+            'muat_tonm3' => $request->muat_tonm3,
         ]);
+        storeLog(route('pelra.show', $pelra->id), "User " . auth()->user()->name . " mengubah data pelra");
         return redirect()->route('pelra.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -145,58 +170,36 @@ class PelraController extends Controller
         if ($request->delete == 'true') {
             $this->authorize('view', Pelra::findOrFail($id));
             Pelra::destroy($id);
+            storeLog('', "User " . auth()->user()->name . " menghapus data pelra");
             return redirect()->route('pelra.index')->with('success', 'Data berhasil dihapus');
         }
         alert()->error('Gagal', 'Data gagal dihapus');
         return redirect()->route('pelra.index');
     }
 
-    public function createBerangkat()
+    public function cetakLaporan(Request $request)
     {
-        return view('backend.pelra.create-berangkat', [
-            'bendera' => Bendera::all(),
-            'pelabuhan' => Pelabuhan::all(),
-            'status_trayek' => StatusTrayek::all(),
-            'status_kapal' => StatusKapal::all(),
-        ]);
-    }
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Pelra::whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $rawData = Pelra::where('id_user', auth()->user()->id)
+                ->whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
 
-    public function storeBerangkat(Request $request)
-    {
-        Pelra::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
-        return redirect()->route('pelra.index')->with('success', 'Data berhasil disimpan');
-    }
-
-    public function editBerangkat($id)
-    {
-        $this->authorize('view', Pelra::findOrFail($id));
-        $pelra = Pelra::findOrFail($id);
-        return view('backend.pelra.edit-berangkat', [
-            'pelra' => $pelra,
-            'bendera' => Bendera::all(),
-            'pelabuhan' => Pelabuhan::all(),
-            'status_trayek' => StatusTrayek::all(),
-            'status_kapal' => StatusKapal::all(),
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
+        }
+        $pdf = PDF::loadView('backend.pelra.laporan', [
+            'data' => $data
         ]);
-    }
-
-    public function updateBerangkat(Request $request, $id)
-    {
-        $this->authorize('view', Pelra::findOrFail($id));
-        $pelra = Pelra::findOrFail($id);
-        $pelra->update([
-            'nama_kapal' => $request->nama_kapal,
-            'id_bendera' => $request->id_bendera,
-            'isi_kotor' => $request->isi_kotor,
-            'tgl_berangkat' => $request->tgl_berangkat,
-            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
-            'id_status_trayek' => $request->id_status_trayek,
-            'id_status_kapal' => $request->id_status_kapal,
-            'muat_tonm3' => $request->muat_tonm3,
-            'update_oleh' =>  auth()->user()->name,
-            'id_user' => auth()->user()->id,
-        ]);
-        return redirect()->route('pelra.index')->with('success', 'Data berhasil diubah');
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Pelra-' . time() . ".pdf");
     }
 }

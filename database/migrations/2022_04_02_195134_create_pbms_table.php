@@ -59,8 +59,6 @@ class CreatePbmsTable extends Migration
                 ->on('terminal')
                 ->onUpdate('SET NULL')
                 ->onDelete('SET NULL');
-            $table->string('input_oleh')->nullable();
-            $table->string('update_oleh')->nullable();
             $table->foreignId('id_user')
                 ->nullable()
                 ->references('id')

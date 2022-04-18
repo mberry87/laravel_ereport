@@ -21,6 +21,8 @@
     <link rel="stylesheet"
         href="{{ asset('admin') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -50,10 +52,10 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                         @if (auth()->user()->avatar == null)
                             <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
-                                class="user-image img-circle elevation-2" alt="img">
+                                class="user-image img-circle" alt="img">
                         @else
-                            <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
-                                class="user-image img-circle elevation-2" width="128" alt="img">
+                            <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="user-image img-circle"
+                                width="128" alt="img">
                         @endif
                         <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                     </a>
@@ -61,10 +63,10 @@
                         <li class="user-header bg-primary">
                             @if (auth()->user()->avatar == null)
                                 <img src="https://ui-avatars.com/api/?size=128&name={{ auth()->user()->name }}"
-                                    class="img-circle elevation-2" alt="img">
+                                    class="img-circle" alt="img">
                             @else
-                                <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
-                                    class="img-circle elevation-2" width="128" alt="img">
+                                <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="img-circle"
+                                    width="128" alt="img">
                             @endif
                             <p>
                                 {{ auth()->user()->name }}
@@ -95,7 +97,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary">
             <!-- Brand Logo -->
 
             <a href="/" class="brand-link">
@@ -109,117 +111,6 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.index') }}"
-                                class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li
-                            class="nav-item
-                        {{ Request::is('admin/tersus/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/bup/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/pelnas/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/keagenan_kapal/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/pbm/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/jpt/*') ? 'menu-open' : '' }}
-                        {{ Request::is('admin/pelra/*') ? 'menu-open' : '' }}">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Form Data
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('tersus.index') }}"
-                                        class="nav-link {{ Request::is('admin/tersus/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data TERSUS
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('bup.index') }}"
-                                        class="nav-link {{ Request::is('admin/bup/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data BUP
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a href="{{ route('pelnas.index') }}"
-                                        class="nav-link {{ Request::is('admin/pelnas/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data PELNAS
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a href="{{ route('keagenan_kapal.index') }}"
-                                        class="nav-link {{ Request::is('admin/keagenan_kapal/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data KEAGENAN KAPAL
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a href="{{ route('pbm.index') }}"
-                                        class="nav-link {{ Request::is('admin/pbm/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data PBM
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a href="{{ route('jpt.index') }}"
-                                        class="nav-link {{ Request::is('admin/jpt/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data JPT
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a href="{{ route('pelra.index') }}"
-                                        class="nav-link {{ Request::is('admin/pelra/*') ? 'active' : '' }}">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Data PELRA
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        @if (auth()->user()->role == 'admin')
-                            <li
-                                class="nav-item
                             {{ Request::is('admin/user') ? 'menu-open' : '' }}
                             {{ Request::is('admin/user/*') ? 'menu-open' : '' }}
                             {{ Request::is('admin/bendera') ? 'menu-open' : '' }}
@@ -359,9 +250,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <small>Copyright &copy; 2022 strawBerry | Tg.pinang <a href="#"></a>.</small>
-        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -369,7 +257,10 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <small>Copyright &copy; 2022 strawBerry | Tg.pinang <a href="#"></a>.</small>
+    </footer>
 
     <!-- jQuery -->
     <script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
@@ -398,6 +289,7 @@
     <script src="{{ asset('admin') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="{{ asset('admin') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('admin') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="{{ asset('admin') }}/plugins/select2/js/select2.full.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function() {
@@ -405,16 +297,6 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
             });
         });
     </script>
@@ -447,7 +329,6 @@
             })
         });
     </script>
-
 </body>
 
 </html>

@@ -8,6 +8,7 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Bup;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BupController extends Controller
 {
@@ -25,6 +26,7 @@ class BupController extends Controller
                     'bup' => Bup::with('bendera')
                         ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                         ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->latest()
                         ->get()
                 ]);
             }
@@ -33,16 +35,17 @@ class BupController extends Controller
                     ->where('id_user', auth()->user()->id)
                     ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                     ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->latest()
                     ->get()
             ]);
         }
         if (auth()->user()->role == 'admin') {
             return view('backend.bup.index', [
-                'bup' => Bup::with('bendera')->get()
+                'bup' => Bup::with('bendera')->latest()->get()
             ]);
         }
         return view('backend.bup.index', [
-            'bup' => Bup::with('bendera')->where('id_user', auth()->user()->id)->get()
+            'bup' => Bup::with('bendera')->where('id_user', auth()->user()->id)->latest()->get()
         ]);
     }
 
@@ -51,9 +54,10 @@ class BupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createDatang()
+    public function create()
     {
-        return view('backend.bup.create-datang', [
+        return view('backend.bup.create', [
+            'bup' => new Bup(),
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all()
@@ -66,9 +70,22 @@ class BupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeDatang(Request $request)
+    public function store(Request $request)
     {
-        $bup = Bup::create($request->all() + ['input_oleh' => auth()->user()->name, 'id_user' => auth()->user()->id]);
+        $bup = Bup::create([
+            'nama_kapal' => $request->nama_kapal,
+            'id_bendera' => $request->id_bendera,
+            'isi_kotor' => $request->isi_kotor,
+            'tgl_datang' => $request->tgl_datang,
+            'id_terminal_datang' => $request->id_terminal_datang,
+            'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
+            'kegiatan_datang' => $request->kegiatan_datang,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_terminal_berangkat' => $request->id_terminal_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'kegiatan_berangkat' => $request->kegiatan_berangkat,
+            'id_user' => auth()->user()->id,
+        ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
         return redirect()->route('bup.index')->with('success', 'Data berhasil disimpan');
     }
@@ -94,11 +111,11 @@ class BupController extends Controller
      * @param  \App\Models\Bup  $bup
      * @return \Illuminate\Http\Response
      */
-    public function editDatang($id)
+    public function edit($id)
     {
         $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
-        return view('backend.bup.edit-datang', [
+        return view('backend.bup.edit', [
             'bup' => $bup,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
@@ -113,7 +130,7 @@ class BupController extends Controller
      * @param  \App\Models\Bup  $bup
      * @return \Illuminate\Http\Response
      */
-    public function updateDatang(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
@@ -125,13 +142,14 @@ class BupController extends Controller
             'id_terminal_datang' => $request->id_terminal_datang,
             'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
             'kegiatan_datang' => $request->kegiatan_datang,
-            'update_oleh' =>  auth()->user()->name,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_terminal_berangkat' => $request->id_terminal_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'kegiatan_berangkat' => $request->kegiatan_berangkat,
         ]);
         storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
         return redirect()->route('bup.index')->with('success', 'Data berhasil diubah');
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -151,59 +169,28 @@ class BupController extends Controller
         return redirect()->route('bup.index');
     }
 
-    public function createBerangkat()
+    public function cetakLaporan(Request $request)
     {
-        return view('backend.bup.create-berangkat', [
-            'bendera' => Bendera::all(),
-            'terminal' => Terminal::all(),
-            'pelabuhan' => Pelabuhan::all()
+        $data = null;
+        if (auth()->user()->role == 'admin') {
+            $data = Bup::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $rawData = Bup::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
+        }
+        $pdf = PDF::loadView('backend.bup.laporan', [
+            'data' => $data
         ]);
-    }
-
-    public function storeBerangkat(Request $request)
-    {
-        $bup = Bup::create([
-            'nama_kapal' => $request->nama_kapal,
-            'id_bendera' => $request->id_bendera,
-            'isi_kotor' => $request->isi_kotor,
-            'tgl_berangkat' => $request->tgl_berangkat,
-            'id_terminal_berangkat' => $request->id_terminal_berangkat,
-            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-            'kegiatan_berangkat' => $request->kegiatan_berangkat,
-            'input_oleh' =>  auth()->user()->name,
-            'id_user' => auth()->user()->id,
-        ]);
-        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " menambah data BUP");
-        return redirect()->route('bup.index')->with('success', 'Data berhasil disimpan');
-    }
-
-    public function editBerangkat($id)
-    {
-        $this->authorize('view', Bup::findOrFail($id));
-        $bup = Bup::findOrFail($id);
-        return view('backend.bup.edit-berangkat', [
-            'bup' => $bup,
-            'bendera' => Bendera::all(),
-            'terminal' => Terminal::all(),
-            'pelabuhan' => Pelabuhan::all(),
-        ]);
-    }
-
-    public function updateBerangkat(Request $request, $id)
-    {
-        $this->authorize('view', Bup::findOrFail($id));
-        $bup = bup::findOrFail($id);
-        $bup->update([
-            'nama_kapal' => $request->nama_kapal,
-            'id_bendera' => $request->id_bendera,
-            'isi_kotor' => $request->isi_kotor,
-            'tgl_berangkat' => $request->tgl_berangkat,
-            'id_terminal_berangkat' => $request->id_terminal_berangkat,
-            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-            'kegiatan_berangkat' => $request->kegiatan_berangkat,
-            'update_oleh' =>  auth()->user()->name,
-        ]);
-        storeLog(route('bup.show', $bup->id), "User " . auth()->user()->name . " mengubah data BUP");
-        return redirect()->route('bup.index')->with('success', 'Data berhasil diubah');
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Bup-' . time() . ".pdf");
     }
 }

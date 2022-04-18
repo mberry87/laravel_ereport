@@ -8,6 +8,7 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\Tersus;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TersusController extends Controller
 {
@@ -24,6 +25,7 @@ class TersusController extends Controller
                     'tersus' => Tersus::with('bendera')
                         ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                         ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                        ->latest()
                         ->get()
                 ]);
             }
@@ -32,16 +34,19 @@ class TersusController extends Controller
                     ->where('id_user', auth()->user()->id)
                     ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                     ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
+                    ->latest()
                     ->get()
             ]);
         }
         if (auth()->user()->role == 'admin') {
             return view('backend.tersus.index', [
-                'tersus' => Tersus::with('bendera')->get()
+                'tersus' => Tersus::with('bendera')
+                    ->latest()->get()
             ]);
         }
         return view('backend.tersus.index', [
-            'tersus' => Tersus::with('bendera')->where('id_user', auth()->user()->id)->get()
+            'tersus' => Tersus::with('bendera')->where('id_user', auth()->user()->id)
+                ->latest()->get()
         ]);
     }
 
@@ -50,9 +55,10 @@ class TersusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createDatang()
+    public function create()
     {
-        return view('backend.tersus.create-datang', [
+        return view('backend.tersus.create', [
+            'tersus' => new Tersus(),
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
             'pelabuhan' => Pelabuhan::all()
@@ -65,10 +71,22 @@ class TersusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeDatang(Request $request)
+    public function store(Request $request)
     {
-        $tersus = Tersus::create($request->all() + [
-            'input_oleh' => auth()->user()->name,
+        $tersus = Tersus::create([
+            'nama_kapal' => $request->nama_kapal,
+            'id_bendera' => $request->id_bendera,
+            'isi_kotor' => $request->isi_kotor,
+            'tgl_datang' => $request->tgl_datang,
+            'id_terminal_datang' => $request->id_terminal_datang,
+            'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
+            'jumlah_bongkar_datang' => $request->jumlah_bongkar_datang,
+            'jenis_muatan_datang' => $request->jenis_muatan_datang,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_terminal_berangkat' => $request->id_terminal_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
+            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
@@ -96,11 +114,11 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function editDatang($id)
+    public function edit($id)
     {
         $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
-        return view('backend.tersus.edit-datang', [
+        return view('backend.tersus.edit', [
             'tersus' => $tersus,
             'bendera' => Bendera::all(),
             'terminal' => Terminal::all(),
@@ -115,7 +133,7 @@ class TersusController extends Controller
      * @param  \App\Models\Tersus  $tersus
      * @return \Illuminate\Http\Response
      */
-    public function updateDatang(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $this->authorize('view', Tersus::findOrFail($id));
         $tersus = Tersus::findOrFail($id);
@@ -128,7 +146,11 @@ class TersusController extends Controller
             'id_pelabuhan_datang' => $request->id_pelabuhan_datang,
             'jumlah_bongkar_datang' => $request->jumlah_bongkar_datang,
             'jenis_muatan_datang' => $request->jenis_muatan_datang,
-            'update_oleh' =>  auth()->user()->name,
+            'tgl_berangkat' => $request->tgl_berangkat,
+            'id_terminal_berangkat' => $request->id_terminal_berangkat,
+            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
+            'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
+            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
         ]);
         storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
         return redirect()->route('tersus.index')->with('info', 'Data berhasil diubah');
@@ -152,63 +174,29 @@ class TersusController extends Controller
         return redirect()->route('tersus.index');
     }
 
-    public function createBerangkat()
+    public function cetakLaporan(Request $request)
     {
-        return view('backend.tersus.create-berangkat', [
-            'bendera' => Bendera::all(),
-            'terminal' => Terminal::all(),
-            'pelabuhan' => Pelabuhan::all()
+        $data = array();
+        if (auth()->user()->role == 'admin') {
+            $data = Tersus::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+        } else {
+            $rawData = Tersus::where('id_user', auth()->user()->id)
+                ->whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
+                ->orWhereBetween('tgl_berangkat', [$request->tgl_awal, $request->tgl_akhir])
+                ->get();
+
+            foreach ($rawData as $d) {
+                if ($d->id_user == auth()->user()->id) {
+                    $data[] = $d;
+                }
+            }
+        }
+        $pdf = PDF::loadView('backend.tersus.laporan', [
+            'data' => $data
         ]);
-    }
-
-
-    public function storeBerangkat(Request $request)
-    {
-        $tersus = Tersus::create([
-            'nama_kapal' => $request->nama_kapal,
-            'id_bendera' => $request->id_bendera,
-            'isi_kotor' => $request->isi_kotor,
-            'tgl_berangkat' => $request->tgl_berangkat,
-            'id_terminal_berangkat' => $request->id_terminal_berangkat,
-            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-            'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
-            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
-            'input_oleh' =>  auth()->user()->name,
-            'id_user' => auth()->user()->id,
-        ]);
-        storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " menambahkan data tersus");
-        return redirect()->route('tersus.index')->with('success', 'Data berhasil disimpan');
-    }
-
-    public function editBerangkat($id)
-    {
-        $this->authorize('view', Tersus::findOrFail($id));
-        $tersus = Tersus::findOrFail($id);
-        return view('backend.tersus.edit-berangkat', [
-            'tersus' => $tersus,
-            'bendera' => Bendera::all(),
-            'terminal' => Terminal::all(),
-            'pelabuhan' => Pelabuhan::all(),
-        ]);
-    }
-
-    public function updateBerangkat(Request $request, $id)
-    {
-        $this->authorize('view', Tersus::findOrFail($id));
-        $tersus = Tersus::findOrFail($id);
-        $tersus->update([
-            'nama_kapal' => $request->nama_kapal,
-            'id_bendera' => $request->id_bendera,
-            'isi_kotor' => $request->isi_kotor,
-            'tgl_berangkat' => $request->tgl_berangkat,
-            'id_terminal_berangkat' => $request->id_terminal_berangkat,
-            'id_pelabuhan_berangkat' => $request->id_pelabuhan_berangkat,
-            'jumlah_muatan_berangkat' => $request->jumlah_muatan_berangkat,
-            'jenis_muatan_berangkat' => $request->jenis_muatan_berangkat,
-            'update_oleh' =>  auth()->user()->name,
-        ]);
-
-        storeLog(route('tersus.show', $tersus->id), "User " . auth()->user()->name . " mengubah data tersus");
-        return redirect()->route('tersus.index')->with('info', 'Data berhasil diubah');
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->stream('Tersus-' . time() . ".pdf", array('Attachment' => false));
     }
 }
