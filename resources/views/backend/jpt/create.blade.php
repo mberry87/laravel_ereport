@@ -26,6 +26,7 @@
                             <i class="fas fa-save mr-3"></i>
                             Simpan
                         </button>
+                        {!! Form::submit('Simpan dan Tambah Baru', array('class' => 'btn btn-secondary btn-sm', 'name' => 'submitShow')) !!}
                         <a href="{{ route('bup.index') }}" class="btn btn-warning btn-sm ml-2">
                             <i class="fas fa-times mr-3"></i>
                             Batal

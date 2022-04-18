@@ -98,6 +98,9 @@ class PbmController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('pbm.show', $pbm->id), "User " . auth()->user()->name . " menambahkan data PBM");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('pbm.index')->with('success', 'Data berhasil disimpan');
     }
 

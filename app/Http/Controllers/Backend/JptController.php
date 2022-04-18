@@ -106,6 +106,9 @@ class JptController extends Controller
             'id_user' => auth()->user()->id,
         ]);
         storeLog(route('jpt.show', $jpt->id), "User " . auth()->user()->name . " menambahkan data JPT");
+        if ($request->submitShow) {
+            return back()->with('success', 'Data berhasil disimpan');
+        }
         return redirect()->route('jpt.index')->with('success', 'Data berhasil disimpan');
     }
 
