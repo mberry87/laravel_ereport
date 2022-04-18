@@ -22,16 +22,4 @@ class AddColumnsToUserTable extends Migration
             $table->enum('status', ['aktif', 'suspend'])->default('aktif');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
-    }
 }

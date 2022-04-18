@@ -80,7 +80,7 @@ class PelnasController extends Controller
      */
     public function store(Request $request)
     {
-        Pelnas::create([
+        $pelnas = Pelnas::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'isi_kotor' => $request->isi_kotor,
@@ -102,6 +102,7 @@ class PelnasController extends Controller
             'id_status_kapal_berangkat' => $request->id_status_kapal_datang,
             'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('pelnas.show', $pelnas->id), "User " . auth()->user()->name . " menambahkan data pelnas");
         return redirect()->route('pelnas.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -173,6 +174,7 @@ class PelnasController extends Controller
             'id_jenis_kapal_berangkat' => $request->id_jenis_kapal_datang,
             'id_status_kapal_berangkat' => $request->id_status_kapal_datang,
         ]);
+        storeLog(route('pelnas.show', $pelnas->id), "User " . auth()->user()->name . " mengubah data pelnas");
         return redirect()->route('pelnas.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -187,6 +189,7 @@ class PelnasController extends Controller
         if ($request->delete == 'true') {
             $this->authorize('view', Pelnas::findOrFail($id));
             Pelnas::destroy($id);
+            storeLog('', "User " . auth()->user()->name . " menghapus data pelnas");
             return redirect()->route('pelnas.index')->with('success', 'Data berhasil dihapus');
         }
         alert()->error('Gagal', 'Data gagal dihapus');

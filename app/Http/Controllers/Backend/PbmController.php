@@ -71,7 +71,7 @@ class PbmController extends Controller
      */
     public function store(Request $request)
     {
-        Pbm::create([
+        $pbm = Pbm::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
             'id_jenis_kapal' => $request->id_jenis_kapal,
@@ -97,6 +97,7 @@ class PbmController extends Controller
             'id_terminal_bongkar' => $request->id_terminal_bongkar,
             'id_user' => auth()->user()->id,
         ]);
+        storeLog(route('pbm.show', $pbm->id), "User " . auth()->user()->name . " menambahkan data PBM");
         return redirect()->route('pbm.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -169,6 +170,7 @@ class PbmController extends Controller
             'bongkar_m3' => $request->bongkar_m3,
             'id_terminal_bongkar' => $request->id_terminal_bongkar,
         ]);
+        storeLog(route('pbm.show', $pbm->id), "User " . auth()->user()->name . " mengubah data PBM");
         return redirect()->route('pbm.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -182,7 +184,8 @@ class PbmController extends Controller
     {
         if ($request->delete == 'true') {
             $this->authorize('view', Pbm::findOrFail($id));
-            Pbm::destroy($id);
+            $pbm = Pbm::destroy($id);
+            storeLog('', "User " . auth()->user()->name . " menghapus data PBM");
             return redirect()->route('pbm.index')->with('success', 'Data berhasil dihapus');
         }
         alert()->error('Gagal', 'Data gagal dihapus');
