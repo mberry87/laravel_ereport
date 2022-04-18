@@ -111,6 +111,116 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.index') }}"
+                            class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-header">MENU UTAMA</li>
+                    <li
+                        class="nav-item
+                        {{ Request::is('admin/tersus/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/bup/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/pelnas/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/keagenan_kapal/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/pbm/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/jpt/*') ? 'menu-open' : '' }}
+                        {{ Request::is('admin/pelra/*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Form Data
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('tersus.index') }}"
+                                    class="nav-link {{ Request::is('admin/tersus/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data TERSUS
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('bup.index') }}"
+                                    class="nav-link {{ Request::is('admin/bup/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data BUP
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="{{ route('pelnas.index') }}"
+                                    class="nav-link {{ Request::is('admin/pelnas/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data PELNAS
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="{{ route('keagenan_kapal.index') }}"
+                                    class="nav-link {{ Request::is('admin/keagenan_kapal/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data KEAGENAN KAPAL
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="{{ route('pbm.index') }}"
+                                    class="nav-link {{ Request::is('admin/pbm/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data PBM
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="{{ route('jpt.index') }}"
+                                    class="nav-link {{ Request::is('admin/jpt/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data JPT
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="{{ route('pelra.index') }}"
+                                    class="nav-link {{ Request::is('admin/pelra/*') ? 'active' : '' }}">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Data PELRA
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @if (auth()->user()->role == 'admin')
+                        <li class="nav-header">MENU SISTEM</li>
+                        <li
+                            class="nav-item
                             {{ Request::is('admin/user') ? 'menu-open' : '' }}
                             {{ Request::is('admin/user/*') ? 'menu-open' : '' }}
                             {{ Request::is('admin/bendera') ? 'menu-open' : '' }}
@@ -125,99 +235,99 @@
                             {{ Request::is('admin/status_kapal/*') ? 'menu-open' : '' }}
                             {{ Request::is('admin/status_trayek') ? 'menu-open' : '' }}
                             {{ Request::is('admin/status_trayek/*') ? 'menu-open' : '' }}">
-                                <a href="#" class="nav-link ">
-                                    <i class="nav-icon fas fa-database"></i>
-                                    <p>
-                                        Master Data
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item ">
-                                        <a href="{{ route('user.index') }}"
-                                            class="nav-link {{ Request::is('admin/user/*') ? 'active' : '' }}{{ Request::is('admin/user') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-user"></i>
-                                            <p>
-                                                Data User
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a href="{{ route('bendera.index') }}"
-                                            class="nav-link {{ Request::is('admin/bendera/*') ? 'active' : '' }}{{ Request::is('admin/bendera') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-flag"></i>
-                                            <p>
-                                                Data Bendera
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('pelabuhan.index') }}"
-                                            class="nav-link {{ Request::is('admin/pelabuhan/*') ? 'active' : '' }}{{ Request::is('admin/pelabuhan') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-anchor"></i>
-                                            <p>
-                                                Data Pelabuhan
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('terminal.index') }}"
-                                            class="nav-link {{ Request::is('admin/terminal/*') ? 'active' : '' }}{{ Request::is('admin/terminal') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-dolly"></i>
-                                            <p>
-                                                Data Terminal
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('jenis_kapal.index') }}"
-                                            class="nav-link {{ Request::is('admin/jenis_kapal/*') ? 'active' : '' }}{{ Request::is('admin/jenis_kapal') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-ship"></i>
-                                            <p>
-                                                Jenis Kapal
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('status_kapal.index') }}"
-                                            class="nav-link {{ Request::is('admin/status_kapal/*') ? 'active' : '' }}{{ Request::is('admin/status_kapal') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-ship"></i>
-                                            <p>
-                                                Status Kapal
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('status_trayek.index') }}"
-                                            class="nav-link {{ Request::is('admin/status_trayek/*') ? 'active' : '' }}{{ Request::is('admin/status_trayek') ? 'active' : '' }}">
-                                            <i class="nav-icon fas fa-clock"></i>
-                                            <p>
-                                                Status Trayek
-                                            </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('pemberitahuan.index') }}"
-                                    class="nav-link {{ Request::is('admin/pemberitahuan') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-bell"></i>
-                                    <p>
-                                        Pemberitahuan
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('pengaturan.index') }}"
-                                    class="nav-link {{ Request::is('admin/pengaturan/index') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-cogs"></i>
-                                    <p>
-                                        Pengaturan
-                                    </p>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
+                            <a href="#" class="nav-link ">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>
+                                    Master Data
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ">
+                                    <a href="{{ route('user.index') }}"
+                                        class="nav-link {{ Request::is('admin/user/*') ? 'active' : '' }}{{ Request::is('admin/user') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>
+                                            Data User
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{ route('bendera.index') }}"
+                                        class="nav-link {{ Request::is('admin/bendera/*') ? 'active' : '' }}{{ Request::is('admin/bendera') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-flag"></i>
+                                        <p>
+                                            Data Bendera
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('pelabuhan.index') }}"
+                                        class="nav-link {{ Request::is('admin/pelabuhan/*') ? 'active' : '' }}{{ Request::is('admin/pelabuhan') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-anchor"></i>
+                                        <p>
+                                            Data Pelabuhan
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('terminal.index') }}"
+                                        class="nav-link {{ Request::is('admin/terminal/*') ? 'active' : '' }}{{ Request::is('admin/terminal') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-dolly"></i>
+                                        <p>
+                                            Data Terminal
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('jenis_kapal.index') }}"
+                                        class="nav-link {{ Request::is('admin/jenis_kapal/*') ? 'active' : '' }}{{ Request::is('admin/jenis_kapal') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-ship"></i>
+                                        <p>
+                                            Jenis Kapal
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('status_kapal.index') }}"
+                                        class="nav-link {{ Request::is('admin/status_kapal/*') ? 'active' : '' }}{{ Request::is('admin/status_kapal') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-ship"></i>
+                                        <p>
+                                            Status Kapal
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('status_trayek.index') }}"
+                                        class="nav-link {{ Request::is('admin/status_trayek/*') ? 'active' : '' }}{{ Request::is('admin/status_trayek') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-clock"></i>
+                                        <p>
+                                            Status Trayek
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pemberitahuan.index') }}"
+                                class="nav-link {{ Request::is('admin/pemberitahuan') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-bell"></i>
+                                <p>
+                                    Pemberitahuan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pengaturan.index') }}"
+                                class="nav-link {{ Request::is('admin/pengaturan/index') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>
+                                    Pengaturan
+                                </p>
+                            </a>
+                        </li>
+                    @endif
+                </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -338,6 +448,23 @@
         });
     </script>
 
+    {{-- Date Print --}}
+    <script>
+        var tw = new Date();
+        if (tw.getTimezoneOffset() == 0)(a = tw.getTime() + (7 * 60 * 60 * 1000))
+        else(a = tw.getTime());
+        tw.setTime(a);
+        var tahun = tw.getFullYear();
+        var hari = tw.getDay();
+        var bulan = tw.getMonth();
+        var tanggal = tw.getDate();
+        var hariarray = new Array("Minggu,", "Senin,", "Selasa,", "Rabu,", "Kamis,", "Jum'at,", "Sabtu,");
+        var bulanarray = new Array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
+            "Oktober", "Nopember", "Desember");
+        document.getElementById("tanggalwaktu").innerHTML = hariarray[hari] + " " + tanggal + " " + bulanarray[bulan] +
+            " " + tahun;
+    </script>
+
     {{-- chartjs --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -381,17 +508,19 @@
         const myChart2 = new Chart(cty, {
             type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['User', 'Bendera', 'Pelabuhan', 'Terminal', 'Jenis Kapal', 'Status Kapal',
+                    'Status Trayek'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [10, 12, 19, 3, 5, 2, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(130, 138, 64, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -399,7 +528,8 @@
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(130, 138, 64, 1)'
                     ],
                     borderWidth: 1
                 }]
