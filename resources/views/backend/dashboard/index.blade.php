@@ -63,4 +63,52 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="card" style="width: 60%">
+                <div class="card-header">Chart Form Data</div>
+                <div class="card-body">
+                    <div>
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="card" style="width: 60%">
+                <div class="card-header">Chart Master Data</div>
+                <div class="card-body">
+                    <div>
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Info Data Terbaru
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Kapal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
