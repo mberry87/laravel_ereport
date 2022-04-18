@@ -47,22 +47,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::resource('/bendera', BenderaController::class);
+    Route::resource('/bendera', BenderaController::class)->except(['delete']);
     Route::get('/bendera/delete/{id}', [BenderaController::class, 'destroy'])->name('bendera.destroy');
 
-    Route::resource('/pelabuhan', PelabuhanController::class);
+    Route::resource('/pelabuhan', PelabuhanController::class)->except(['delete']);
     Route::get('/pelabuhan/delete/{id}', [PelabuhanController::class, 'destroy'])->name('pelabuhan.destroy');
 
-    Route::resource('/terminal', TerminalController::class);
+    Route::resource('/terminal', TerminalController::class)->except(['delete']);
     Route::get('/terminal/delete/{id}', [TerminalController::class, 'destroy'])->name('terminal.destroy');
 
-    Route::resource('/jenis_kapal', JeniskapalController::class);
+    Route::resource('/jenis_kapal', JeniskapalController::class)->except(['delete']);
     Route::get('/jenis_kapal/delete/{id}', [JeniskapalController::class, 'destroy'])->name('jenis_kapal.destroy');
 
-    Route::resource('/status_kapal', StatuskapalController::class);
+    Route::resource('/status_kapal', StatuskapalController::class)->except(['delete']);
     Route::get('/status_kapal/delete/{id}', [StatuskapalController::class, 'destroy'])->name('status_kapal.destroy');
 
-    Route::resource('/status_trayek', StatustrayekController::class);
+    Route::resource('/status_trayek', StatustrayekController::class)->except(['delete']);
     Route::get('/status_trayek/delete/{id}', [StatustrayekController::class, 'destroy'])->name('status_trayek.destroy');
 
     // Tersus
