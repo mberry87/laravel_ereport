@@ -53,8 +53,6 @@ class CreateTersusesTable extends Migration
                 ->onDelete('SET NULL');
             $table->string('jumlah_muatan_berangkat')->nullable();
             $table->string('jenis_muatan_berangkat')->nullable();
-            $table->string('input_oleh')->nullable();
-            $table->string('update_oleh')->nullable();
             $table->foreignId('id_user')
                 ->nullable()
                 ->references('id')

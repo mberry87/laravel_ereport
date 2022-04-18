@@ -53,8 +53,6 @@ class CreatePelrasTable extends Migration
                 ->onDelete('SET NULL');
             $table->string('jenis_muatan_berangkat')->nullable();
             $table->string('muat_tonm3')->nullable();
-            $table->string('input_oleh')->nullable();
-            $table->string('update_oleh')->nullable();
             $table->foreignId('id_user')
                 ->nullable()
                 ->references('id')
