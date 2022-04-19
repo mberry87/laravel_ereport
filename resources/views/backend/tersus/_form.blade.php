@@ -16,8 +16,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Isi kotor</label>
-            <input type="text" name="isi_kotor" class="form-control" required value="{{ old('nama_kapal', $tersus->isi_kotor) }}">
+            <label>Isi kotor (GT)</label>
+            <input type="text" name="isi_kotor" class="form-control" required value="{{ old('isi_kotor', $tersus->isi_kotor) }}">
         </div>
     </div>
 </div>
