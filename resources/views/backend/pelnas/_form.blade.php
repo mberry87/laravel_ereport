@@ -21,7 +21,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Isi kotor</label>
+                    <label>Isi kotor (GT)</label>
                     <input type="text" name="isi_kotor" class="form-control" required
                         value="{{ old('isi_kotor', $pelnas->isi_kotor) }}">
                 </div>
