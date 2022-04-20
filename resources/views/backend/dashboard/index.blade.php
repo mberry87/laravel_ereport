@@ -218,7 +218,7 @@
                     <h5>Petunjuk Penggunaan Sistem Informasi</h5>
                     <p>
                         Manual dan petunjuk penggunaan Sistem Informasi E-Report bisa diakses melalui <a
-                            href="">disini</a>
+                            href="https://bit.ly/3uVQMKY" class="text-primary" target="blank">disini</a>
                     </p>
                 </div>
             </div>
