@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label>Kode Terminal</label>
-                            <input name="keterangan" class="form-control" name="nama" value="{{ $terminal->kode }}"
+                            <input type="text" class="form-control" name="kode" value="{{ $terminal->kode }}"
                                 required>
                         </div>
 
