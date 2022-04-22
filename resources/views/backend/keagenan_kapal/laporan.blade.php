@@ -62,7 +62,7 @@
             <td>{{ ($d->terminal_datang != null) ? $d->terminal_datang->nama : '' }}</td>
             <td>{{ $d->tgl_berangkat }}</td>
             <td>{{ ($d->terminal_berangkat != null) ? $d->terminal_berangkat->nama : 'Belum berangkat' }}</td>
-            <td>{{ ($d->jumlah_bongkar_berangkat != null) ? $d->jumlah_bongkar_berangkat : 'Belum berangkat' }}</td>
+            <td>{{ ($d->jumlah_muatan_berangkat != null) ? $d->jumlah_muatan_berangkat : 'Belum berangkat' }}</td>
             <td>{{ ($d->jenis_muatan_berangkat != null) ? $d->jenis_muatan_berangkat : 'Belum berangkat' }}</td>
             <td>{{ ($d->terminal_berangkat != null) ? $d->terminal_berangkat->nama : 'Belum berangkat' }}</td>
             <td>{{ $d->status_trayek->nama }}</td>

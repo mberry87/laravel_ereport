@@ -30,8 +30,8 @@ class BupController extends Controller
                         ->get()
                 ]);
             }
-            return view('backend.tersus.index', [
-                'tersus' => Bup::with('bendera')
+            return view('backend.bup.index', [
+                'bup' => Bup::with('bendera')
                     ->where('id_user', auth()->user()->id)
                     ->whereBetween('tgl_datang', [$request->tanggal_awal, $request->tanggal_akhir])
                     ->orWhereBetween('tgl_berangkat', [$request->tanggal_awal, $request->tanggal_akhir])
