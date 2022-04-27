@@ -51,9 +51,9 @@
                 </div>
             </form>
 
-            <p class="mb-0">
+            {{-- <p class="mb-0">
                 <a href="{{ route('register') }}" class="text-center">{{ __('Daftar akun baru') }}</a>
-            </p>
+            </p> --}}
         </div>
     </div>
 @endsection
