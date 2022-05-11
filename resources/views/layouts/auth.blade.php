@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script nonce="2fffcb08-6967-44f2-b46e-bad256fd8e73">
+    {{-- <script nonce="2fffcb08-6967-44f2-b46e-bad256fd8e73">
         (function(w, d) {
             ! function(a, e, t, r) {
                 a.zarazData = a.zarazData || {}, a.zarazData.executed = [], a.zarazData.tracks = [], a.zaraz = {
@@ -25,7 +25,7 @@
                 }))
             }(w, d, 0, "script");
         })(window, document);
-    </script>
+    </script> --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
