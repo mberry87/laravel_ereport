@@ -61,7 +61,7 @@
                                                 <a href="{{ route('user.show', $data) }}"
                                                     class="btn btn-warning btn-sm mr-2 d-inline">
                                                     <i class="fas fa-eye mr-2"></i>
-                                                    show
+                                                    lihat
                                                 </a>
                                                 <a href="{{ route('user.edit', $data) }}"
                                                     class="btn btn-warning btn-sm mr-2 d-inline">
