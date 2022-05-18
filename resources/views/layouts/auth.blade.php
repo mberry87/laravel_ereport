@@ -38,6 +38,15 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
     <link rel="stylesheet" href="{{ asset('admin') }}/dist/css/adminlte.min.css?v=3.2.0">
+
+    <style>
+        body{
+            background-image: url("{{ asset('image/perhubungan.png') }}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: -200px -120px;
+        }
+    </style>
 </head>
 
 <body class="hold-transition login-page">
