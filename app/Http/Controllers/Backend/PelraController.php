@@ -10,6 +10,7 @@ use App\Models\Pelabuhan;
 use App\Models\StatusTrayek;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class PelraController extends Controller
 {
@@ -20,6 +21,7 @@ class PelraController extends Controller
      */
     public function index(Request $request)
     {
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.pelra.index', [
@@ -58,6 +60,7 @@ class PelraController extends Controller
      */
     public function create()
     {
+        $this->checkPermission();
         return view('backend.pelra.create', [
             'pelra' => new Pelra(),
             'bendera' => Bendera::all(),
@@ -75,6 +78,7 @@ class PelraController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission();
         $pelra = Pelra::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -106,6 +110,7 @@ class PelraController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pelra::findOrFail($id));
         $pelra = Pelra::findOrFail($id);
         return view('backend.pelra.show', [
@@ -121,6 +126,7 @@ class PelraController extends Controller
      */
     public function edit($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pelra::findOrFail($id));
         $pelra = Pelra::findOrFail($id);
         return view('backend.pelra.edit', [
@@ -141,6 +147,7 @@ class PelraController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pelra::findOrFail($id));
         $pelra = Pelra::findOrFail($id);
         $pelra->update([
@@ -170,6 +177,7 @@ class PelraController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $this->checkPermission();
         if ($request->delete == 'true') {
             $this->authorize('view', Pelra::findOrFail($id));
             Pelra::destroy($id);
@@ -182,6 +190,7 @@ class PelraController extends Controller
 
     public function cetakLaporan(Request $request)
     {
+        $this->checkPermission();
         $data = null;
         if (auth()->user()->role == 'admin') {
             $data = Pelra::whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
@@ -204,5 +213,21 @@ class PelraController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Pelra-' . time() . ".pdf");
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_pelra', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

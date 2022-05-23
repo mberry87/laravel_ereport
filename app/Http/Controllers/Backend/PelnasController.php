@@ -12,6 +12,7 @@ use App\Models\Pelnas;
 use App\Models\StatusTrayek;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class PelnasController extends Controller
 {
@@ -22,6 +23,7 @@ class PelnasController extends Controller
      */
     public function index(Request $request)
     {
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.pelnas.index', [
@@ -61,6 +63,7 @@ class PelnasController extends Controller
      */
     public function create()
     {
+        $this->checkPermission();
         return view('backend.pelnas.create', [
             'pelnas' => new Pelnas(),
             'bendera' => Bendera::all(),
@@ -80,6 +83,7 @@ class PelnasController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission();
         $pelnas = Pelnas::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -117,6 +121,7 @@ class PelnasController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         return view('backend.pelnas.show', [
@@ -132,6 +137,7 @@ class PelnasController extends Controller
      */
     public function edit($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         return view('backend.pelnas.edit', [
@@ -154,6 +160,7 @@ class PelnasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pelnas::findOrFail($id));
         $pelnas = Pelnas::findOrFail($id);
         $pelnas->update([
@@ -189,6 +196,7 @@ class PelnasController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $this->checkPermission();
         if ($request->delete == 'true') {
             $this->authorize('view', Pelnas::findOrFail($id));
             Pelnas::destroy($id);
@@ -201,6 +209,7 @@ class PelnasController extends Controller
 
     public function cetakLaporan(Request $request)
     {
+        $this->checkPermission();
         $data = null;
         if (auth()->user()->role == 'admin') {
             $rawData = Pelnas::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
@@ -228,5 +237,21 @@ class PelnasController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Pelnas-' . time() . ".pdf");
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_pelnas', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

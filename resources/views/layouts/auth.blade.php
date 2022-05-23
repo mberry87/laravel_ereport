@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
     <link rel="stylesheet" href="{{ asset('admin') }}/dist/css/adminlte.min.css?v=3.2.0">
+    <script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
 
     <style>
         body {
@@ -72,7 +73,6 @@
     </div>
 
 
-    <script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
 
     <script src="{{ asset('admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 

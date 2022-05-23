@@ -12,6 +12,7 @@ use App\Models\Pelabuhan;
 use App\Models\Terminal;
 use App\Models\StatusTrayek;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class KeagenankapalController extends Controller
 {
@@ -22,6 +23,7 @@ class KeagenankapalController extends Controller
      */
     public function index(Request $request)
     {
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.keagenan_kapal.index', [
@@ -60,6 +62,7 @@ class KeagenankapalController extends Controller
      */
     public function create()
     {
+        $this->checkPermission();
         return view('backend.keagenan_kapal.create', [
             'keagenan_kapal' => new KeagenanKapal(),
             'bendera' => Bendera::all(),
@@ -79,6 +82,7 @@ class KeagenankapalController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission();
         $keagenan_kapal = KeagenanKapal::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -113,6 +117,7 @@ class KeagenankapalController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission();
         $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         return view('backend.keagenan_kapal.show', [
@@ -128,6 +133,7 @@ class KeagenankapalController extends Controller
      */
     public function edit($id)
     {
+        $this->checkPermission();
         $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         return view('backend.keagenan_kapal.edit', [
@@ -150,6 +156,7 @@ class KeagenankapalController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkPermission();
         $this->authorize('view', KeagenanKapal::findOrFail($id));
         $keagenan_kapal = KeagenanKapal::findOrFail($id);
         $keagenan_kapal->update([
@@ -182,6 +189,7 @@ class KeagenankapalController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $this->checkPermission();
         if ($request->delete == 'true') {
             $this->authorize('view', KeagenanKapal::findOrFail($id));
             $data = KeagenanKapal::destroy($id);
@@ -194,6 +202,7 @@ class KeagenankapalController extends Controller
 
     public function cetakLaporan(Request $request)
     {
+        $this->checkPermission();
         $data = null;
         if (auth()->user()->role == 'admin') {
             $data = KeagenanKapal::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
@@ -216,5 +225,21 @@ class KeagenankapalController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Keagenan Kapal-' . time() . ".pdf");
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_keagenan_kapal', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

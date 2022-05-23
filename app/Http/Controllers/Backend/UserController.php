@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -78,7 +79,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('backend.user.edit', [
-            'user' => $user
+            'user' => $user,
+            'permissions' => Permission::all()
         ]);
     }
 
@@ -136,5 +138,12 @@ class UserController extends Controller
             'password' => Hash::make($user->email)
         ]);
         return back()->with('success', 'Status user berhasil diubah');
+    }
+
+    public function updatePermission(Request $request)
+    {
+        $user = User::findOrFail($request->user_id);
+        $user->permissions()->sync($request->permission);
+        return back();
     }
 }

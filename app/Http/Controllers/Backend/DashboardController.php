@@ -62,7 +62,11 @@ class DashboardController extends Controller
                 'pemberitahuan'
             ));
         } else {
-
+            $validPermissions = [];
+            $userPermissions = User::findOrFail(auth()->user()->id);
+            foreach($userPermissions->permissions as $permission) {
+                array_push($validPermissions, $permission->name);
+            }
             $tersus = Tersus::where('id_user', auth()->user()->id)->count();
             $bup = Bup::where('id_user', auth()->user()->id)->count();
             $pelnas = Pelnas::where('id_user', auth()->user()->id)->count();
@@ -79,6 +83,7 @@ class DashboardController extends Controller
                 'pelra',
                 'pelnas',
                 'keagenanKapal',
+                'validPermissions'
             ));
         }
     }
