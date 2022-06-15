@@ -9,6 +9,7 @@ use App\Models\Terminal;
 use App\Models\Bup;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class BupController extends Controller
 {
@@ -20,6 +21,7 @@ class BupController extends Controller
     public function index(Request $request)
 
     {
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.bup.index', [
@@ -56,6 +58,7 @@ class BupController extends Controller
      */
     public function create()
     {
+        $this->checkPermission();
         return view('backend.bup.create', [
             'bup' => new Bup(),
             'bendera' => Bendera::all(),
@@ -72,6 +75,7 @@ class BupController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission();
         $bup = Bup::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -101,6 +105,7 @@ class BupController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
         return view('backend.bup.show', [
@@ -116,6 +121,7 @@ class BupController extends Controller
      */
     public function edit($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
         return view('backend.bup.edit', [
@@ -135,6 +141,7 @@ class BupController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkPermission();
         $this->authorize('view', Bup::findOrFail($id));
         $bup = Bup::findOrFail($id);
         $bup->update([
@@ -162,6 +169,7 @@ class BupController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $this->checkPermission();
         if ($request->delete == 'true') {
             $this->authorize('view', Bup::findOrFail($id));
             Bup::destroy($id);
@@ -174,6 +182,7 @@ class BupController extends Controller
 
     public function cetakLaporan(Request $request)
     {
+        $this->checkPermission();
         $data = null;
         if (auth()->user()->role == 'admin') {
             $data = Bup::whereBetween('tgl_datang', [$request->tgl_awal, $request->tgl_akhir])
@@ -195,5 +204,21 @@ class BupController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Bup-' . time() . ".pdf");
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_bup', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

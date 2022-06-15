@@ -9,6 +9,7 @@ use App\Models\Terminal;
 use App\Models\Tersus;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class TersusController extends Controller
 {
@@ -19,6 +20,7 @@ class TersusController extends Controller
      */
     public function index(Request $request)
     {
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.tersus.index', [
@@ -201,5 +203,21 @@ class TersusController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Tersus-' . time() . ".pdf", array('Attachment' => false));
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_tersus', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

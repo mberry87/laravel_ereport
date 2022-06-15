@@ -114,6 +114,7 @@
             <div class="sidebar">
                 <div class="sidebar">
 
+<<<<<<< HEAD
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -223,6 +224,25 @@
                                 </ul>
                             </li>
                             @if (auth()->user()->role == 'admin')
+=======
+                        <!-- Sidebar Menu -->
+                        <nav class="mt-2">
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                                data-accordion="false">
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.index') }}"
+                                        class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            Dashboard
+                                        </p>
+                                    </a>
+                                </li>
+
+                                 <x-backend.side-menu />
+
+                                @if (auth()->user()->role == 'admin')
+>>>>>>> a64722e810cf7fc4317983525c2f55ddc7d89621
                                 <li class="nav-header">MENU SISTEM</li>
                                 <li
                                     class="nav-item
@@ -239,7 +259,9 @@
                             {{ Request::is('admin/status_kapal') ? 'menu-open' : '' }}
                             {{ Request::is('admin/status_kapal/*') ? 'menu-open' : '' }}
                             {{ Request::is('admin/status_trayek') ? 'menu-open' : '' }}
-                            {{ Request::is('admin/status_trayek/*') ? 'menu-open' : '' }}">
+                            {{ Request::is('admin/status_trayek/*') ? 'menu-open' : '' }}
+                            {{ Request::is('admin/permissions') ? 'menu-open' : '' }}
+                            {{ Request::is('admin/permissions/*') ? 'menu-open' : '' }}">
                                     <a href="#" class="nav-link ">
                                         <i class="nav-icon fas fa-database"></i>
                                         <p>
@@ -254,6 +276,15 @@
                                                 <i class="nav-icon fas fa-user"></i>
                                                 <p>
                                                     Data User
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('permissions.index') }}"
+                                                class="nav-link {{ Request::is('admin/permissions/*') ? 'active' : '' }}{{ Request::is('admin/permissions') ? 'active' : '' }}">
+                                                <i class="nav-icon fas fa-shield-alt"></i>
+                                                <p>
+                                                    Permission
                                                 </p>
                                             </a>
                                         </li>

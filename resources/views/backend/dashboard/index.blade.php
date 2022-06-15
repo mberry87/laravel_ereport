@@ -124,6 +124,7 @@
         </div>
     @else
         <div class="row">
+            @if(in_array('form_tersus', $validPermissions))
             <div class="col-md-3 col-6">
                 <div class="small-box bg-secondary">
                     <div class="inner">
@@ -137,6 +138,8 @@
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
+            @if(in_array('form_bup', $validPermissions))
             <div class="col-md-3 col-6">
                 <div class="small-box bg-secondary">
                     <div class="inner">
@@ -150,6 +153,8 @@
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
+            @if(in_array('form_keagenan_kapal', $validPermissions))
             <div class="col-md-3 col-6">
                 <div class="small-box bg-secondary">
                     <div class="inner">
@@ -163,6 +168,8 @@
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
+            @if(in_array('form_pbm', $validPermissions))
             <div class="col-md-3 col-6">
                 <div class="small-box bg-secondary">
                     <div class="inner">
@@ -176,6 +183,8 @@
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
+            @if(in_array('form_jpt', $validPermissions))
             <div class="col-md-3 col-6">
                 <div class="small-box bg-secondary">
                     <div class="inner">
@@ -189,6 +198,8 @@
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
+            @if(in_array('form_pelra', $validPermissions))
             <div class="col-md-3 col-6">
                 <div class="small-box bg-secondary">
                     <div class="inner">
@@ -202,6 +213,22 @@
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
+            @if(in_array('form_pelnas', $validPermissions))
+            <div class="col-md-3 col-6">
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h3>{{ $pelnas }}</h3>
+                        <p>PELNAS</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-boat"></i>
+                    </div>
+                    <a href="{{ route('pelnas.index') }}" class="small-box-footer">More info <i
+                            class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-12">

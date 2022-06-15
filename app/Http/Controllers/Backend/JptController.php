@@ -9,6 +9,7 @@ use App\Models\JenisKapal;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class JptController extends Controller
 {
@@ -19,6 +20,8 @@ class JptController extends Controller
      */
     public function index(Request $request)
     {
+        $this->checkPermission();
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.jpt.index', [
@@ -55,6 +58,7 @@ class JptController extends Controller
      */
     public function create()
     {
+        $this->checkPermission();
         return view('backend.jpt.create', [
             'jpt' => new Jpt(),
             'bendera' => Bendera::all(),
@@ -71,6 +75,7 @@ class JptController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission();
         $jpt = Jpt::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -114,6 +119,7 @@ class JptController extends Controller
 
     public function edit($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Jpt::findOrFail($id));
         $jpt = Jpt::findOrFail($id);
         return view('backend.jpt.edit', [
@@ -132,6 +138,7 @@ class JptController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Jpt::findOrFail($id));
         $jpt = Jpt::findOrFail($id);
         return view('backend.jpt.show', [
@@ -141,6 +148,7 @@ class JptController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->checkPermission();
         $this->authorize('view', Jpt::findOrFail($id));
         $jpt = Jpt::findOrFail($id);
         $jpt->update([
@@ -188,6 +196,7 @@ class JptController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $this->checkPermission();
         if ($request->delete == 'true') {
             $this->authorize('view', Jpt::findOrFail($id));
             $jpt = Jpt::destroy($id);
@@ -200,6 +209,7 @@ class JptController extends Controller
 
     public function cetakLaporan(Request $request)
     {
+        $this->checkPermission();
         $data = array();
         if (auth()->user()->role == 'admin') {
             $data = Jpt::whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])
@@ -222,5 +232,21 @@ class JptController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Jpt-' . time() . ".pdf");
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_jpt', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

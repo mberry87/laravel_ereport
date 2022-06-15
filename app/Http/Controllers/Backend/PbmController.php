@@ -9,6 +9,7 @@ use App\Models\JenisKapal;
 use App\Models\Terminal;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Gate;
 
 class PbmController extends Controller
 {
@@ -19,6 +20,7 @@ class PbmController extends Controller
      */
     public function index(Request $request)
     {
+        $this->checkPermission();
         if ($request->filter && $request->tanggal_awal && $request->tanggal_akhir) {
             if (auth()->user()->role == 'admin') {
                 return view('backend.pbm.index', [
@@ -55,6 +57,7 @@ class PbmController extends Controller
      */
     public function create()
     {
+        $this->checkPermission();
         return view('backend.pbm.create', [
             'pbm' => new Pbm(),
             'bendera' => Bendera::all(),
@@ -71,6 +74,7 @@ class PbmController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission();
         $pbm = Pbm::create([
             'nama_kapal' => $request->nama_kapal,
             'id_bendera' => $request->id_bendera,
@@ -112,6 +116,7 @@ class PbmController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         return view('backend.pbm.show', [
@@ -127,6 +132,7 @@ class PbmController extends Controller
      */
     public function edit($id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         return view('backend.pbm.edit', [
@@ -146,6 +152,7 @@ class PbmController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkPermission();
         $this->authorize('view', Pbm::findOrFail($id));
         $pbm = Pbm::findOrFail($id);
         $pbm->update([
@@ -185,6 +192,7 @@ class PbmController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $this->checkPermission();
         if ($request->delete == 'true') {
             $this->authorize('view', Pbm::findOrFail($id));
             $pbm = Pbm::destroy($id);
@@ -197,6 +205,7 @@ class PbmController extends Controller
 
     public function cetakLaporan(Request $request)
     {
+        $this->checkPermission();
         $data = array();
         if (auth()->user()->role == 'admin') {
             $data = Pbm::whereBetween('tgl_bongkar', [$request->tgl_awal, $request->tgl_akhir])
@@ -219,5 +228,21 @@ class PbmController extends Controller
         ]);
         $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('Pbm-' . time() . ".pdf");
+    }
+
+    private function checkPermission()
+    {
+        $validPermissions = [];
+        $userPermissions = \App\Models\User::findOrFail(auth()->user()->id);
+        foreach($userPermissions->permissions as $permission) {
+            array_push($validPermissions, $permission->name);
+        }
+        if(!in_array('form_pbm', $validPermissions)) {
+            if (auth()->user()->role == 'admin') {
+                return true;
+            }
+            return abort(404);
+        }
+        return true;
     }
 }

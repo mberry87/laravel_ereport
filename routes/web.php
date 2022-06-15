@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\TerminalController;
 use App\Http\Controllers\Backend\PelnasController;
 use App\Http\Controllers\Backend\PelraController;
 use App\Http\Controllers\Backend\PengaturanController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\StatuskapalController;
 use App\Http\Controllers\Backend\StatustrayekController;
@@ -137,6 +138,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/pelra/laporan', [PelraController::class, 'cetakLaporan'])->name('pelra.laporan');
 
     // user
+    Route::post('/user/updatepermission', [UserController::class, 'updatePermission'])->name('user.permission.update');
     Route::resource('/user', UserController::class);
     Route::get('/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
     Route::get('/user/update-status/{id}', [UserController::class, 'updateStatus'])->name('user.reset.status');
@@ -154,4 +156,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/pemberitahuan/bacasemua', [PemberitahuanController::class, 'readAll'])->name('pemberitahuan.readall');
     Route::get('/pemberitahuan/baca/{id}', [PemberitahuanController::class, 'read'])->name('pemberitahuan.read');
     Route::get('/pemberitahuan/hapussemua', [PemberitahuanController::class, 'deleteAll'])->name('pemberitahuan.deleteall');
+
+    Route::resource('permissions', PermissionController::class)->except(['show']);
 });

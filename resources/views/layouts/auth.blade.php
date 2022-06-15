@@ -38,6 +38,27 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
     <link rel="stylesheet" href="{{ asset('admin') }}/dist/css/adminlte.min.css?v=3.2.0">
+    <script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
+
+    <style>
+        body {
+            background-image: url("{{ asset('image/logo-bg.png') }}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 660px 768px;
+            background-position: -200px -120px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            body {
+                background-image: url("{{ asset('image/logo-bg.png') }}");
+                background-size: 320px 360px;
+                background-position: -100px -50px;
+
+            }
+        }
+
+    </style>
 </head>
 
 <body class="hold-transition login-page">
@@ -52,7 +73,6 @@
     </div>
 
 
-    <script src="{{ asset('admin') }}/plugins/jquery/jquery.min.js"></script>
 
     <script src="{{ asset('admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
